@@ -1,14 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../common/widgets/appbar/appbar.dart';
-import '../../../../routes/routes.dart';
+import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
-import '../../../../utils/helpers/helper_functions.dart';
-import '../../../common/widgets/custom_shapes/containers/rounded_container.dart';
-import '../../../data/repository/authentication_repository/authentication_repository.dart';
 import '../../controllers/notification_controller.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -16,59 +11,118 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
     final controller = NotificationController.instance;
 
     return Scaffold(
-      appBar: const TAppBar(title: Text('Notifications'), showSkipButton: false, showActions: false, showBackArrow: true),
-      body: Padding(
-        padding: const EdgeInsets.all(TSizes.defaultSpace),
-        child: Obx(() {
-          if (controller.notifications.isEmpty) {
-            return const Center(child: Text('No notifications available.'));
-          }
+      backgroundColor: TColors.black,
+      appBar: AppBar(
+        backgroundColor: TColors.black,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Get.back(),
+        ),
+        title: Text(
+          'Notifications',
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.white),
+        ),
+      ),
+      body: Obx(() {
+        if (controller.notifications.isEmpty) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Iconsax.notification,
+                  size: 100,
+                  color: TColors.grey,
+                ),
+                const SizedBox(height: TSizes.spaceBtwSections),
+                Text(
+                  'No notifications available',
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Colors.white,
+                      ),
+                ),
+                const SizedBox(height: TSizes.spaceBtwItems),
+                Text(
+                  'We\'ll notify you when something arrives',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: TColors.grey,
+                      ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          );
+        }
 
-          return ListView.separated(
-            itemCount: controller.notifications.length,
-            separatorBuilder: (_, __) => const SizedBox(height: TSizes.spaceBtwItems),
-            itemBuilder: (context, index) {
-              final notification = controller.notifications[index];
-              return TRoundedContainer(
-                padding: const EdgeInsets.symmetric(vertical: TSizes.sm),
-                backgroundColor: notification.seenBy[AuthenticationRepository.instance.getUserID] == true
-                    ? Colors.grey.withValues(alpha: 0.15)
-                    : Colors.blue.withValues(alpha: 0.15),
-                child: Obx(
-                  () => ListTile(
-                    leading: Icon(Iconsax.notification_bing,
-                        color: notification.seenBy[AuthenticationRepository.instance.getUserID] == true
-                            ? Colors.grey
-                            : Colors.blue),
-                    title: Text(
-                      notification.title,
-                      style: Theme.of(context).textTheme.titleMedium!.apply(color: dark ? Colors.white : Colors.black),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+        return ListView.separated(
+          padding: const EdgeInsets.all(TSizes.defaultSpace),
+          itemCount: controller.notifications.length,
+          separatorBuilder: (_, __) => const SizedBox(height: TSizes.spaceBtwItems),
+          itemBuilder: (context, index) {
+            final notification = controller.notifications[index];
+            return Container(
+              padding: const EdgeInsets.all(TSizes.md),
+              decoration: BoxDecoration(
+                color: TColors.darkerGrey,
+                borderRadius: BorderRadius.circular(TSizes.cardRadiusMd),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: TColors.primary.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    subtitle: Column(
+                    child: Icon(
+                      Iconsax.notification,
+                      color: TColors.primary,
+                      size: 24,
+                    ),
+                  ),
+                  const SizedBox(width: TSizes.spaceBtwItems),
+                  Expanded(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(notification.body, maxLines: 2, overflow: TextOverflow.ellipsis),
-                        Text(notification.formattedDate,
-                            style: Theme.of(context).textTheme.labelMedium!.apply(color: Colors.grey)),
+                        Text(
+                          notification.title,
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          notification.body,
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: TColors.grey,
+                              ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          notification.formattedDate,
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: TColors.darkGrey,
+                              ),
+                        ),
                       ],
                     ),
-                    trailing: notification.seenBy[AuthenticationRepository.instance.getUserID] == true
-                        ? const Icon(Icons.check, color: Colors.green)
-                        : const Icon(CupertinoIcons.circle_filled, color: Colors.blue),
-                    onTap: () => Get.toNamed(TRoutes.notificationDetails, arguments: notification),
                   ),
-                ),
-              );
-            },
-          );
-        }),
-      ),
+                ],
+              ),
+            );
+          },
+        );
+      }),
     );
   }
 }

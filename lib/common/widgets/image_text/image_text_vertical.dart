@@ -33,10 +33,11 @@ class TVerticalImageAndText extends StatelessWidget {
             /// Circular Icon
             TCircularImage(
               image: image,
-              fit: BoxFit.fitWidth,
+              fit: BoxFit.cover,
               padding: TSizes.sm * 1.4,
               backgroundColor: backgroundColor,
-              overlayColor: dark ? TColors.white : TColors.dark,
+              isNetworkImage: true,
+              overlayColor: null, // Remove overlay for network images
             ),
             const SizedBox(height: TSizes.spaceBtwItems / 2),
 

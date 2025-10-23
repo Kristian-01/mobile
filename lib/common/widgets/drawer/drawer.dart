@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../features/categories/screens/product_categories_screen.dart';
+import '../../../features/orders/screens/orders_screen.dart';
 import '../../../personalization/controllers/user_controller.dart';
 import '../../../routes/routes.dart';
 import '../../../utils/constants/colors.dart';
@@ -70,7 +72,9 @@ class TDrawer extends StatelessWidget {
   List<Widget> _drawerItems() {
     return [
       _buildDrawerItem(icon: Iconsax.user, title: "Profile", onTap: () => Get.toNamed(TRoutes.profileScreen)),
-      _buildDrawerItem(icon: Iconsax.home, title: "E-Commerce Dashboard", onTap: () => Get.toNamed(TRoutes.eComDashboard)),
+      _buildDrawerItem(icon: Iconsax.home, title: "Home", onTap: () => Get.toNamed(TRoutes.eComDashboard)),
+      _buildDrawerItem(icon: Iconsax.category, title: "Product Category", onTap: () => Get.to(() => const ProductCategoriesScreen())),
+      _buildDrawerItem(icon: Iconsax.bag_2, title: "Orders", onTap: () => Get.to(() => const OrdersScreen())),
       _buildDrawerItem(icon: Iconsax.shopping_cart, title: "Cart", onTap: () => Get.toNamed(TRoutes.cartScreen)),
       _buildDrawerItem(icon: Iconsax.shopping_bag, title: "Checkout", onTap: () => Get.toNamed(TRoutes.checkoutScreen)),
       _buildDrawerItem(icon: Iconsax.heart, title: "Wishlist", onTap: () => Get.toNamed(TRoutes.favouritesScreen)),

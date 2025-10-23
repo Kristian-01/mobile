@@ -37,11 +37,11 @@ class AttributeWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(attribute.name!),
+        Text(attribute.name ?? ''),
         const SizedBox(height: 4.0),
         Wrap(
           spacing: 8.0,
-          children: attribute.values!.map((value) {
+          children: (attribute.values ?? []).map((value) {
             final isSelected = value == selectedValue;
             final isAvailable = availableVariationValues.contains(value);
 

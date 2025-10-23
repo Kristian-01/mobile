@@ -59,11 +59,12 @@ class ProductDetailScreen extends StatelessWidget {
                   const TSectionHeading(title: 'Description', showActionButton: false),
                   const SizedBox(height: TSizes.spaceBtwItems),
                   // Read more package
-                  ReadMoreText(
-                    product.description!,
-                    trimLines: 2,
-                    colorClickableText: Colors.pink,
-                    trimMode: TrimMode.Line,
+                  if (product.description != null && product.description!.isNotEmpty)
+                    ReadMoreText(
+                      product.description!,
+                      trimLines: 2,
+                      colorClickableText: Colors.pink,
+                      trimMode: TrimMode.Line,
                     trimCollapsedText: ' Show more',
                     trimExpandedText: ' Less',
                     moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),

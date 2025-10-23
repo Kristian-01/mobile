@@ -1,0 +1,51 @@
+// Nine27Pharmacy Firestore Security Rules
+// Copy this to Firebase Console -> Firestore Database -> Rules
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Cart Collection - User can only access their own cart
+    match /Carts/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Allow all reads and writes for authenticated users (simplified for development)
+    // TODO: Remove this rule and use specific rules for each collection
+    match /{document=**} {
+      allow read: if true;  // Anyone can read
+      allow write: if request.auth != null;  // Only authenticated users can write
+    }
+  }
+}
+
+/* PRODUCTION RULES (use these later):
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    match /Users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    match /Carts/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    match /Categories/{document=**} {
+      allow read: if true;
+      allow write: if false;  // Admin only via Console
+    }
+    
+    match /Products/{document=**} {
+      allow read: if true;
+      allow write: if false;  // Admin only via Console
+    }
+    
+    match /Orders/{orderId} {
+      allow read, create: if request.auth != null;
+      allow update, delete: if false;  // Prevent modification after creation
+    }
+  }
+}
+*/

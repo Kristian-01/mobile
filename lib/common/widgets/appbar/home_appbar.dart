@@ -37,6 +37,7 @@ class TEComAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ? IconButton(onPressed: leadingOnPressed, icon: Icon(leadingIcon))
                 : null,
         title: title,
+        centerTitle: false,
         actions: actions,
       ),
     );

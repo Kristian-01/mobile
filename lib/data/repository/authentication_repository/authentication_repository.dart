@@ -10,7 +10,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../features/authentication/screens/signup/verify_email.dart';
 import '../../../features/authentication/screens/welcome/welcome_screen.dart';
-import '../../../features/dashboard/course/screens/dashboard/coursesDashboard.dart';
+import '../../../features/navigation_menu/navigation_menu.dart';
+import '../../../personalization/controllers/notification_controller.dart';
 import '../../../personalization/controllers/user_controller.dart';
 import '../../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
@@ -67,7 +68,16 @@ class AuthenticationRepository extends GetxController {
       if (user.emailVerified || user.phoneNumber != null || idTokenResult.claims?['admin'] == true) {
         // Initialize User Specific Storage
         await TLocalStorage.init(user.uid);
-        Get.offAll(() => const CoursesDashboard());
+        
+        // Start notification listener after successful login
+        try {
+          final notificationController = Get.put(NotificationController());
+          notificationController.startListening();
+        } catch (e) {
+          // Silently handle notification initialization errors
+        }
+        
+        Get.offAll(() => const NavigationMenu());
       } else {
         Get.offAll(() => VerifyEmailScreen(email: getUserEmail));
       }
@@ -184,17 +194,28 @@ class AuthenticationRepository extends GetxController {
   /// [GoogleAuthentication] - GOOGLE
   Future<UserCredential?> signInWithGoogle() async {
     try {
+      debugPrint('🔵 Starting Google Sign-In...');
+      final startTime = DateTime.now();
+      
       // Trigger the authentication flow
+      debugPrint('🔵 Opening Google Sign-In dialog...');
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      debugPrint('✅ Google account selected: ${DateTime.now().difference(startTime).inSeconds}s');
 
       // Obtain the auth details from the request
+      debugPrint('🔵 Getting authentication details...');
       final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+      debugPrint('✅ Auth details obtained: ${DateTime.now().difference(startTime).inSeconds}s');
 
       // Create a new credential
+      debugPrint('🔵 Creating Firebase credential...');
       final credential = GoogleAuthProvider.credential(accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
 
       // Once signed in, return the UserCredential
-      return await FirebaseAuth.instance.signInWithCredential(credential);
+      debugPrint('🔵 Signing in to Firebase...');
+      final result = await FirebaseAuth.instance.signInWithCredential(credential);
+      debugPrint('✅ Sign-in complete! Total time: ${DateTime.now().difference(startTime).inSeconds}s');
+      return result;
     } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {

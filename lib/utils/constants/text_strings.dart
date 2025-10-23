@@ -42,7 +42,7 @@ class TTexts {
   static const String tAccountCreateVerifyEmail = "Account Create Verify Email";
 
   // -- Splash Screen Text
-  static const String tAppName = "Starter Template";
+  static const String tAppName = "Home";
   static const String tAppTagLine = "Learn To Code. \nFree For Everyone";
 
   // -- On Boarding Text
@@ -167,5 +167,5 @@ class TTexts {
 
   // -- Dashboard 1
   static const String popularProducts = "Popular Products";
-  static const String homeAppbarTitle = "Good day for shopping";
+  static const String homeAppbarTitle = "Nine27Pharmacy";
 }

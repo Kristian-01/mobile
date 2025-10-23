@@ -36,11 +36,25 @@ class TCircularImage extends StatelessWidget {
         borderRadius: BorderRadius.circular(100),
       ),
       child: Center(
-        child: Image(
-          fit: fit,
-          image: isNetworkImage ? NetworkImage(image) : AssetImage(image) as ImageProvider,
-          color: overlayColor,
-        ),
+        child: isNetworkImage
+            ? Image.network(
+                image,
+                fit: fit,
+                color: overlayColor,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return const CircularProgressIndicator(strokeWidth: 2);
+                },
+                errorBuilder: (context, error, stackTrace) {
+                  print('Category image error: $error'); // Debug
+                  return const Icon(Icons.category, size: 30, color: Colors.grey);
+                },
+              )
+            : Image(
+                fit: fit,
+                image: AssetImage(image),
+                color: overlayColor,
+              ),
       ),
     );
   }

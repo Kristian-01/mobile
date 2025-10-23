@@ -17,9 +17,8 @@ class FavouriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TEComAppBar(
-        showBackArrow: true,
+        showBackArrow: false,
         title: Text('Wishlist', style: Theme.of(context).textTheme.headlineMedium),
-        actions: [TCircularIcon(icon: Iconsax.add, onPressed: () => Get.to(() => const CoursesDashboard()))],
       ),
       body: SingleChildScrollView(
         child: Padding(

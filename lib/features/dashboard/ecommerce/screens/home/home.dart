@@ -13,6 +13,7 @@ import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/device/device_utility.dart';
 import '../../../../cart/controllers/cart_controller.dart';
+import '../../../../categories/screens/store_screen.dart';
 import '../../../../products/controllers/product_controller.dart';
 import '../../../../products/screens/product_cards/product_card_vertical.dart';
 import '../../controllers/home_controller.dart';
@@ -25,8 +26,7 @@ class HomeScreen extends StatelessWidget {
     final controller = Get.put(HomeController());
     Get.put(CartController());
     Get.put(ProductController());
-    final featuredProducts = controller.getFeaturedProducts();
-    final popularProducts = controller.getPopularProducts();
+    
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -57,28 +57,74 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /// -- Promo Slider 1
-                  const TPromoSlider(banners: [TImages.promoBanner1, TImages.promoBanner2, TImages.promoBanner3]),
+                  /// -- Promo Slider 1 - Pharmacy Banners
+                  const TPromoSlider(banners: [
+                    'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=300&fit=crop',
+                    'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=800&h=300&fit=crop',
+                    'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&h=300&fit=crop',
+                  ]),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
-                  /// -- Popular Products
-                  TSectionHeading(
-                    title: TTexts.popularProducts,
-                    // onPressed: () => Get.to(() => AllProducts(title: TTexts.popularProducts, products: TDummyData.products)),
-                    onPressed: () {},
-                  ),
-                  const SizedBox(height: TSizes.spaceBtwItems),
-                  TGridLayout(itemCount: featuredProducts.length, itemBuilder: (_, index) => TProductCardVertical(product: featuredProducts[index])),
+                  /// -- Featured Products (Reactive to Firebase)
+                  Obx(() {
+                    if (controller.isLoading.value) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+
+                    final featuredProducts = controller.featuredProducts;
+
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TSectionHeading(
+                          title: 'Featured Products',
+                          onPressed: () => Get.to(() => const StoreScreen()),
+                        ),
+                        const SizedBox(height: TSizes.spaceBtwItems),
+                        featuredProducts.isEmpty
+                            ? const Center(child: Text('No featured products yet'))
+                            : TGridLayout(
+                                itemCount: featuredProducts.length,
+                                itemBuilder: (_, index) => TProductCardVertical(product: featuredProducts[index]),
+                              ),
+                      ],
+                    );
+                  }),
                   const SizedBox(height: TSizes.spaceBtwSections * 2),
 
-                  /// -- Promo Slider 2
-                  const TPromoSlider(banners: [TImages.banner2, TImages.banner3, TImages.banner4]),
+                  /// -- Promo Slider 2 - Health & Wellness
+                  const TPromoSlider(banners: [
+                    'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&h=300&fit=crop',
+                    'https://images.unsplash.com/photo-1550572017-4240fe2fd0b6?w=800&h=300&fit=crop',
+                    'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=300&fit=crop',
+                  ]),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
-                  /// -- Popular Products
-                  TSectionHeading(title: TTexts.popularProducts, onPressed: () {}),
-                  const SizedBox(height: TSizes.spaceBtwItems),
-                  TGridLayout(itemCount: popularProducts.length, itemBuilder: (_, index) => TProductCardVertical(product: popularProducts[index])),
+                  /// -- Popular Products (Reactive to Firebase)
+                  Obx(() {
+                    if (controller.isLoading.value) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+
+                    final popularProducts = controller.popularProducts;
+
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TSectionHeading(
+                          title: TTexts.popularProducts,
+                          onPressed: () => Get.to(() => const StoreScreen()),
+                        ),
+                        const SizedBox(height: TSizes.spaceBtwItems),
+                        popularProducts.isEmpty
+                            ? const Center(child: Text('No popular products yet'))
+                            : TGridLayout(
+                                itemCount: popularProducts.length,
+                                itemBuilder: (_, index) => TProductCardVertical(product: popularProducts[index]),
+                              ),
+                      ],
+                    );
+                  }),
                   SizedBox(height: TDeviceUtils.getBottomNavigationBarHeight() + TSizes.defaultSpace),
                 ],
               ),

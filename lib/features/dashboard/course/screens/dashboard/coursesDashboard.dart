@@ -5,9 +5,6 @@ import '../../../../../personalization/controllers/user_controller.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import 'widgets/appbar.dart';
-import 'widgets/banners.dart';
-import 'widgets/categories.dart';
-import 'widgets/search.dart';
 import 'widgets/top_courses.dart';
 
 class CoursesDashboard extends StatelessWidget {
@@ -33,19 +30,6 @@ class CoursesDashboard extends StatelessWidget {
               children: [
                 //Heading
                 Text(UserController.instance.user.value.fullName.isEmpty ? TTexts.tDashboardTitle: "Hey, ${UserController.instance.user.value.fullName}", style: txtTheme.bodyMedium),
-                Text(TTexts.tDashboardHeading, style: txtTheme.displayMedium),
-                const SizedBox(height: TSizes.lg),
-
-                //Search Box
-                DashboardSearchBox(txtTheme: txtTheme),
-                const SizedBox(height: TSizes.lg),
-
-                //Categories
-                DashboardCategories(txtTheme: txtTheme),
-                const SizedBox(height: TSizes.lg),
-
-                //Banners
-                DashboardBanners(txtTheme: txtTheme),
                 const SizedBox(height: TSizes.lg),
 
                 //Top Course

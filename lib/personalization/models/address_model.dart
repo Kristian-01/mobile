@@ -9,6 +9,7 @@ class AddressModel {
   final String state;
   final String postalCode;
   final String country;
+  final bool selectedAddress;
 
   AddressModel({
     required this.id,
@@ -19,12 +20,13 @@ class AddressModel {
     required this.state,
     required this.postalCode,
     required this.country,
+    this.selectedAddress = false,
   });
 
   String get formattedPhoneNo => TFormatter.formatPhoneNumber(phoneNumber);
 
 
-  static AddressModel empty() => AddressModel(id: '', name: '', phoneNumber: '', street: '', city: '', state: '', postalCode: '', country: '');
+  static AddressModel empty() => AddressModel(id: '', name: '', phoneNumber: '', street: '', city: '', state: '', postalCode: '', country: '', selectedAddress: false);
 
 
 

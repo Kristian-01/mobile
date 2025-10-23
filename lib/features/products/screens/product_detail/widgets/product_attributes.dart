@@ -87,7 +87,7 @@ class TProductAttributes extends StatelessWidget {
           /// -- Attributes
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: product.productAttributes!
+            children: (product.productAttributes ?? [])
                 .map((attribute) => Column(
                       // attribute = Product Single Attribute [Name: Color, Values: [Green, Blue, Orange]]
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,11 +97,11 @@ class TProductAttributes extends StatelessWidget {
                         Obx(
                           () => Wrap(
                             spacing: 8,
-                            children: attribute.values!.map((attributeValue) {
+                            children: (attribute.values ?? []).map((attributeValue) {
                               // attributeValue = Single Attribute Value [Green]
                               final isSelected = controller.selectedAttributes[attribute.name] == attributeValue;
                               final available = controller
-                                  .getAttributesAvailabilityInVariation(product.productVariations!, attribute.name!)
+                                  .getAttributesAvailabilityInVariation(product.productVariations ?? [], attribute.name ?? '')
                                   .contains(attributeValue);
 
                               /// Attribute Chip

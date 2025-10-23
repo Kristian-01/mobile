@@ -13,6 +13,7 @@ import '../../../../utils/helpers/pricing_calculator.dart';
 import '../../cart/controllers/cart_controller.dart';
 import '../../cart/screens/widgets/cart_items.dart';
 import '../../dashboard/ecommerce/controllers/dummy_data.dart';
+import '../controllers/checkout_controller.dart';
 import 'billing_amount_section.dart';
 
 class CheckoutScreen extends StatelessWidget {
@@ -21,6 +22,7 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartController = CartController.instance;
+    final checkoutController = Get.put(CheckoutController());
     Get.put(AddressController());
     final subTotal = cartController.totalCartPrice.value;
     final dark = THelperFunctions.isDarkMode(context);
@@ -80,7 +82,10 @@ class CheckoutScreen extends StatelessWidget {
         padding: const EdgeInsets.all(TSizes.defaultSpace),
         child: SizedBox(
           width: double.infinity,
-          child: ElevatedButton(onPressed: () {}, child: Text('Checkout \$${TPricingCalculator.calculateTotalPrice(subTotal, 'US')}')),
+          child: ElevatedButton(
+            onPressed: () => checkoutController.processCheckout(TPricingCalculator.calculateTotalPrice(subTotal, 'US')), 
+            child: Text('Checkout ₱${TPricingCalculator.calculateTotalPrice(subTotal, 'US')}')
+          ),
         ),
       ),
     );

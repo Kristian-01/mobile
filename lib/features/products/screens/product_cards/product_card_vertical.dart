@@ -53,7 +53,12 @@ class TProductCardVertical extends StatelessWidget {
               child: Stack(
                 children: [
                   /// -- Thumbnail Image
-                  Center(child: TRoundedImage(imageUrl: product.thumbnail, applyImageRadius: true)),
+                  Center(child: TRoundedImage(
+                    imageUrl: product.thumbnail,
+                    applyImageRadius: true,
+                    isNetworkImage: true,
+                    fit: BoxFit.cover,
+                  )),
 
                   /// -- Sale Tag
                   if (salePercentage != null)
@@ -86,7 +91,8 @@ class TProductCardVertical extends StatelessWidget {
                 children: [
                   TProductTitleText(title: product.title, smallSize: true),
                   const SizedBox(height: TSizes.spaceBtwItems / 2),
-                  TBrandTitleWithVerifiedIcon(title: product.brand!.name, brandTextSize: TextSizes.small),
+                  if (product.brand != null)
+                    TBrandTitleWithVerifiedIcon(title: product.brand!.name, brandTextSize: TextSizes.small),
                 ],
               ),
             ),

@@ -39,7 +39,28 @@ class TRoundedImage extends StatelessWidget {
         decoration: BoxDecoration(border: border, color: backgroundColor, borderRadius: BorderRadius.circular(borderRadius)),
         child: ClipRRect(
           borderRadius: applyImageRadius ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
-          child: Image(fit: fit, image: isNetworkImage ? NetworkImage(imageUrl) : AssetImage(imageUrl) as ImageProvider),
+          child: isNetworkImage
+              ? Image.network(
+                  imageUrl,
+                  fit: fit,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    print('Image load error: $error'); // Debug
+                    return const Center(
+                      child: Icon(Icons.broken_image, size: 40, color: Colors.grey),
+                    );
+                  },
+                )
+              : Image(fit: fit, image: AssetImage(imageUrl)),
         ),
       ),
     );

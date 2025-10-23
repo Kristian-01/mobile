@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
+import '../../../data/repository/authentication_repository/authentication_repository.dart';
+import '../../../utils/local_storage/storage_utility.dart';
 import '../../dashboard/ecommerce/controllers/dummy_data.dart';
 import '../../products/models/product_model.dart';
 import '../../products/models/product_variation_model.dart';
@@ -10,19 +13,18 @@ class CartController extends GetxController {
 
   RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
   RxDouble totalCartPrice = 0.0.obs;
+  RxBool isLoading = false.obs;
+
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final String _cartStorageKey = 'user_cart';
 
   // RxMap<String, int> productQuantities = <String, int>{}.obs; // Use to count each product quantity [ID: quantity]
 
-  /// -- Used init to initialize dummy data only
+  /// -- Initialize and load saved cart
   @override
   void onInit() {
-    cartItems.value = TDummyData.cart.items;
-    totalCartPrice.value = cartItems
-        .map((e) => calculateSingleProductTotal(e.price!, e.quantity))
-        .fold(0, (previous, current) => previous + current);
-    // Assuming cartItems are already populated
-    // cartItems.map((element) => productQuantities.addAll({element.productId: element.quantity})).toList();
     super.onInit();
+    loadCart();
   }
 
   void addSingleItemToCart(ProductModel product, ProductVariationModel variation) {
@@ -36,7 +38,7 @@ class CartController extends GetxController {
         title: product.title,
         image: product.thumbnail,
         price: product.salePrice ?? product.price,
-        brandName: product.brand!.name,
+        brandName: product.brand?.name ?? 'Nine27Pharmacy',
       ),
     );
 
@@ -54,6 +56,9 @@ class CartController extends GetxController {
 
     // Must use .refresh() when list or Modal is Observable to change UI
     cartItems.refresh();
+    
+    // Auto-save cart after modification
+    saveCart();
   }
 
   void addMultipleItemsToCart(ProductModel product, ProductVariationModel variation, int quantity) {
@@ -67,7 +72,7 @@ class CartController extends GetxController {
         title: product.title,
         image: variation.id.isEmpty ? product.thumbnail : variation.image,
         price: variation.id.isEmpty ? product.salePrice ?? product.price : variation.salePrice ?? variation.price,
-        brandName: product.brand!.name,
+        brandName: product.brand?.name ?? 'Nine27Pharmacy',
         selectedVariation: variation.id.isNotEmpty ? variation.attributeValues : null,
       ),
     );
@@ -103,6 +108,9 @@ class CartController extends GetxController {
 
     // Must use .refresh() when list or Modal is Observable to change UI
     cartItems.refresh();
+    
+    // Auto-save cart after modification
+    saveCart();
   }
 
   void removeItemFromCart(CartItemModel cartItem) {
@@ -117,6 +125,10 @@ class CartController extends GetxController {
         // Remove the price from the total
         totalCartPrice.value -= calculateSingleProductTotal(cartItem.price!, cartItem.quantity);
         cartItems.refresh();
+        
+        // Auto-save cart after removal
+        saveCart();
+        
         Get.back();
       },
       barrierDismissible: true,
@@ -143,6 +155,9 @@ class CartController extends GetxController {
       }
       cartItem.quantity = newQuantity;
       cartItems.refresh();
+      
+      // Auto-save cart after quantity update
+      saveCart();
     }
   }
 
@@ -174,5 +189,109 @@ class CartController extends GetxController {
     }
 
     return cartEntries;
+  }
+
+  /// Clear all items from cart
+  void clearCart() {
+    cartItems.clear();
+    totalCartPrice.value = 0.0;
+    saveCart(); // Save the empty cart
+  }
+
+  // ==================== CART PERSISTENCE METHODS ====================
+
+  /// Load cart from local storage and Firestore (Hybrid approach)
+  Future<void> loadCart() async {
+    try {
+      isLoading.value = true;
+
+      // 1. Try to load from LOCAL STORAGE first (Fast, offline-capable)
+      final localData = TLocalStorage.instance().readData<List>(_cartStorageKey);
+      if (localData != null && localData.isNotEmpty) {
+        cartItems.value = localData
+            .map((item) => CartItemModel.fromJson(Map<String, dynamic>.from(item)))
+            .toList();
+        _recalculateTotalPrice();
+      }
+
+      // 2. Try to load from FIRESTORE (Cloud backup, sync across devices)
+      final userId = AuthenticationRepository.instance.getUserID;
+      if (userId.isNotEmpty) {
+        final cartDoc = await _db.collection('Carts').doc(userId).get();
+        
+        if (cartDoc.exists) {
+          final cloudData = cartDoc.data();
+          if (cloudData != null && cloudData['items'] != null) {
+            final cloudItems = (cloudData['items'] as List)
+                .map((item) => CartItemModel.fromJson(Map<String, dynamic>.from(item)))
+                .toList();
+            
+            // Merge cloud cart with local cart (cloud takes precedence if newer)
+            if (cloudItems.isNotEmpty) {
+              cartItems.value = cloudItems;
+              _recalculateTotalPrice();
+              // Update local storage with cloud data
+              await _saveToLocalStorage();
+            }
+          }
+        }
+      }
+    } catch (e) {
+      print('Error loading cart: \$e');
+      // If error, keep whatever is in cartItems (could be empty or from local)
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  /// Save cart to both local storage and Firestore
+  Future<void> saveCart() async {
+    try {
+      // 1. Save to LOCAL STORAGE (Fast, always works)
+      await _saveToLocalStorage();
+
+      // 2. Save to FIRESTORE (Cloud backup, requires auth)
+      await _saveToFirestore();
+    } catch (e) {
+      print('Error saving cart: \$e');
+    }
+  }
+
+  /// Save to local storage (Private, per-user)
+  Future<void> _saveToLocalStorage() async {
+    try {
+      final cartJson = cartItems.map((item) => item.toJson()).toList();
+      await TLocalStorage.instance().writeData(_cartStorageKey, cartJson);
+    } catch (e) {
+      print('Error saving to local storage: \$e');
+    }
+  }
+
+  /// Save to Firestore (Cloud backup, user-isolated)
+  Future<void> _saveToFirestore() async {
+    try {
+      final userId = AuthenticationRepository.instance.getUserID;
+      if (userId.isEmpty) return; // Not logged in, skip cloud save
+
+      final cartJson = cartItems.map((item) => item.toJson()).toList();
+      
+      await _db.collection('Carts').doc(userId).set({
+        'items': cartJson,
+        'totalPrice': totalCartPrice.value,
+        'itemCount': cartItems.length,
+        'lastUpdated': FieldValue.serverTimestamp(),
+        'userId': userId, // For security rules
+      });
+    } catch (e) {
+      print('Error saving to Firestore: \$e');
+      // Don't throw - local storage already saved
+    }
+  }
+
+  /// Recalculate total price from cart items
+  void _recalculateTotalPrice() {
+    totalCartPrice.value = cartItems
+        .map((e) => calculateSingleProductTotal(e.price ?? 0, e.quantity))
+        .fold(0, (previous, current) => previous + current);
   }
 }

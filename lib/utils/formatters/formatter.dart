@@ -18,7 +18,7 @@ class TFormatter {
   }
 
   static String formatCurrency(double amount) {
-    return NumberFormat.currency(locale: 'en_US', symbol: '\$').format(amount); // Customize the currency locale and symbol as needed
+    return NumberFormat.currency(locale: 'en_PH', symbol: '₱').format(amount); // Philippine Peso currency format
   }
 
   static String formatPhoneNumber(String phoneNumber) {

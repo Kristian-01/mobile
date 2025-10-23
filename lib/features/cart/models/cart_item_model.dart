@@ -22,4 +22,34 @@ class CartItemModel {
   });
 
   static CartItemModel empty() => CartItemModel(productId: '', variationId: '', quantity: 0);
+
+  /// Convert model to JSON for storage
+  Map<String, dynamic> toJson() {
+    return {
+      'quantity': quantity,
+      'productId': productId,
+      'variationId': variationId,
+      'price': price,
+      'image': image,
+      'title': title,
+      'brandName': brandName,
+      'selectedVariation': selectedVariation,
+    };
+  }
+
+  /// Create model from JSON
+  factory CartItemModel.fromJson(Map<String, dynamic> json) {
+    return CartItemModel(
+      quantity: json['quantity'] ?? 0,
+      productId: json['productId'] ?? '',
+      variationId: json['variationId'] ?? '',
+      price: json['price']?.toDouble(),
+      image: json['image'],
+      title: json['title'],
+      brandName: json['brandName'],
+      selectedVariation: json['selectedVariation'] != null
+          ? Map<String, String>.from(json['selectedVariation'])
+          : null,
+    );
+  }
 }

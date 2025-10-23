@@ -71,18 +71,19 @@ class TProductMetaData extends StatelessWidget {
         ),
         const SizedBox(height: TSizes.spaceBtwItems / 2),
 
-        /// Brand
-        Row(
-          children: [
-            TCircularImage(
-              image: product.brand!.image,
-              width: 32,
-              height: 32,
-              overlayColor: darkMode ? TColors.white : TColors.black,
-            ),
-            TBrandTitleWithVerifiedIcon(title: product.brand!.name, brandTextSize: TextSizes.medium),
-          ],
-        ),
+        /// Brand (only show if brand exists)
+        if (product.brand != null)
+          Row(
+            children: [
+              TCircularImage(
+                image: product.brand!.image,
+                width: 32,
+                height: 32,
+                overlayColor: darkMode ? TColors.white : TColors.black,
+              ),
+              TBrandTitleWithVerifiedIcon(title: product.brand!.name, brandTextSize: TextSizes.medium),
+            ],
+          ),
       ],
     );
   }

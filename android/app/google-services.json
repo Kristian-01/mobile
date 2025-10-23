@@ -1,49 +1,42 @@
 {
   "project_info": {
-    "project_number": "682675089378",
-    "project_id": "cwt-starter-template",
-    "storage_bucket": "cwt-starter-template.firebasestorage.app"
+    "project_number": "1079921206263",
+    "project_id": "mobile-e4ddd",
+    "storage_bucket": "mobile-e4ddd.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:682675089378:android:9d2ffd958d37e615f5d3bb",
+        "mobilesdk_app_id": "1:1079921206263:android:dfbbf3330eae4d9ac084f2",
         "android_client_info": {
-          "package_name": "com.example.cwt_starter_template"
+          "package_name": "com.mobile.com"
         }
       },
       "oauth_client": [
         {
-          "client_id": "682675089378-jttk67iffsimbo6t15cbr2uusbk0jllf.apps.googleusercontent.com",
+          "client_id": "1079921206263-lfotfrn8fi6t9dmgndgbtu0u4krtq5sd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.cwt_starter_template",
-            "certificate_hash": "965daac7dc9259ad4bb8fd20e0899155a4dccc67"
+            "package_name": "com.mobile.com",
+            "certificate_hash": "f7709d88dfbf2023cdecfeaebbf18e3623754bb1"
           }
         },
         {
-          "client_id": "682675089378-ia8f0esg9rssij1bs9h30rejrvst0qiq.apps.googleusercontent.com",
+          "client_id": "1079921206263-eod8gkhr033hmf71ctn9phejt1lucvfh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBJNqbp7eASRcDoYZzRdwAQ_e22bQW3Ne4"
+          "current_key": "AIzaSyBDnKQoS6wz_asKRs3hUG-Aj1rsG4qQeRc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "682675089378-ia8f0esg9rssij1bs9h30rejrvst0qiq.apps.googleusercontent.com",
+              "client_id": "1079921206263-eod8gkhr033hmf71ctn9phejt1lucvfh.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "682675089378-kq81i5hh18q0mf83mn7lo8651eikfbjj.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.cwtStarterTemplate"
-              }
             }
           ]
         }

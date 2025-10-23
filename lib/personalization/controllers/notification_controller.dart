@@ -23,7 +23,27 @@ class NotificationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    listenToNotifications();
+    _initializeNotifications();
+  }
+
+  void _initializeNotifications() {
+    // Only listen if user is authenticated and email is verified
+    try {
+      final user = AuthenticationRepository.instance.firebaseUser;
+      if (user != null && user.emailVerified) {
+        listenToNotifications();
+      }
+    } catch (e) {
+      // Silently handle initialization errors
+      if (kDebugMode) print('Failed to initialize notifications: $e');
+    }
+  }
+
+  /// Public method to start listening (can be called after login)
+  void startListening() {
+    if (_notificationsSubscription == null) {
+      _initializeNotifications();
+    }
   }
 
   /// Init Data
@@ -53,7 +73,9 @@ class NotificationController extends GetxController {
     _notificationsSubscription = repository.fetchAllItemsAsStream().listen((notificationList) {
       notifications.value = notificationList; // Update the notifications list in real-time
     }, onError: (error) {
-      TLoaders.warningSnackBar(title: "Error", message: "Failed to fetch notifications: $error");
+      // Silently handle error - notifications list stays empty
+      if (kDebugMode) print('Failed to fetch notifications: $error');
+      notifications.value = [];
     });
   }
 
@@ -62,7 +84,9 @@ class NotificationController extends GetxController {
       final result = await repository.fetchAllItems();
       notifications.value = result;
     } catch (e) {
-      TLoaders.warningSnackBar(title: "Error", message: "Failed to fetch notifications: $e");
+      // Silently handle error - notifications list stays empty
+      if (kDebugMode) print('Failed to fetch notifications: $e');
+      notifications.value = [];
     }
   }
 
