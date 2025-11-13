@@ -4,7 +4,7 @@ import '../../../../utils/constants/sizes.dart';
 
 class TGridLayout extends StatelessWidget {
   const TGridLayout({
-    super.key, required this.itemCount, required this.itemBuilder, this.mainAxisExtent = 288
+    super.key, required this.itemCount, required this.itemBuilder, this.mainAxisExtent = 280
   });
 
   final int itemCount;
@@ -21,8 +21,8 @@ class TGridLayout extends StatelessWidget {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisExtent: mainAxisExtent,
-        mainAxisSpacing: TSizes.gridViewSpacing,
-        crossAxisSpacing: TSizes.gridViewSpacing,
+        mainAxisSpacing: TSizes.md,
+        crossAxisSpacing: TSizes.md,
       ),
       itemBuilder: itemBuilder,
     );

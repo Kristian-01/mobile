@@ -67,4 +67,11 @@ class CategoryRepository extends TBaseRepositoryController<CategoryModel> {
         .get();
     return snapshot.docs.map((doc) => CategoryModel.fromSnapshot(doc)).toList();
   }
+
+  /// Real-time listener for categories
+  Stream<List<CategoryModel>> getCategoriesStream() {
+    return db.collection(_collectionPath).snapshots().map(
+      (snapshot) => snapshot.docs.map((doc) => CategoryModel.fromSnapshot(doc)).toList()
+    );
+  }
 }

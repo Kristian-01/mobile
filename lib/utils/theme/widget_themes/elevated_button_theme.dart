@@ -13,8 +13,8 @@ class TElevatedButtonTheme {
     style: ElevatedButton.styleFrom(
       elevation: 0,
       foregroundColor: TColors.white,
-      backgroundColor: TColors.dark,
-      side: const BorderSide(color: TColors.dark),
+      backgroundColor: const Color(0xFF5B7FDB), // Blue for light mode
+      side: const BorderSide(color: Color(0xFF5B7FDB)),
       padding: const EdgeInsets.symmetric(vertical: TSizes.buttonHeight),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(TSizes.borderRadiusLg)),
     ),
@@ -24,8 +24,8 @@ class TElevatedButtonTheme {
   static final darkElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       elevation: 0,
-      foregroundColor: TColors.dark,
-      backgroundColor: TColors.primary,
+      foregroundColor: TColors.secondary, // Dark Gray #272727
+      backgroundColor: TColors.primary, // Yellow #FFE400
       side: const BorderSide(color: TColors.primary),
       padding: const EdgeInsets.symmetric(vertical: TSizes.buttonHeight),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(TSizes.borderRadiusLg)),

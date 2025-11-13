@@ -1,86 +1,87 @@
-Product Name,Stock Quantity
-ALCOPLUS ALCOHOL 70% 250 ml,3
-BENCH COLONIA COTTON CANDY 100 ML.,1
-BENCH COLONIA COTTON CANDY 50ML.,2
-BLOOD SUGAR STRIP,25
+Product Name,Stock Quantity,Price
+BLOOD SUGAR STRIP,25,35.00
 "Betadine 
-15ml Solution",0
+15ml Solution",0,51.00
 "Betadine 
-25ml Solution",0
+25ml Solution",0,68.00
 "Betadine 
-60ml Solution",1
-Betadine Gargle 120ml,0
+60ml Solution",1,93.50
+Betadine Gargle 120ml,0,59.50
 "Biogenic 70% 
-150ml Isopropyl Alcohol",3
-CASINO ALCOHOL MILD 150 ML.,1
-CHOLESTEROL STRIP,9
+150ml Isopropyl Alcohol",3,45.00
+CASINO ALCOHOL MILD 150 ML.,1,45.00
+CHOLESTEROL STRIP,9,35.00
 "Casino 250ml 
-Alcohol Regular",3
-Dropper,48
-ELASTIC BANDAGE 4X5,11
+Alcohol Regular",3,45.00
+Dropper,48,35.00
+ELASTIC BANDAGE 4X5,11,25.00
 "Extra Premium 10g
-Absorbent Cotton",0
+Absorbent Cotton",0,12.50
 "Extra Premium 25g
-Absorbent Cotton",0
-Facemask,118
-GAUZE BANDAGE 3X10,11
-GAUZE BANDAGE 4X10,7
+Absorbent Cotton",0,10.00
+Facemask,118,2.00
+GAUZE BANDAGE 3X10,11,15.00
+GAUZE BANDAGE 4X10,7,15.00
 "GCU STRIPS
-(CHOLE)",10
+(CHOLE)",10,35.00
 "GCU STRIPS
-(GLUCOSE)",24
+(GLUCOSE)",24,35.00
 "GCU STRIPS
-(URIC)",25
-Gauze bandage 2x10,12
+(URIC)",25,35.00
+"Gauze Pad
+2x2 Size",89,15.00
+"Gauze Pad
+3x3 Size",95,15.00
+"Gauze Pad
+4x4 Size",-31,15.00
+Gauze bandage 2x10,12,15.00
 "GreenCross 70% 
-500ml Isopropyl Alcohol",0
+500ml Isopropyl Alcohol",0,112.50
 "GreenCross 70% 
-75ml Isopropyl Alcohol",2
+75ml Isopropyl Alcohol",2,45.00
 "Guardian 70%
-500ml Isoprophyl Alcohol",0
+500ml Isoprophyl Alcohol",0,112.50
 "Guardian 70%
-60ml Isoprophyl Alcohol",7
-HAPPY COTTON 40 GRAMS,1
-HAPPY COTTON BUDS 200 TIPS,1
-HYDROGEN PEROXIDE 120 ML,1
-HYDROGEN PEROXIDE 60 ML,0
-Happy Cotton 10g,2
-Happy Cotton 80g,0
-Happy Cotton Balls 150s,1
-Medicine Dropper,50
-Medicore Blood Pressure,1
-Mediplast strip,429
+60ml Isoprophyl Alcohol",7,49.50
+HAPPY COTTON 40 GRAMS,1,25.00
+HAPPY COTTON BUDS 200 TIPS,1,25.00
+HYDROGEN PEROXIDE 120 ML,1,35.00
+HYDROGEN PEROXIDE 60 ML,0,35.00
+Happy Cotton 10g,2,12.50
+Happy Cotton 80g,0,32.50
+Happy Cotton Balls 150s,1,25.00
+Medicine Dropper,50,35.00
+Medicore Blood Pressure,1,35.00
+Mediplast strip,429,35.00
 "Nasal Oxygen Cannula
-(Adult) SURGITECH",14
+(Adult) SURGITECH",14,35.00
 "Nasal Oxygen Cannula
-(Adult) TOPCARE",5
+(Adult) TOPCARE",5,35.00
 "Nasal Oxygen Cannula
-(Pedia)",5
-Nebulizer Kit ADULT,19
+(Pedia)",5,35.00
+Nebulizer Kit ADULT,19,35.00
 "Nebulizer Mask
-(Pedia)",2
+(Pedia)",2,2.00
 "Oxygen Mask 
-(Adult)",5
+(Adult)",5,2.00
 "Oxygen Mask 
-(Pedia)",5
-PURITY COTTON 45 G.,1
+(Pedia)",5,2.00
+PURITY COTTON 45 G.,1,25.00
 "Pregnancy Test
-(Partners)",5
-"Pregnancy Test
-(Sure Guard)",90
-SANICARE COTTON 45 GRAMS.,6
-SANICARE COTTON BUDS 200 TIPS,0
-Sanicare Cotton Balls 150s,0
-Sinocare Blood Pressure,1
-Surgical Gloves(medium)Size,41
+(Partners)",5,35.00
+SANICARE COTTON 45 GRAMS.,6,25.00
+SANICARE COTTON BUDS 200 TIPS,0,25.00
+Sanicare Cotton Balls 150s,0,25.00
+Sinocare Blood Pressure,1,35.00
+Surgical Gloves(medium)Size,41,35.00
 "Syringe 
-10CC",93
+10CC",93,8.00
 "Syringe 
-1CC",98
+1CC",98,8.00
 "Syringe 
-3CC",91
+3CC",91,8.00
 "Syringe 
-5CC",73
-THERMOMETER FIXOTHERM,2
-Thermometer,3
-URIC ACID TEST STRIP,25
+5CC",73,8.00
+THERMOMETER FIXOTHERM,2,250.00
+Thermometer,3,250.00
+URIC ACID TEST STRIP,25,35.00

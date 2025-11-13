@@ -2,6 +2,8 @@ import 'package:cwt_starter_template/features/dashboard/ecommerce/screens/home/w
 import 'package:cwt_starter_template/features/dashboard/ecommerce/screens/home/widgets/header_search_container.dart';
 import 'package:cwt_starter_template/features/dashboard/ecommerce/screens/home/widgets/home_appbar.dart';
 import 'package:cwt_starter_template/features/dashboard/ecommerce/screens/home/widgets/promo_slider.dart';
+import 'package:cwt_starter_template/features/dashboard/ecommerce/screens/home/widgets/prescription_upload_card.dart';
+import 'package:cwt_starter_template/features/prescriptions/screens/prescription_upload_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +16,7 @@ import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/device/device_utility.dart';
 import '../../../../cart/controllers/cart_controller.dart';
 import '../../../../categories/screens/store_screen.dart';
+import '../../../../navigation_menu/navigation_menu.dart';
 import '../../../../products/controllers/product_controller.dart';
 import '../../../../products/screens/product_cards/product_card_vertical.dart';
 import '../../controllers/home_controller.dart';
@@ -26,8 +29,10 @@ class HomeScreen extends StatelessWidget {
     final controller = Get.put(HomeController());
     Get.put(CartController());
     Get.put(ProductController());
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     
     return Scaffold(
+      backgroundColor: isDark ? const Color(0xFF02040A) : Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -53,15 +58,23 @@ class HomeScreen extends StatelessWidget {
 
             /// -- Body
             Container(
+              color: isDark ? const Color(0xFF02040A) : Colors.white,
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /// -- Promo Slider 1 - Pharmacy Banners
-                  const TPromoSlider(banners: [
-                    'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=300&fit=crop',
-                    'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=800&h=300&fit=crop',
-                    'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&h=300&fit=crop',
+                  /// -- Prescription Upload Card
+                  GestureDetector(
+                    onTap: () => Get.to(() => const PrescriptionUploadScreen()),
+                    child: const TPrescriptionUploadCard(),
+                  ),
+                  const SizedBox(height: TSizes.spaceBtwSections),
+
+                  /// -- Promo Slider 1 - Top Banners (3)
+                  TPromoSlider(banners: [
+                    TImages.banner1,
+                    TImages.banner2,
+                    TImages.banner3,
                   ]),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
@@ -78,11 +91,14 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         TSectionHeading(
                           title: 'Featured Products',
-                          onPressed: () => Get.to(() => const StoreScreen()),
+                          onPressed: () {
+                            final navController = Get.find<NavigationController>();
+                            navController.selectedIndex.value = 1; // Switch to Categories tab
+                          },
                         ),
                         const SizedBox(height: TSizes.spaceBtwItems),
                         featuredProducts.isEmpty
-                            ? const Center(child: Text('No featured products yet'))
+                            ? Center(child: Text('No featured products yet', style: TextStyle(color: isDark ? Colors.white70 : Colors.black87)))
                             : TGridLayout(
                                 itemCount: featuredProducts.length,
                                 itemBuilder: (_, index) => TProductCardVertical(product: featuredProducts[index]),
@@ -92,11 +108,10 @@ class HomeScreen extends StatelessWidget {
                   }),
                   const SizedBox(height: TSizes.spaceBtwSections * 2),
 
-                  /// -- Promo Slider 2 - Health & Wellness
-                  const TPromoSlider(banners: [
-                    'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&h=300&fit=crop',
-                    'https://images.unsplash.com/photo-1550572017-4240fe2fd0b6?w=800&h=300&fit=crop',
-                    'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=300&fit=crop',
+                  /// -- Promo Slider 2 - Bottom Banners (2)
+                  TPromoSlider(banners: [
+                    TImages.banner4,
+                    TImages.banner5,
                   ]),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
@@ -112,12 +127,15 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TSectionHeading(
-                          title: TTexts.popularProducts,
-                          onPressed: () => Get.to(() => const StoreScreen()),
+                          title: 'Popular Products',
+                          onPressed: () {
+                            final navController = Get.find<NavigationController>();
+                            navController.selectedIndex.value = 1; // Switch to Categories tab
+                          },
                         ),
                         const SizedBox(height: TSizes.spaceBtwItems),
                         popularProducts.isEmpty
-                            ? const Center(child: Text('No popular products yet'))
+                            ? Center(child: Text('No popular products yet', style: TextStyle(color: isDark ? Colors.white70 : Colors.black87)))
                             : TGridLayout(
                                 itemCount: popularProducts.length,
                                 itemBuilder: (_, index) => TProductCardVertical(product: popularProducts[index]),

@@ -15,7 +15,7 @@ class TTexts {
   static const String tEmail = "E-Mail";
   static const String tSignup = "Signup";
   static const String tLogout = "Logout";
-  static const String appName = "T-Store";
+  static const String appName = "Nine27 Pharmacy";
   static const String ohSnap = "Oh Snap!";
   static const String tSuccess = "Success";
   static const String tPhoneNo = "Phone No";
@@ -25,7 +25,7 @@ class TTexts {
   static const String tFullName = "Full Name";
   static const String tGetStarted = "Get Started";
   static const String tForgetPassword = "Forget Password?";
-  static const String homeAppbarSubTitle = "Coding With T";
+  static const String homeAppbarSubTitle = "Nine27 Pharmacy";
   static const String tSignInWithGoogle = "Sign-In with Google";
 
   // -- Validation --
@@ -134,7 +134,7 @@ class TTexts {
   static const String tBackToLogin = "Back to login";
 
   // -- Dashboard Screen - Text
-  static const String tDashboardTitle = "Hey, Coding with T";
+  static const String tDashboardTitle = "Hey, Nine27 Pharmacy";
   static const String tDashboardHeading = "Explore Courses";
   static const String tDashboardSearch = "Search...";
   static const String tDashboardBannerTitle2 = "JAVA";
@@ -147,8 +147,8 @@ class TTexts {
   static const String tProfile = "Profile";
   static const String tEditProfile = "Edit Profile";
   static const String tLogoutDialogHeading = "Logout";
-  static const String tProfileHeading = "Coding with T";
-  static const String tProfileSubHeading = "superAdmin@codingwitht.com";
+  static const String tProfileHeading = "Nine27 Pharmacy";
+  static const String tProfileSubHeading = "admin@nine27pharmacy.com";
 
   // -- Menu
   static const String tMenu5 = tLogout;

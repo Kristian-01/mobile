@@ -40,27 +40,34 @@ class TRoundedImage extends StatelessWidget {
         child: ClipRRect(
           borderRadius: applyImageRadius ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
           child: isNetworkImage
-              ? Image.network(
-                  imageUrl,
-                  fit: fit,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Center(
-                      child: CircularProgressIndicator(
-                        value: loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-                            : null,
-                      ),
-                    );
-                  },
-                  errorBuilder: (context, error, stackTrace) {
-                    print('Image load error: $error'); // Debug
-                    return const Center(
-                      child: Icon(Icons.broken_image, size: 40, color: Colors.grey),
-                    );
-                  },
-                )
-              : Image(fit: fit, image: AssetImage(imageUrl)),
+              ? (imageUrl.isEmpty || imageUrl.trim().isEmpty)
+                  ? const Center(
+                      child: Icon(Icons.image, size: 40, color: Colors.grey),
+                    )
+                  : Image.network(
+                      imageUrl,
+                      fit: fit,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      },
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Center(
+                          child: Icon(Icons.broken_image, size: 40, color: Colors.grey),
+                        );
+                      },
+                    )
+              : (imageUrl.isEmpty || imageUrl.trim().isEmpty)
+                  ? const Center(
+                      child: Icon(Icons.image, size: 40, color: Colors.grey),
+                    )
+                  : Image(fit: fit, image: AssetImage(imageUrl)),
         ),
       ),
     );

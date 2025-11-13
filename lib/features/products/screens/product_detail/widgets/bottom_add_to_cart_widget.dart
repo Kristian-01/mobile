@@ -22,15 +22,25 @@ class TBottomAddToCart extends StatelessWidget {
     final productController = ProductController.instance;
     productController.initializeAlreadyAddedProductCount(product);
     final dark = THelperFunctions.isDarkMode(context);
+    
+    // Check stock status
+    final isOutOfStock = product.stock <= 0;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace, vertical: TSizes.defaultSpace / 2),
+      padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace, vertical: TSizes.md),
       decoration: BoxDecoration(
         color: dark ? TColors.darkerGrey : TColors.white,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(TSizes.cardRadiusLg),
           topRight: Radius.circular(TSizes.cardRadiusLg),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: dark ? Colors.black.withValues(alpha: 0.3) : Colors.black.withValues(alpha: 0.1),
+            blurRadius: 10,
+            offset: const Offset(0, -2),
+          ),
+        ],
       ),
       child: Obx(
         () => Row(
@@ -39,21 +49,46 @@ class TBottomAddToCart extends StatelessWidget {
             // Add OR Remove Cart Product Icon Buttons
             TProductQuantityWithAddRemoveButton(
               quantity: productController.cartQuantity.value,
-              add: () => productController.cartQuantity.value += 1,
+              // Disable add button when out of stock or quantity exceeds stock
+              add: isOutOfStock || productController.cartQuantity.value >= product.stock 
+                  ? null 
+                  : () => productController.cartQuantity.value += 1,
               // Disable remove when cart count is less then 1
               remove: () => productController.cartQuantity.value < 1 ? null : productController.cartQuantity.value -= 1,
             ),
             // Add to cart button
-            ElevatedButton(
-              onPressed:
-                  productController.cartQuantity.value < 1 ? null : () => productController.addProductToCart(product),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(TSizes.md),
-                backgroundColor: TColors.black,
-                side: const BorderSide(color: TColors.black),
-              ),
-              child: const Row(
-                children: [Icon(Iconsax.shopping_bag), SizedBox(width: TSizes.spaceBtwItems / 2), Text('Add to Bag')],
+            Expanded(
+              child: ElevatedButton(
+                onPressed: isOutOfStock || productController.cartQuantity.value < 1 
+                    ? null 
+                    : () => productController.addProductToCart(product),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: TSizes.md, horizontal: TSizes.lg),
+                  backgroundColor: isOutOfStock ? TColors.darkGrey : TColors.dark,
+                  foregroundColor: TColors.white,
+                  disabledBackgroundColor: TColors.darkGrey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(TSizes.borderRadiusMd),
+                  ),
+                  elevation: 0,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      isOutOfStock ? Iconsax.close_circle : Iconsax.shopping_bag,
+                      size: 20,
+                    ), 
+                    const SizedBox(width: TSizes.spaceBtwItems), 
+                    Text(
+                      isOutOfStock ? 'Out of Stock' : 'Add to Bag',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: TColors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

@@ -48,7 +48,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyBDnKQoS6wz_asKRs3hUG-Aj1rsG4qQeRc',
-    appId: '1:1079921206263:web:PLACEHOLDER',
+    appId: '1:1079921206263:web:186b50932faf77fec084f2',
     messagingSenderId: '1079921206263',
     projectId: 'mobile-e4ddd',
     authDomain: 'mobile-e4ddd.firebaseapp.com',

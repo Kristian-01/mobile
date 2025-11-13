@@ -24,7 +24,17 @@ class TSectionHeading extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineSmall!.apply(color: textColor),
             maxLines: 1,
             overflow: TextOverflow.ellipsis),
-        if (showActionButton) TextButton(onPressed: onPressed, child: Text(buttonTitle))
+        if (showActionButton) 
+          TextButton(
+            onPressed: onPressed, 
+            child: Text(
+              buttonTitle,
+              style: TextStyle(
+                color: textColor ?? Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          )
       ],
     );
   }

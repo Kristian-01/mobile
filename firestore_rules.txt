@@ -10,6 +10,11 @@ service cloud.firestore {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
     
+    // Email Verifications - Allow users to manage their own OTP documents
+    match /EmailVerifications/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
     // Allow all reads and writes for authenticated users (simplified for development)
     // TODO: Remove this rule and use specific rules for each collection
     match /{document=**} {

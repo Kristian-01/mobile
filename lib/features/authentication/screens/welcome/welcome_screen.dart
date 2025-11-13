@@ -56,17 +56,63 @@ class WelcomeScreen extends StatelessWidget {
                       const SizedBox(height: TSizes.spaceBtwSections),
                       Column(
                         children: [
-                          Text(TTexts.tWelcomeTitle, style: Theme.of(context).textTheme.displayMedium),
+                          Text(
+                            TTexts.tWelcomeTitle, 
+                            style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                              color: isDarkMode ? TColors.white : TColors.textPrimary,
+                            ),
+                          ),
                           const SizedBox(height: TSizes.sm),
-                          Text(TTexts.tWelcomeSubTitle, style: Theme.of(context).textTheme.bodyLarge, textAlign: TextAlign.center),
+                          Text(
+                            TTexts.tWelcomeSubTitle, 
+                            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              color: isDarkMode ? TColors.white : TColors.textPrimary,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                         ],
                       ),
                       const SizedBox(height: TSizes.spaceBtwSections),
                       Row(
                         children: [
-                          Expanded(child: OutlinedButton(onPressed: () => Get.to(() => const LoginScreen()), child: Text(TTexts.tLogin.toUpperCase()))),
+                          Expanded(
+                            child: OutlinedButton(
+                              onPressed: () => Get.to(() => const LoginScreen()),
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: TColors.white,
+                                side: const BorderSide(
+                                  color: TColors.white,
+                                  width: 2,
+                                ),
+                                padding: const EdgeInsets.symmetric(vertical: 16),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(TSizes.buttonRadius),
+                                ),
+                              ),
+                              child: Text(
+                                TTexts.tLogin.toUpperCase(),
+                                style: const TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
                           const SizedBox(width: 10.0),
-                          Expanded(child: ElevatedButton(onPressed: () => Get.to(() => const SignupScreen()), child: Text(TTexts.tSignup.toUpperCase()))),
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () => Get.to(() => const SignupScreen()),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: TColors.white,
+                                foregroundColor: TColors.primary,
+                                padding: const EdgeInsets.symmetric(vertical: 16),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(TSizes.buttonRadius),
+                                ),
+                              ),
+                              child: Text(
+                                TTexts.tSignup.toUpperCase(),
+                                style: const TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ],

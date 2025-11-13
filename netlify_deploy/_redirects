@@ -1,0 +1,2 @@
+# Redirect rules
+/product_images/*  /product_images/:splat  200

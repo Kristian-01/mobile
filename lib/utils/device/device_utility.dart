@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:io' show Platform, SocketException, InternetAddress;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -87,6 +87,10 @@ class TDeviceUtils {
   }
 
   static Future<bool> hasInternetConnection() async {
+    if (kIsWeb) {
+      // On web, assume connection is available
+      return true;
+    }
     try {
       final result = await InternetAddress.lookup('example.com');
       return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
@@ -96,11 +100,17 @@ class TDeviceUtils {
   }
 
   static bool isIOS() {
+    if (kIsWeb) return false;
     return Platform.isIOS;
   }
 
   static bool isAndroid() {
+    if (kIsWeb) return false;
     return Platform.isAndroid;
+  }
+  
+  static bool isWeb() {
+    return kIsWeb;
   }
 
   static void launchWebsiteUrl(String address) async {

@@ -23,13 +23,15 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userController = UserController.instance;
+    final themeController = Get.put(ThemeController());
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     
     return Scaffold(
-      backgroundColor: TColors.black,
+      backgroundColor: isDark ? TColors.darkBackground : TColors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            /// Blue Gradient Header
+            /// Profile Header with Blue Gradient (Both Modes)
             Stack(
               children: [
                 Container(
@@ -39,7 +41,10 @@ class ProfileScreen extends StatelessWidget {
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: [Color(0xFF5B7FFF), Color(0xFF3D5CFF)],
+                      colors: [
+                        TColors.dashboardAppbarBackgroundLight, 
+                        TColors.dashboardAppbarBackgroundLight2
+                      ], // Blue gradient for both light and dark mode
                     ),
                   ),
                   child: SafeArea(
@@ -91,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
                                   Obx(() => Text(
                                         userController.user.value.email,
                                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                              color: Colors.white70,
+                                              color: Colors.white.withValues(alpha: 0.85),
                                             ),
                                       )),
                                 ],
@@ -115,9 +120,9 @@ class ProfileScreen extends StatelessWidget {
 
             /// Account Settings Section with Rounded Top
             Container(
-              decoration: const BoxDecoration(
-                color: TColors.black,
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                color: isDark ? TColors.darkBackground : TColors.white,
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(30),
                   topRight: Radius.circular(30),
                 ),
@@ -131,7 +136,7 @@ class ProfileScreen extends StatelessWidget {
                   Text(
                     'Account Settings',
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          color: Colors.white,
+                          color: isDark ? Colors.white : TColors.black,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
@@ -186,19 +191,91 @@ class ProfileScreen extends StatelessWidget {
                   Text(
                     'App Settings',
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          color: Colors.white,
+                          color: isDark ? Colors.white : TColors.black,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
                   const SizedBox(height: TSizes.spaceBtwItems),
                   
-                  _buildMenuItem(
-                    context,
-                    icon: Iconsax.logout,
-                    title: 'Logout',
-                    subtitle: 'Sign out from your account',
-                    onTap: () => _showLogoutModal(),
-                    titleColor: Colors.red,
+                  /// Dark Mode Toggle
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: TSizes.spaceBtwItems),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: isDark 
+                                ? TColors.primary.withValues(alpha: 0.1) 
+                                : TColors.dashboardAppbarBackgroundLight.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Icon(
+                            Iconsax.moon,
+                            color: isDark ? TColors.primary : TColors.dashboardAppbarBackgroundLight,
+                            size: 24,
+                          ),
+                        ),
+                        const SizedBox(width: TSizes.spaceBtwItems),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Dark Mode',
+                                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                      color: isDark ? Colors.white : TColors.black,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Switch between light and dark theme',
+                                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: isDark ? TColors.grey : TColors.textSecondary,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Obx(() => Switch(
+                              value: themeController.isDark.value,
+                              onChanged: (value) => themeController.toggleTheme(),
+                              activeTrackColor: isDark ? TColors.primary : TColors.dashboardAppbarBackgroundLight,
+                            )),
+                      ],
+                    ),
+                  ),
+                  
+                  /// Logout Button
+                  const SizedBox(height: TSizes.spaceBtwItems),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () => _showLogoutModal(),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(Iconsax.logout, size: 20),
+                          const SizedBox(width: 8),
+                          Text(
+                            'Logout',
+                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -218,6 +295,7 @@ class ProfileScreen extends StatelessWidget {
     required VoidCallback onTap,
     Color? titleColor,
   }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return InkWell(
       onTap: onTap,
       child: Padding(
@@ -227,10 +305,12 @@ class ProfileScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: TColors.primary.withOpacity(0.1),
+                color: isDark 
+                    ? TColors.primary.withValues(alpha: 0.1) 
+                    : TColors.dashboardAppbarBackgroundLight.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Icon(icon, color: TColors.primary, size: 24),
+              child: Icon(icon, color: isDark ? TColors.primary : TColors.dashboardAppbarBackgroundLight, size: 24),
             ),
             const SizedBox(width: TSizes.spaceBtwItems),
             Expanded(
@@ -240,7 +320,7 @@ class ProfileScreen extends StatelessWidget {
                   Text(
                     title,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: titleColor ?? Colors.white,
+                          color: titleColor ?? (isDark ? Colors.white : TColors.black),
                           fontWeight: FontWeight.w500,
                         ),
                   ),
@@ -248,7 +328,7 @@ class ProfileScreen extends StatelessWidget {
                   Text(
                     subtitle,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: TColors.grey,
+                          color: isDark ? TColors.grey : TColors.textSecondary,
                         ),
                   ),
                 ],

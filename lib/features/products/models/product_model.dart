@@ -109,7 +109,11 @@ class ProductModel {
       description: data['description'],
       images: data['images'] != null ? List<String>.from(data['images']) : null,
       brand: data['brand'] != null ? BrandModel.fromJson(data['brand']) : null,
-      date: data['date'] != null ? (data['date'] as Timestamp).toDate() : null,
+      date: data['date'] != null 
+          ? (data['date'] is Timestamp 
+              ? (data['date'] as Timestamp).toDate() 
+              : DateTime.parse(data['date']))
+          : null,
       productAttributes: data['productAttributes'] != null
           ? (data['productAttributes'] as List).map((e) => ProductAttributeModel.fromJson(e)).toList()
           : null,

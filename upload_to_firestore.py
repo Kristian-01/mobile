@@ -45,25 +45,22 @@ print("\n📤 Uploading new products to Firestore...")
 print("=" * 60)
 
 # Category mapping for display names
+# Only pharmacy-related categories
 category_display_names = {
     'MEDICINES': 'Medicines',
-    'FOOD_AND_BEVERAGES': 'Food & Beverages',
     'PERSONAL_CARE': 'Personal Care',
     'BABY_PRODUCTS': 'Baby Products',
     'MEDICAL_SUPPLIES': 'Medical Supplies',
-    'HOUSEHOLD_ITEMS': 'Household Items',
     'FEMININE_CARE': 'Feminine Care',
-    'OTHERS': 'Others'
+    'OTHERS': 'Others'  # Includes Food, Beverages, Household Items, etc.
 }
 
 # Upload products from each CSV file
 category_files = [
     'products_MEDICINES.csv',
-    'products_FOOD_AND_BEVERAGES.csv',
     'products_PERSONAL_CARE.csv',
     'products_BABY_PRODUCTS.csv',
     'products_MEDICAL_SUPPLIES.csv',
-    'products_HOUSEHOLD_ITEMS.csv',
     'products_FEMININE_CARE.csv',
     'products_OTHERS.csv'
 ]

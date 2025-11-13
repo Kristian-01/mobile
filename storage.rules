@@ -1,0 +1,40 @@
+rules_version = '2';
+
+// Firebase Storage Rules for Nine27 Pharmacy
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Prescriptions - users can upload and read their own
+    match /prescriptions/{userId}/{fileName} {
+      // Users can read their own prescriptions
+      allow read: if request.auth != null && request.auth.uid == userId;
+      
+      // Users can write their own prescriptions with validation
+      allow write: if request.auth != null 
+                   && request.auth.uid == userId
+                   && request.resource.size < 10 * 1024 * 1024 // 10MB limit
+                   && request.resource.contentType.matches('image/.*'); // Only images
+      
+      // Admins can read all prescriptions
+      allow read: if request.auth != null && 
+                     request.auth.token.email == 'admin@nine27pharmacy.com';
+    }
+    
+    // Reviews - users can upload and read their own
+    match /reviews/{userId}/{fileName} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Product images - public read, admin write only
+    match /products/{fileName} {
+      allow read: if true; // Anyone can read product images
+      allow write: if request.auth != null && 
+                      request.auth.token.email == 'admin@nine27pharmacy.com';
+    }
+    
+    // Deny all other access
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

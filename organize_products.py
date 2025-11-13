@@ -102,6 +102,7 @@ def categorize_product(name):
     ]
     
     # Check categories in order of priority
+    # Only pharmacy-related items get their own categories
     if any(keyword in name_upper for keyword in baby_keywords):
         return 'BABY_PRODUCTS'
     elif any(keyword in name_upper for keyword in feminine_keywords):
@@ -112,11 +113,8 @@ def categorize_product(name):
         return 'MEDICINES'
     elif any(keyword in name_upper for keyword in personal_care_keywords):
         return 'PERSONAL_CARE'
-    elif any(keyword in name_upper for keyword in food_keywords):
-        return 'FOOD_AND_BEVERAGES'
-    elif any(keyword in name_upper for keyword in household_keywords):
-        return 'HOUSEHOLD_ITEMS'
     else:
+        # All non-pharmacy items (food, beverages, household, etc.) go to OTHERS
         return 'OTHERS'
 
 # Categorize all products

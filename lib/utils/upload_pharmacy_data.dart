@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import '../firebase_options.dart';
+import 'logger_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -169,7 +170,7 @@ class _PharmacyDataUploaderState extends State<PharmacyDataUploader> {
 
     for (var category in categories) {
       await db.collection('Categories').doc(category['id'] as String).set(category);
-      print('✅ Category: ${category['name']}');
+      TLoggerHelper.info('✅ Category: ${category['name']}');
     }
   }
 
@@ -201,7 +202,7 @@ class _PharmacyDataUploaderState extends State<PharmacyDataUploader> {
         'description': 'High-quality vitamin supplement for daily health',
         'images': ['https://images.unsplash.com/photo-1550572017-4240fe2fd0b6?w=300'],
       });
-      print('✅ Product: ${product['name']}');
+      TLoggerHelper.info('✅ Product: ${product['name']}');
       productId++;
     }
 
@@ -232,7 +233,7 @@ class _PharmacyDataUploaderState extends State<PharmacyDataUploader> {
         'description': 'Prescription medicine - Consult your doctor',
         'images': ['https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=300'],
       });
-      print('✅ Product: ${product['name']}');
+      TLoggerHelper.info('✅ Product: ${product['name']}');
       productId++;
     }
 
@@ -258,7 +259,7 @@ class _PharmacyDataUploaderState extends State<PharmacyDataUploader> {
         'description': 'Topical treatment for skin care',
         'images': ['https://images.unsplash.com/photo-1526045478516-99145907023c?w=300'],
       });
-      print('✅ Product: ${product['name']}');
+      TLoggerHelper.info('✅ Product: ${product['name']}');
       productId++;
     }
 
@@ -284,7 +285,7 @@ class _PharmacyDataUploaderState extends State<PharmacyDataUploader> {
         'description': 'Effective relief from cough and cold',
         'images': ['https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300'],
       });
-      print('✅ Product: ${product['name']}');
+      TLoggerHelper.info('✅ Product: ${product['name']}');
       productId++;
     }
 
@@ -311,7 +312,7 @@ class _PharmacyDataUploaderState extends State<PharmacyDataUploader> {
         'description': 'Gentle care for your baby',
         'images': ['https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=300'],
       });
-      print('✅ Product: ${product['name']}');
+      TLoggerHelper.info('✅ Product: ${product['name']}');
       productId++;
     }
 
@@ -338,7 +339,7 @@ class _PharmacyDataUploaderState extends State<PharmacyDataUploader> {
         'description': 'Premium skin care product',
         'images': ['https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=300'],
       });
-      print('✅ Product: ${product['name']}');
+      TLoggerHelper.info('✅ Product: ${product['name']}');
       productId++;
     }
 
@@ -363,7 +364,7 @@ class _PharmacyDataUploaderState extends State<PharmacyDataUploader> {
         'description': 'Complete oral hygiene solution',
         'images': ['https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=300'],
       });
-      print('✅ Product: ${product['name']}');
+      TLoggerHelper.info('✅ Product: ${product['name']}');
       productId++;
     }
 
@@ -388,7 +389,7 @@ class _PharmacyDataUploaderState extends State<PharmacyDataUploader> {
         'description': 'Professional hair care',
         'images': ['https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=300'],
       });
-      print('✅ Product: ${product['name']}');
+      TLoggerHelper.info('✅ Product: ${product['name']}');
       productId++;
     }
 
@@ -413,7 +414,7 @@ class _PharmacyDataUploaderState extends State<PharmacyDataUploader> {
         'description': 'Long-lasting freshness',
         'images': ['https://images.unsplash.com/photo-1541643600914-78b084683601?w=300'],
       });
-      print('✅ Product: ${product['name']}');
+      TLoggerHelper.info('✅ Product: ${product['name']}');
       productId++;
     }
 
@@ -443,7 +444,7 @@ class _PharmacyDataUploaderState extends State<PharmacyDataUploader> {
         'description': 'Quality health and wellness product',
         'images': ['https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=300'],
       });
-      print('✅ Product: ${product['name']}');
+      TLoggerHelper.info('✅ Product: ${product['name']}');
       productId++;
     }
   }

@@ -4,8 +4,10 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../../common/widgets/appbar/appbar.dart';
 import '../../../../common/widgets/layouts/grid_layout.dart';
+import '../../../../data/repository/search_repository/search_repository.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../../../../utils/logger_helper.dart';
 import '../../controllers/product_controller.dart';
 import '../../models/product_model.dart';
 import '../product_cards/product_card_vertical.dart';
@@ -135,10 +137,27 @@ class SearchController extends GetxController {
   static SearchController get instance => Get.find();
 
   final productController = ProductController.instance;
+  final _searchRepository = Get.put(SearchRepository());
   final searchTextController = TextEditingController();
   final searchQuery = ''.obs;
   final searchResults = <ProductModel>[].obs;
+  final recentSearches = <String>[].obs;
   final isSearching = false.obs;
+
+  @override
+  void onInit() {
+    loadRecentSearches();
+    super.onInit();
+  }
+
+  /// Load recent searches from Firebase
+  Future<void> loadRecentSearches() async {
+    try {
+      recentSearches.value = await _searchRepository.fetchRecentSearches();
+    } catch (e) {
+      TLoggerHelper.error('Error loading recent searches', e);
+    }
+  }
 
   void searchProducts(String query) {
     searchQuery.value = query;
@@ -159,12 +178,53 @@ class SearchController extends GetxController {
     }).toList();
 
     isSearching.value = false;
+
+    // Save to search history
+    _searchRepository.saveSearchQuery(query);
+    loadRecentSearches();
   }
 
   void clearSearch() {
     searchTextController.clear();
     searchQuery.value = '';
     searchResults.clear();
+  }
+
+  /// Use a recent search query
+  void useRecentSearch(String query) {
+    searchTextController.text = query;
+    searchProducts(query);
+  }
+
+  /// Delete a specific search from history
+  Future<void> deleteRecentSearch(String query) async {
+    try {
+      await _searchRepository.deleteSearchQuery(query);
+      await loadRecentSearches();
+    } catch (e) {
+      TLoggerHelper.error('Error deleting search', e);
+    }
+  }
+
+  /// Clear all search history
+  Future<void> clearSearchHistory() async {
+    try {
+      await _searchRepository.clearSearchHistory();
+      recentSearches.clear();
+      Get.snackbar(
+        'Success',
+        'Search history cleared',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Failed to clear search history: $e',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
   }
 
   @override

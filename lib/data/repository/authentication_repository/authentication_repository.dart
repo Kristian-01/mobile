@@ -28,11 +28,9 @@ class AuthenticationRepository extends GetxController {
   /// Variables
   final deviceStorage = GetStorage(); // Use this to store data locally (e.g. OnBoarding)
   late final Rx<User?> _firebaseUser;
-  var phoneNo = ''.obs;
-  var phoneNoVerificationId = ''.obs;
-  var isPhoneAutoVerified = false;
   final _auth = FirebaseAuth.instance;
   int? _resendToken;
+  final phoneNoVerificationId = ''.obs;
 
   /// Getters
   User? get firebaseUser => _firebaseUser.value;
@@ -43,7 +41,6 @@ class AuthenticationRepository extends GetxController {
 
   String get getDisplayName => firebaseUser?.displayName ?? "";
 
-  String get getPhoneNo => firebaseUser?.phoneNumber ?? "";
 
   /// Loads when app Launch from main.dart
   @override
@@ -57,44 +54,94 @@ class AuthenticationRepository extends GetxController {
 
   /// Function to Show Relevant Screen
   screenRedirect(User? user) async {
-    if (user != null) {
-      // Fetch User Record
-      await UserController.instance.fetchUserRecord();
-
-      // Use this to check auth Role for admin
-      final idTokenResult = await _auth.currentUser!.getIdTokenResult();
-
-      // If email verified let the user go to Home Screen else to the Email Verification Screen
-      if (user.emailVerified || user.phoneNumber != null || idTokenResult.claims?['admin'] == true) {
-        // Initialize User Specific Storage
-        await TLocalStorage.init(user.uid);
+    try {
+      if (user != null) {
+        debugPrint('🔄 Screen redirect started for user: ${user.email}');
         
-        // Start notification listener after successful login
-        try {
-          final notificationController = Get.put(NotificationController());
-          notificationController.startListening();
-        } catch (e) {
-          // Silently handle notification initialization errors
+        // Check if user signed in with Google or other social providers
+        final providerData = user.providerData;
+        final isGoogleSignIn = providerData.any((info) => info.providerId == 'google.com');
+        final isFacebookSignIn = providerData.any((info) => info.providerId == 'facebook.com');
+        final isSocialSignIn = isGoogleSignIn || isFacebookSignIn;
+
+        debugPrint('🔐 Social sign-in: $isSocialSignIn');
+
+        // For social sign-in users, automatically verify email in Firestore
+        if (isSocialSignIn) {
+          try {
+            await UserRepository.instance.updateSingleField({
+              'isEmailVerified': true,
+            }).timeout(const Duration(seconds: 10));
+            debugPrint('✅ Email verified for social sign-in');
+          } catch (e) {
+            debugPrint('⚠️ Error updating email verification: $e');
+          }
         }
-        
-        Get.offAll(() => const NavigationMenu());
-      } else {
-        Get.offAll(() => VerifyEmailScreen(email: getUserEmail));
-      }
-    }
-    else {
-      deviceStorage.writeIfNull('isFirstTime', true);
-      final bool isFirstTime = deviceStorage.read('isFirstTime') as bool;
 
-      if (isFirstTime) {
-        // First launch: go to OnBoarding
-        await Get.offAll(() => const OnBoardingScreen());
-        // After showing onboarding, mark it done:
-        deviceStorage.write('isFirstTime', false);
+        // Fetch User Record - force fetch latest to get updated isEmailVerified status
+        debugPrint('📥 Fetching user record...');
+        final userController = Get.put(UserController());
+        await userController.fetchUserRecord(fetchLatestRecord: true).timeout(
+          const Duration(seconds: 15),
+          onTimeout: () {
+            debugPrint('⏱️ Fetch user record timeout - using empty user');
+            return;
+          },
+        );
+        debugPrint('✅ User record fetched');
+
+        // Use this to check auth Role for admin
+        final idTokenResult = await _auth.currentUser!.getIdTokenResult();
+
+        // Check if email verified - use Firestore field instead of Firebase Auth
+        final userRecord = UserController.instance.user.value;
+        final isEmailVerified = userRecord.isEmailVerified ?? false;
+
+        debugPrint('📧 Email verified: $isEmailVerified');
+
+        // If email verified let the user go to Home Screen else to the Email Verification Screen
+        if (isEmailVerified || idTokenResult.claims?['admin'] == true) {
+          // Initialize User Specific Storage
+          await TLocalStorage.init(user.uid);
+          
+          // Start notification listener after successful login
+          try {
+            if (Get.isRegistered<NotificationController>()) {
+              NotificationController.instance.startListening();
+            } else {
+              final notificationController = Get.put(NotificationController());
+              notificationController.startListening();
+            }
+          } catch (e) {
+            // Silently handle notification initialization errors
+            debugPrint('Notification initialization error: $e');
+          }
+          
+          debugPrint('🏠 Navigating to home...');
+          Get.offAll(() => const NavigationMenu());
+        } else {
+          debugPrint('📨 Navigating to email verification...');
+          Get.offAll(() => VerifyEmailScreen(email: getUserEmail));
+        }
       } else {
-        // Not first launch: go to Welcome or Login
-        Get.offAll(() => const WelcomeScreen());
+        deviceStorage.writeIfNull('isFirstTime', true);
+        final bool isFirstTime = deviceStorage.read('isFirstTime') as bool;
+
+        if (isFirstTime) {
+          // First launch: go to OnBoarding
+          await Get.offAll(() => const OnBoardingScreen());
+          // After showing onboarding, mark it done:
+          deviceStorage.write('isFirstTime', false);
+        } else {
+          // Not first launch: go to Welcome or Login
+          Get.offAll(() => const WelcomeScreen());
+        }
       }
+    } catch (e, stackTrace) {
+      debugPrint('❌ Error in screenRedirect: $e');
+      debugPrint('Stack trace: $stackTrace');
+      // Fallback to welcome screen on error
+      Get.offAll(() => const WelcomeScreen());
     }
   }
 
@@ -189,6 +236,64 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
+  /* ---------------------------- Phone Authentication ---------------------------------*/
+
+  /// [PhoneAuthentication] - Login with Phone Number
+  Future<void> loginWithPhoneNo(String phoneNumber) async {
+    try {
+      await _auth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        timeout: const Duration(seconds: 60),
+        forceResendingToken: _resendToken,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await _auth.signInWithCredential(credential);
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          throw TFirebaseAuthException(e.code).message;
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          phoneNoVerificationId.value = verificationId;
+          _resendToken = resendToken;
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          phoneNoVerificationId.value = verificationId;
+        },
+      );
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  /// [PhoneAuthentication] - Verify OTP
+  Future<bool> verifyOTP(String otp) async {
+    try {
+      final credential = PhoneAuthProvider.credential(
+        verificationId: phoneNoVerificationId.value,
+        smsCode: otp,
+      );
+      await _auth.signInWithCredential(credential);
+      return true;
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
   /* ---------------------------- Federated identity & social sign-in ---------------------------------*/
 
   /// [GoogleAuthentication] - GOOGLE
@@ -230,91 +335,6 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  /* ---------------------------- Phone Number sign-in ---------------------------------*/
-
-  /// [PhoneAuthentication] - LOGIN - Register
-  Future<void> loginWithPhoneNo(String phoneNumber) async {
-    try {
-      await _auth.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
-        forceResendingToken: _resendToken,
-        timeout: const Duration(minutes: 2),
-        verificationFailed: (e) async {
-          debugPrint('loginWithPhoneNo: verificationFailed => $e');
-          await FirebaseCrashlytics.instance.recordError(e, e.stackTrace);
-
-          if (e.code == 'too-many-requests') {
-            // Get.offAllNamed(TRoutes.welcome);
-            Get.offAll(() => const WelcomeScreen());
-            TLoaders.warningSnackBar(title: 'Too many attempts', message: 'Oops! Too many tries. Take a short break and try again soon!');
-            return;
-          } else if (e.code == 'unknown') {
-            Get.back(result: false);
-            TLoaders.warningSnackBar(title: 'SMS not Sent', message: 'An internal error has occurred, We are working on it!');
-            return;
-          }
-          TLoaders.warningSnackBar(title: 'Oh Snap', message: e.message ?? '');
-        },
-        codeSent: (verificationId, resendToken) {
-          debugPrint('--------------- codeSent');
-          phoneNoVerificationId.value = verificationId;
-          _resendToken = resendToken;
-          debugPrint('--------------- codeSent: $verificationId');
-        },
-        verificationCompleted: (credential) async {
-          debugPrint('--------------- verificationCompleted');
-          var signedInUser = await _auth.signInWithCredential(credential);
-          isPhoneAutoVerified = signedInUser.user != null;
-
-          // await screenRedirect(
-          //   _auth.currentUser,
-          //   pinScreen: true,
-          //   stopLoadingWhenReady: true,
-          //   phoneNumber: phoneNumber,
-          // );
-          await screenRedirect(_auth.currentUser);
-        },
-        codeAutoRetrievalTimeout: (verificationId) {
-          // phoneNoVerificationId.value = verificationId;
-          debugPrint('--------------- codeAutoRetrievalTimeout: $verificationId');
-        },
-      );
-      phoneNo.value = phoneNumber;
-    } on FirebaseAuthException catch (e) {
-      throw TFirebaseAuthException(e.code).message;
-    } on FirebaseException catch (e) {
-      throw TFirebaseException(e.code).message;
-    } on FormatException catch (_) {
-      throw const TFormatException();
-    } on PlatformException catch (e) {
-      throw TPlatformException(e.code).message;
-    } catch (e) {
-      throw 'Something went wrong. Please try again';
-    }
-  }
-
-  /// [PhoneAuthentication] - VERIFY PHONE NO BY OTP
-  Future<bool> verifyOTP(String otp) async {
-    try {
-      final phoneCredentials = PhoneAuthProvider.credential(verificationId: phoneNoVerificationId.value, smsCode: otp);
-      var credentials = await _auth.signInWithCredential(phoneCredentials);
-      return credentials.user != null ? true : false;
-    } on FirebaseAuthException catch (e) {
-      await FirebaseCrashlytics.instance.recordError(e, e.stackTrace);
-      throw TFirebaseAuthException(e.code).message;
-    } on FirebaseException catch (e) {
-      throw TFirebaseException(e.code).message;
-    } on FormatException catch (_) {
-      throw const TFormatException();
-    } on PlatformException catch (e) {
-      throw TPlatformException(e.code).message;
-    } catch (e) {
-      throw 'Something went wrong. Please try again';
-    } finally {
-      phoneNo.value = '';
-      isPhoneAutoVerified = false;
-    }
-  }
 
   ///[FacebookAuthentication] - FACEBOOK
   // Future<UserCredential> signInWithFacebook() async {

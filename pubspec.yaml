@@ -34,7 +34,7 @@ dependencies:
   firebase_storage: ^12.4.5
   firebase_messaging: ^15.2.6
   firebase_crashlytics: ^4.3.6
-
+  firebase_analytics: ^11.3.6
 
   ## -- ICON PACKAGES
   iconsax: ^0.0.8
@@ -54,12 +54,13 @@ dependencies:
   connectivity_plus: ^6.1.1
   country_code_picker: ^3.3.0
   flutter_native_splash: ^2.4.6
+  cached_network_image: ^3.3.1
 
   # Notification
   flutter_local_notifications: ^19.2.1
 
-  supabase_flutter: ^2.9.0
-
+  # Email sending
+  mailer: ^6.1.3
 
   http: any
 dev_dependencies:
@@ -67,6 +68,7 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.1
 
 flutter:
   uses-material-design: true
@@ -90,3 +92,10 @@ flutter:
     - assets/icons/payment_methods/paypal.png
 
 # Splash screen has been added in the 'splash.yaml' file in main project directory
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo/app_icon.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/logo/app_icon.png"

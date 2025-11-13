@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../features/navigation_menu/navigation_menu.dart';
 import '../../../routes/routes.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
-import '../../orders/screens/orders_screen.dart';
 
 class OrderSuccessScreen extends StatelessWidget {
   const OrderSuccessScreen({
@@ -36,7 +36,7 @@ class OrderSuccessScreen extends StatelessWidget {
                       width: 120,
                       height: 120,
                       decoration: BoxDecoration(
-                        color: Colors.green.withOpacity(0.1),
+                        color: Colors.green.withValues(alpha: 0.1),
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(
@@ -92,8 +92,19 @@ class OrderSuccessScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigate to Orders screen and remove all previous routes
-                    Get.offAll(() => const OrdersScreen());
+                    // Navigate to Navigation Menu with Orders tab selected
+                    Get.offAll(() => const NavigationMenu());
+                    // Use Future.delayed to ensure NavigationController is initialized
+                    Future.delayed(const Duration(milliseconds: 100), () {
+                      try {
+                        final navController = Get.find<NavigationController>();
+                        navController.selectedIndex.value = 2; // Orders tab
+                      } catch (e) {
+                        // Fallback: Put controller if not found
+                        final navController = Get.put(NavigationController());
+                        navController.selectedIndex.value = 2;
+                      }
+                    });
                   },
                   child: const Text('Track Order'),
                 ),
@@ -105,8 +116,19 @@ class OrderSuccessScreen extends StatelessWidget {
                 width: double.infinity,
                 child: OutlinedButton(
                   onPressed: () {
-                    // Navigate to Home and remove all previous routes
-                    Get.offAllNamed(TRoutes.eComDashboard);
+                    // Navigate to Navigation Menu (Home tab)
+                    Get.offAll(() => const NavigationMenu());
+                    // Ensure we're on Home tab (index 0)
+                    Future.delayed(const Duration(milliseconds: 100), () {
+                      try {
+                        final navController = Get.find<NavigationController>();
+                        navController.selectedIndex.value = 0; // Home tab
+                      } catch (e) {
+                        // Fallback: Put controller if not found
+                        final navController = Get.put(NavigationController());
+                        navController.selectedIndex.value = 0;
+                      }
+                    });
                   },
                   child: const Text('Home'),
                 ),

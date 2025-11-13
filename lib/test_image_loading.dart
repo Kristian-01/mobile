@@ -2,6 +2,7 @@
 // Run: flutter run lib/test_image_loading.dart
 
 import 'package:flutter/material.dart';
+import 'utils/logger_helper.dart';
 
 void main() {
   runApp(const ImageTestApp());
@@ -35,7 +36,7 @@ class ImageTestApp extends StatelessWidget {
                     return const Center(child: CircularProgressIndicator());
                   },
                   errorBuilder: (context, error, stackTrace) {
-                    print('ERROR: $error');
+                    TLoggerHelper.error('ERROR: $error', error, stackTrace);
                     return const Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

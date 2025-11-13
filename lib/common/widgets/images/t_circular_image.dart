@@ -37,24 +37,27 @@ class TCircularImage extends StatelessWidget {
       ),
       child: Center(
         child: isNetworkImage
-            ? Image.network(
-                image,
-                fit: fit,
-                color: overlayColor,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return const CircularProgressIndicator(strokeWidth: 2);
-                },
-                errorBuilder: (context, error, stackTrace) {
-                  print('Category image error: $error'); // Debug
-                  return const Icon(Icons.category, size: 30, color: Colors.grey);
-                },
-              )
-            : Image(
-                fit: fit,
-                image: AssetImage(image),
-                color: overlayColor,
-              ),
+            ? (image.isEmpty || image.trim().isEmpty)
+                ? const Icon(Icons.category, size: 30, color: Colors.grey)
+                : Image.network(
+                    image,
+                    fit: fit,
+                    color: overlayColor,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return const CircularProgressIndicator(strokeWidth: 2);
+                    },
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(Icons.category, size: 30, color: Colors.grey);
+                    },
+                  )
+            : (image.isEmpty || image.trim().isEmpty)
+                ? const Icon(Icons.category, size: 30, color: Colors.grey)
+                : Image(
+                    fit: fit,
+                    image: AssetImage(image),
+                    color: overlayColor,
+                  ),
       ),
     );
   }

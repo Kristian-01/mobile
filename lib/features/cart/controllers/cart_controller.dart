@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../data/repository/authentication_repository/authentication_repository.dart';
 import '../../../utils/local_storage/storage_utility.dart';
-import '../../dashboard/ecommerce/controllers/dummy_data.dart';
 import '../../products/models/product_model.dart';
 import '../../products/models/product_variation_model.dart';
 import '../models/cart_item_model.dart';
@@ -28,6 +27,17 @@ class CartController extends GetxController {
   }
 
   void addSingleItemToCart(ProductModel product, ProductVariationModel variation) {
+    // Check if product is out of stock
+    if (product.stock <= 0) {
+      Get.snackbar(
+        'Out of Stock',
+        'Sorry, ${product.title} is currently out of stock',
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 2),
+      );
+      return;
+    }
+
     // If the product is already added then increment the count else add new product
     final cartItem = cartItems.firstWhere(
       (item) => item.productId == product.id && item.variationId == variation.id,
@@ -41,6 +51,17 @@ class CartController extends GetxController {
         brandName: product.brand?.name ?? 'Nine27Pharmacy',
       ),
     );
+
+    // Check if adding one more exceeds available stock
+    if (cartItem.quantity >= product.stock) {
+      Get.snackbar(
+        'Stock Limit Reached',
+        'Only ${product.stock} items available in stock',
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 2),
+      );
+      return;
+    }
 
     // If its a new product then add it to the cart.
     if (cartItem.quantity == 0) {
@@ -62,6 +83,31 @@ class CartController extends GetxController {
   }
 
   void addMultipleItemsToCart(ProductModel product, ProductVariationModel variation, int quantity) {
+    // Determine available stock (use variation stock if it has variation, otherwise product stock)
+    final availableStock = variation.id.isNotEmpty ? variation.stock : product.stock;
+    
+    // Check if product/variation is out of stock
+    if (availableStock <= 0) {
+      Get.snackbar(
+        'Out of Stock',
+        'Sorry, ${product.title} is currently out of stock',
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 2),
+      );
+      return;
+    }
+    
+    // Check if requested quantity exceeds available stock
+    if (quantity > availableStock) {
+      Get.snackbar(
+        'Stock Limit Exceeded',
+        'Only ${availableStock} items available in stock',
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 2),
+      );
+      return;
+    }
+
     // If the product is already added then increment the count else add new product
     final cartItem = cartItems.firstWhere(
       (item) => item.productId == product.id && item.variationId == variation.id,

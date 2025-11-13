@@ -1,37 +1,46 @@
-Product Name,Stock Quantity
-CAREFREE BREATHABLE PANTYLINER 8,6
-CAREFREE SDRY SCENTED PANTYLINER 8,3
-CHARMEE DRYNET NON WINGS,3
-CHARMEE DRYNET W/WINGS,0
-GYNEPRO FEM WASH 150 ML.,4
-GYNEPRO FEM WASH 60 ML.,4
-"Gauze Pad
-2x2 Size",89
-"Gauze Pad
-3x3 Size",95
-"Gauze Pad
-4x4 Size",-31
-Lady Pills,9
-MODESS ALL NIGHT EXTRA LONG BY 4S,6
-MODESS REG BY 12,2
-SANITARY BALM 20 GRAMS,3
-SANITARY BALM 32 GRAMS,12
-SISTER NIGHT PLUS PADS 8,1
+Product Name,Stock Quantity,Price
+CAREFREE BREATHABLE PANTYLINER 8,6,6.00
+CAREFREE SDRY SCENTED PANTYLINER 8,3,6.00
+CHARMEE DRYNET NON WINGS,3,65.00
+CHARMEE DRYNET W/WINGS,0,65.00
+GYNEPRO FEM WASH 150 ML.,4,65.00
+GYNEPRO FEM WASH 60 ML.,4,65.00
+Lady Pills,9,65.00
+MODESS ALL NIGHT EXTRA LONG BY 4S,6,65.00
+MODESS REG BY 12,2,65.00
+"PH Care (Green)
+Cooling Comfort 150ml",7,65.00
+"PH Care (Green)
+Cooling Comfort 50ml",0,65.00
+"PH Care (Guava)
+Natural Protection 150ml",6,65.00
+"PH Care (Guava)
+Natural Protection 50ml",0,65.00
+"PH Care (Pink)
+Floral Clean 150ml",1,65.00
+"PH Care (Pink)
+Floral Clean 50ml",0,65.00
+"PH Care (Violet)
+Delicate White 150ml",2,65.00
+"PH Care (Violet)
+Delicate White 50ml",0,65.00
+SANITARY BALM 20 GRAMS,3,65.00
+SANITARY BALM 32 GRAMS,12,65.00
+SISTER NIGHT PLUS PADS 8,1,65.00
 "Sisters Cottony Overnight 
-w/ Wings 4+1",0
+w/ Wings 4+1",0,25.00
 "Sisters Day Maxi 
-w/ Wings 8s",0
-Sisters Night Plus w/ Wings,-1
-Sisters Pantyliners 8s,0
-Sofy Pure Fresh w/ Wings 8+1,7
+w/ Wings 8s",0,65.00
+Sisters Night Plus w/ Wings,-1,65.00
+Sisters Pantyliners 8s,0,6.00
+Sofy Pure Fresh w/ Wings 8+1,7,65.00
 "Those Days Non-Wings(WHITE) 
-Budget Pack 8s",5
+Budget Pack 8s",5,65.00
 "Those Days Pantyliner 
-Budget Pack 20s",0
-Those Days Pantyliner 20s,8
-Those Days Thins 8s,0
-Those Days w/ Wings 8s,-1
-Underpads XL,9
-WHISPER BREATHABLE BY 8S,2
-WHISPER SUPER CLEAN BY 8S,2
-ZIM PADS  SCRUB,1
+Budget Pack 20s",0,6.00
+Those Days Pantyliner 20s,8,6.00
+Those Days Thins 8s,0,65.00
+Those Days w/ Wings 8s,-1,65.00
+Underpads XL,9,65.00
+WHISPER BREATHABLE BY 8S,2,65.00
+WHISPER SUPER CLEAN BY 8S,2,65.00

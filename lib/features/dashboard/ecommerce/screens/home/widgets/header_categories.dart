@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../../common/widgets/image_text/image_text_vertical.dart';
+import '../../../../../../common/widgets/image_text/category_icon_widget.dart';
 import '../../../../../../common/widgets/texts/section_heading.dart';
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../../../categories/screens/category_products_screen.dart';
 import '../../../../../categories/screens/store_screen.dart';
+import '../../../../../navigation_menu/navigation_menu.dart';
 import '../../../controllers/categories_controller.dart';
 
 class THeaderCategories extends StatelessWidget {
@@ -27,7 +28,10 @@ class THeaderCategories extends StatelessWidget {
             title: 'Popular Categories',
             textColor: TColors.white,
             showActionButton: true,
-            onPressed: () => Get.to(() => const StoreScreen()),
+            onPressed: () {
+              final navController = Get.find<NavigationController>();
+              navController.selectedIndex.value = 1; // Switch to Categories tab
+            },
           ),
           const SizedBox(height: TSizes.spaceBtwItems),
 
@@ -40,7 +44,7 @@ class THeaderCategories extends StatelessWidget {
               );
             }
 
-            final categories = categoryController.getFeaturedCategories(8);
+            final categories = categoryController.getFeaturedCategories(6);
             
             if (categories.isEmpty) {
               return const SizedBox(
@@ -62,12 +66,13 @@ class THeaderCategories extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (_, index) {
                   final category = categories[index];
-                  return TVerticalImageAndText(
+                  return TCategoryIconWidget(
                     image: category.image,
+                    iconName: category.icon,
                     title: category.name,
+                    textColor: TColors.white, // Keep white for home screen (has colored background)
                     onTap: () => Get.to(() => CategoryProductsScreen(
-                      categoryId: category.id,
-                      categoryName: category.name,
+                      category: category,
                     )),
                   );
                 },

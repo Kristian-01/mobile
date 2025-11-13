@@ -54,7 +54,7 @@ class ProductCategoriesScreen extends StatelessWidget {
                 final category = categories[index];
                 return _CategoryCard(
                   category: category,
-                  onTap: () => Get.to(() => CategoryProductsScreen(categoryId: category.id, categoryName: category.name)),
+                  onTap: () => Get.to(() => CategoryProductsScreen(category: category)),
                 );
               },
             ),
@@ -74,9 +74,41 @@ class _CategoryCard extends StatelessWidget {
   final dynamic category;
   final VoidCallback onTap;
 
+  /// Get Material Icon from icon name
+  IconData? _getIconFromName(String? name) {
+    if (name == null) return null;
+    
+    final iconMap = {
+      'child_care': Icons.child_care,
+      'female': Icons.female,
+      'medication': Icons.medication,
+      'medical_services': Icons.medical_services,
+      'soap': Icons.soap,
+      'category': Icons.category,
+      'local_hospital': Icons.local_hospital,
+      'health_and_safety': Icons.health_and_safety,
+      'vaccines': Icons.vaccines,
+      'sanitizer': Icons.sanitizer,
+    };
+    
+    return iconMap[name];
+  }
+
+  /// Heuristic icon selection based on category name
+  IconData _heuristicIcon(String title) {
+    final t = title.toLowerCase();
+    if (t.contains('baby')) return Icons.child_care;
+    if (t.contains('feminine') || t.contains('female')) return Icons.female;
+    if (t.contains('medicine')) return Icons.medication;
+    if (t.contains('personal')) return Icons.soap;
+    if (t.contains('medical')) return Icons.medical_services;
+    return Icons.category;
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final icon = _getIconFromName(category.icon) ?? _heuristicIcon(category.name);
 
     return GestureDetector(
       onTap: onTap,
@@ -89,7 +121,7 @@ class _CategoryCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            /// Category Image
+            /// Category Icon
             Container(
               height: 60,
               width: 60,
@@ -98,12 +130,10 @@ class _CategoryCard extends StatelessWidget {
                 color: isDark ? TColors.dark : TColors.white,
               ),
               child: Center(
-                child: Image.asset(
-                  category.image,
-                  height: 40,
-                  width: 40,
-                  fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) => const Icon(Iconsax.category, size: 40),
+                child: Icon(
+                  icon,
+                  color: isDark ? TColors.light : TColors.dark,
+                  size: 32,
                 ),
               ),
             ),

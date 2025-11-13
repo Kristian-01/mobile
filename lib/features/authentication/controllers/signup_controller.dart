@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -78,9 +79,6 @@ class SignUpController extends GetxController {
       final userController = Get.put(UserController());
       await userController.saveUserRecord(user: newUser);
 
-      Get.put(CreateNotificationController());
-      await CreateNotificationController.instance.createNotification();
-
       // Remove Loader
       TFullScreenLoader.stopLoading();
 
@@ -89,6 +87,9 @@ class SignUpController extends GetxController {
 
       // Move to Verify Email Screen
       Get.to(() => const VerifyEmailScreen());
+
+      // Create welcome notification asynchronously (non-blocking)
+      _createWelcomeNotification();
     } catch (e) {
       // Show some Generic Error to the user
       TFullScreenLoader.stopLoading();
@@ -96,12 +97,14 @@ class SignUpController extends GetxController {
     }
   }
 
-  /// [PhoneNoAuthentication]
-  Future<void> loginWithPhoneNumber(String phoneNo) async {
+  /// Create welcome notification asynchronously without blocking sign-up flow
+  void _createWelcomeNotification() {
     try {
-      await AuthenticationRepository.instance.loginWithPhoneNo(phoneNo);
+      Get.put(CreateNotificationController());
+      CreateNotificationController.instance.createNotification();
     } catch (e) {
-      throw e.toString();
+      // Silently fail - don't interrupt user experience
+      if (kDebugMode) print('Failed to create welcome notification: $e');
     }
   }
 }

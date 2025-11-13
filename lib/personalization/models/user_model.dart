@@ -8,16 +8,19 @@ import 'address_model.dart';
 class UserModel {
   final String id;
   String fullName;
+  String username;
   String email;
   String phoneNumber;
   String profilePicture;
+  String gender;
+  String dateOfBirth;
   AppRole role;
 
   DateTime? createdAt;
   DateTime? updatedAt;
 
   bool isProfileActive;
-  bool isEmailVerified;
+  bool? isEmailVerified;
   VerificationStatus verificationStatus;
 
   String deviceToken;
@@ -29,13 +32,16 @@ class UserModel {
     required this.id,
     required this.email,
     this.fullName = '',
+    this.username = '',
     this.phoneNumber = '',
     this.profilePicture = '',
+    this.gender = '',
+    this.dateOfBirth = '',
     this.role = AppRole.user,
     this.createdAt,
     this.updatedAt,
     this.deviceToken = '',
-    required this.isEmailVerified,
+    this.isEmailVerified = false,
     required this.isProfileActive,
     this.verificationStatus = VerificationStatus.unknown,
     this.addresses,
@@ -72,9 +78,12 @@ class UserModel {
     return {
       'id': id,
       'fullName': fullName,
+      'username': username,
       'email': email,
       'phoneNumber': phoneNumber,
       'profilePicture': profilePicture,
+      'gender': gender,
+      'dateOfBirth': dateOfBirth,
       'role': role.name.toString(),
       'isEmailVerified': isEmailVerified,
       'isProfileActive': isProfileActive,
@@ -102,9 +111,12 @@ class UserModel {
     return UserModel(
       id: id,
       fullName: data.containsKey('fullName') ? data['fullName'] ?? '' : '',
+      username: data.containsKey('username') ? data['username'] ?? '' : '',
       email: data.containsKey('email') ? data['email'] ?? '' : '',
       phoneNumber: data.containsKey('phoneNumber') ? data['phoneNumber'] ?? '' : '',
       profilePicture: data.containsKey('profilePicture') ? data['profilePicture'] ?? '' : '',
+      gender: data.containsKey('gender') ? data['gender'] ?? '' : '',
+      dateOfBirth: data.containsKey('dateOfBirth') ? data['dateOfBirth'] ?? '' : '',
       role: data.containsKey('role')
           ? (data['role'] ?? AppRole.user) == AppRole.admin.name.toString()
           ? AppRole.admin

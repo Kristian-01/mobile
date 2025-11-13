@@ -18,13 +18,9 @@ class TBillingPaymentSection extends StatelessWidget {
     final controller = Get.put(CheckoutController());
     return Column(
       children: [
-        TSectionHeading(
+        const TSectionHeading(
           title: 'Payment Method',
-          buttonTitle: 'Change',
-          showActionButton: true,
-          onPressed: () {
-            controller.selectPaymentMethod(context);
-          },
+          showActionButton: false, // No change button - COD only
         ),
         const SizedBox(height: TSizes.spaceBtwItems / 2),
         Obx(

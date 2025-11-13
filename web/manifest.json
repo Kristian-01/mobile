@@ -1,13 +1,15 @@
 {
-    "name": "cwt_starter_template",
-    "short_name": "cwt_starter_template",
-    "start_url": ".",
+    "name": "Nine27 Pharmacy",
+    "short_name": "Nine27 Pharmacy",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Your complete online shopping destination for medicines, personal care, household items and more.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
+    "scope": "/",
+    "categories": ["shopping", "lifestyle"],
     "icons": [
         {
             "src": "icons/Icon-192.png",

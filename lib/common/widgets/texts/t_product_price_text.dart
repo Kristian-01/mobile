@@ -25,8 +25,13 @@ class TProductPriceText extends StatelessWidget {
           ? Theme.of(context)
               .textTheme
               .headlineMedium!
+              .copyWith(fontWeight: FontWeight.w700)
               .apply(decoration: lineThrough ? TextDecoration.lineThrough : null)
-          : Theme.of(context).textTheme.titleLarge!.apply(decoration: lineThrough ? TextDecoration.lineThrough : null),
+          : Theme.of(context)
+              .textTheme
+              .titleLarge!
+              .copyWith(fontWeight: FontWeight.w700)
+              .apply(decoration: lineThrough ? TextDecoration.lineThrough : null),
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../common/widgets/appbar/appbar.dart';
@@ -43,9 +42,12 @@ class AddNewAddressScreen extends StatelessWidget {
                 TextFormField(
                   controller: controller.phoneNumber,
                   validator: TValidator.validatePhoneNumber,
+                  keyboardType: TextInputType.phone,
+                  maxLength: 11,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Iconsax.mobile),
                     labelText: 'Phone Number',
+                    counterText: '',
                   ),
                 ),
                 const SizedBox(height: TSizes.spaceBtwInputFields),

@@ -16,7 +16,6 @@ class TRoutes {
   static const ordersScreen = '/orders-screen';
   static const cartScreen = '/cart-screen';
   static const checkoutScreen = '/checkout-screen';
-  static const favouritesScreen = '/favourites-screen';
 
   //Notification
   static const notification = '/notification';

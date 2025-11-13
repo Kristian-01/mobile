@@ -12,7 +12,9 @@ class TProductTitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: !smallSize ? Theme.of(context).textTheme.titleSmall : Theme.of(context).textTheme.labelLarge,
+      style: !smallSize 
+          ? Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600)
+          : Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600),
       overflow: TextOverflow.ellipsis,
       maxLines: maxLines,
       textAlign: textAlign,

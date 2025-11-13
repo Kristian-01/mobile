@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../common/widgets/texts/section_heading.dart';
+import '../../../data/repository/address_repository/address_repository.dart';
 import '../../../utils/constants/sizes.dart';
-import '../../features/dashboard/ecommerce/controllers/dummy_data.dart';
 import '../models/address_model.dart';
 import '../screens/address/add_new_address.dart';
 import '../screens/address/single_address_widget.dart';
@@ -11,7 +11,10 @@ import '../screens/address/single_address_widget.dart';
 class AddressController extends GetxController {
   static AddressController get instance => Get.find();
 
+  final _addressRepository = Get.put(AddressRepository());
   final Rx<AddressModel> selectedAddress = AddressModel.empty().obs;
+  final RxList<AddressModel> addresses = <AddressModel>[].obs;
+  final RxBool isLoading = false.obs;
   
   // Form Controllers
   final GlobalKey<FormState> addressFormKey = GlobalKey<FormState>();
@@ -23,40 +26,69 @@ class AddressController extends GetxController {
   final postalCode = TextEditingController();
   final country = TextEditingController();
 
-  // Add init to initialize some address by default.
   @override
   void onInit() {
-    selectedAddress.value = TDummyData.user.addresses![0];
+    loadAddresses();
     super.onInit();
+  }
+
+  /// Load all addresses from Firebase
+  Future<void> loadAddresses() async {
+    try {
+      isLoading.value = true;
+      addresses.value = await _addressRepository.getAllItems();
+      
+      // Set the first selected address or the first one
+      if (addresses.isNotEmpty) {
+        final selected = addresses.firstWhere(
+          (addr) => addr.selectedAddress,
+          orElse: () => addresses.first,
+        );
+        selectedAddress.value = selected;
+      }
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to load addresses: $e',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   Future<dynamic> selectNewAddress(BuildContext context) {
     return showModalBottomSheet(
       context: context,
-      builder: (_) => SingleChildScrollView(
+      builder: (_) => Obx(() => SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(TSizes.lg),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const TSectionHeading(title: 'Select Address', showActionButton: false),
-              Column(
-                children: TDummyData.user.addresses!
-                    .map((address) => TSingleAddress(
-                          address: address,
-                          onTap: () {
-                            selectedAddress.value = address;
-                            Get.back();
-                          },
-                        ))
-                    .toList(),
-              ),
+              if (isLoading.value)
+                const Center(child: CircularProgressIndicator())
+              else if (addresses.isEmpty)
+                const Center(child: Text('No addresses found. Add one below.'))
+              else
+                Column(
+                  children: addresses
+                      .map((address) => TSingleAddress(
+                            address: address,
+                            onTap: () async {
+                              await selectAddress(address.id);
+                              Get.back();
+                            },
+                          ))
+                      .toList(),
+                ),
               const SizedBox(height: TSizes.defaultSpace * 2),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                     onPressed: () {
-                      Get.back(); // Close the address selection bottom sheet
+                      Get.back();
                       Get.to(() => const AddNewAddressScreen());
                     }, 
                     child: const Text('Add new address')),
@@ -64,8 +96,22 @@ class AddressController extends GetxController {
             ],
           ),
         ),
-      ),
+      )),
     );
+  }
+
+  /// Select an address and update Firebase
+  Future<void> selectAddress(String addressId) async {
+    try {
+      await _addressRepository.setSelectedAddress(addressId);
+      await loadAddresses();
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to select address: $e',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
   }
 
   /// Add New Address
@@ -84,7 +130,7 @@ class AddressController extends GetxController {
 
       // Create new address model
       final newAddress = AddressModel(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        id: '', // Firebase will generate ID
         name: name.text.trim(),
         phoneNumber: phoneNumber.text.trim(),
         street: street.text.trim(),
@@ -92,19 +138,19 @@ class AddressController extends GetxController {
         state: state.text.trim(),
         postalCode: postalCode.text.trim(),
         country: country.text.trim(),
-        selectedAddress: false,
+        selectedAddress: addresses.isEmpty, // Set as selected if first address
       );
 
-      // Simulate saving to database (Replace with actual API call)
-      await Future.delayed(const Duration(seconds: 1));
+      // Save to Firebase
+      final addressId = await _addressRepository.addNewItem(newAddress);
 
-      // Add to dummy data (In real app, this would be saved to database)
-      if (TDummyData.user.addresses != null) {
-        TDummyData.user.addresses!.add(newAddress);
+      // Reload addresses
+      await loadAddresses();
+
+      // If this is the first address or user wants it selected
+      if (addresses.length == 1) {
+        await selectAddress(addressId);
       }
-
-      // Set as selected address
-      selectedAddress.value = newAddress;
 
       // Close loading
       Get.back();
@@ -128,7 +174,55 @@ class AddressController extends GetxController {
       Get.back(); // Close loading
       Get.snackbar(
         'Error',
-        'Failed to add address. Please try again.',
+        'Failed to add address: $e',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  /// Update an existing address
+  Future<void> updateAddress(AddressModel address) async {
+    try {
+      await _addressRepository.updateItem(address);
+      await loadAddresses();
+      
+      Get.snackbar(
+        'Success',
+        'Address updated successfully!',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color(0xFF4CAF50),
+        colorText: Colors.white,
+      );
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Failed to update address: $e',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  /// Delete an address
+  Future<void> deleteAddress(AddressModel address) async {
+    try {
+      await _addressRepository.deleteItemRecord(address);
+      await loadAddresses();
+      
+      Get.snackbar(
+        'Success',
+        'Address deleted successfully!',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color(0xFF4CAF50),
+        colorText: Colors.white,
+      );
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Failed to delete address: $e',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         colorText: Colors.white,

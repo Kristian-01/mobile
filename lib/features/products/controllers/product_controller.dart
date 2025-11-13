@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../data/repository/product_repository/product_repository.dart';
 import '../../../utils/constants/sizes.dart';
+import '../../../utils/logger_helper.dart';
 import '../../cart/controllers/cart_controller.dart';
 import '../models/product_model.dart';
 import '../models/product_variation_model.dart';
@@ -20,16 +21,31 @@ class ProductController extends GetxController {
   RxString variationStockStatus = ''.obs;
   RxMap selectedAttributes = {}.obs;
   RxString selectedProductImage = ''.obs;
-  final favorites = <String, RxBool>{}.obs; // Contains [ProductId: true] Favourite Product
   Rx<ProductVariationModel> selectedVariation = ProductVariationModel.empty().obs;
 
   @override
   void onInit() {
-    fetchProducts();
+    listenToProducts();
     super.onInit();
   }
 
-  /// Fetch products from Firebase
+  /// Listen to products real-time updates from Firebase
+  void listenToProducts() {
+    isLoading.value = true;
+    _productRepository.getProductsStream().listen(
+      (fetchedProducts) {
+        products.value = fetchedProducts;
+        isLoading.value = false;
+        TLoggerHelper.info('📦 Products updated in real-time: ${fetchedProducts.length}');
+      },
+      onError: (e) {
+        isLoading.value = false;
+        Get.snackbar('Error', 'Failed to fetch products: $e');
+      },
+    );
+  }
+
+  /// Fetch products from Firebase (one-time fetch)
   Future<void> fetchProducts() async {
     try {
       isLoading.value = true;
@@ -229,24 +245,4 @@ class ProductController extends GetxController {
     }
   }
 
-  /// --------------------------- Favourites -------------------------------///
-
-  /// Method to check if a product is selected (favorite)
-  bool isFavourite(String productId) {
-    return favorites[productId]?.value ?? false;
-  }
-
-  /// -- Add Product to Favourites
-  void toggleFavoriteProduct(String productId) {
-    if (!favorites.containsKey(productId)) {
-      favorites[productId] = true.obs;
-    } else {
-      favorites[productId]!.value = !favorites[productId]!.value;
-    }
-  }
-
-  /// Method to get the list of favorite products
-  List<ProductModel> favoriteProducts() {
-    return products.where((product) => isFavourite(product.id)).toList();
-  }
 }

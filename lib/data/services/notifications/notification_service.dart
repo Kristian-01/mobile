@@ -61,15 +61,34 @@ class TNotificationService extends GetxService {
 
   /// -- Get User's FCMToken
   static Future<String> getToken() async {
-    await Future.delayed(const Duration(milliseconds: 5000)); // Optional delay
-    final token = await FirebaseMessaging.instance.getToken();
-    if (kDebugMode) print('FCM Token: $token');
-    return token ?? '';
+    try {
+      if (kIsWeb) {
+        // ⏳ TODO: Add your Firebase Web Push VAPID key below
+        // Get it from: Firebase Console > Project Settings > Cloud Messaging > Web Push certificates
+        // const vapidKey = 'YOUR_VAPID_KEY_HERE'; // Example: 'BKagOny0KF_2pCJQ3m.....'
+        
+        // Once you have the VAPID key, uncomment the lines below:
+        // final token = await FirebaseMessaging.instance.getToken(vapidKey: vapidKey);
+        // if (kDebugMode) print('🌐 Web FCM Token: $token');
+        // return token ?? '';
+        
+        // Temporary: return empty for web until VAPID key is added
+        if (kDebugMode) print('⚠️ Web platform: VAPID key not configured yet');
+        return '';
+      }
+      
+      final token = await FirebaseMessaging.instance.getToken();
+      if (kDebugMode) print('📱 Mobile FCM Token: $token');
+      return token ?? '';
+    } catch (e) {
+      if (kDebugMode) print('❌ Error getting FCM token: $e');
+      return ''; // Return empty string on error
+    }
   }
 
   void _initializeLocalNotifications() {
     const AndroidInitializationSettings initializationSettingsAndroid =
-    AndroidInitializationSettings('@drawable/ic_notification_icon');
+    AndroidInitializationSettings('@mipmap/ic_launcher');
 
     const DarwinInitializationSettings initializationSettingsDarwin = DarwinInitializationSettings();
 
@@ -82,6 +101,11 @@ class TNotificationService extends GetxService {
       initializationSettings,
       onDidReceiveNotificationResponse: _onSelectNotification,
     );
+
+    // Android 13+ requires runtime permission for notifications
+    _localNotificationsPlugin
+        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestNotificationsPermission();
   }
 
 

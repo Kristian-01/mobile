@@ -1,1058 +1,734 @@
-Product Name,Stock Quantity
-ABSOLUTE 500 ML,2
-ACEITE ALCANPORADO 50 ML.,12
-ACEITE MANZANILLA IPI 50ML.,12
-ACETONE 120 ML,2
-ACETONE 15 ML,0
-ACETONE 25 ML,1
-ACETONE 60 ML,-1
-AGUA COLONIA 30 ML.,6
-ALCANFORADO 60 ML.,5
-ALCOPLUS ETHYL 60ML.,2
-ALNIX  PLUS 60ML.,2
-ALNIX 60ML.,3
+Product Name,Stock Quantity,Price
+ALCANFORADO 60 ML.,5,25.00
+ALNIX  PLUS 60ML.,2,25.00
+ALNIX 60ML.,3,25.00
 "ALNIX ORAL DROPS
-(Cetirizine) 10ml",0
-ALPINE EVAP 360 ML.,2
-ALUMINUM ANTACID TAB.,61
-AMBROXOL DROPS 15 ML.COUXIN,7
-AMOXICILLIN DROPS MOXYLOR,12
-APCIRON  PLUS VIT.+BUCLIZINE CAP.,190
-APPEBON W/IRON CAPSULE,20
+(Cetirizine) 10ml",0,3.00
+ALUMINUM ANTACID TAB.,61,3.50
+AMBROXOL DROPS 15 ML.COUXIN,7,25.00
+AMOXICILLIN DROPS MOXYLOR,12,12.00
+APCIRON  PLUS VIT.+BUCLIZINE CAP.,190,25.00
+APPEBON W/IRON CAPSULE,20,25.00
 "ASCOF 600mg
-120ml Syrup",4
-ASCOF FORTE 600 MG.,11
+120ml Syrup",4,66.50
+ASCOF FORTE 600 MG.,11,95.00
 "ASCOF FORTE 600mg
-120ml Syrup",3
+120ml Syrup",3,66.50
 "ASCOF FORTE 600mg
-60ml Syrup",3
-ASCOFT 300 MG. TAB,20
-ASCORBIC ACID (MYREVIT C) 120 ML',11
-ASCORBIC ACID (MYREVIT C) 60 ML.,50
-ASMALIN NEBULES,24
-ASPIRIN 80 MG.TAB.,175
-"ATORVASTATIN 10 MG, TAB.",200
-AXE ROLL ON APOLLO 25 ML.,3
-AZITROMYCIN 500 MG.,30
-Absolute 1000ml,1
-Absolute 1500ml,6
-"Aceite De Manzanilla
-60ml (J. CHEMIE)",0
-"Aceite De Manzanilla 
-30ml (J. CHEMIE)",12
-"Aceite Manzanilla 
-15ml (J. CHEMIE)",11
+60ml Syrup",3,104.50
+ASCOFT 300 MG. TAB,20,95.00
+ASCORBIC ACID (MYREVIT C) 120 ML',11,8.00
+ASCORBIC ACID (MYREVIT C) 60 ML.,50,8.00
+ASMALIN NEBULES,24,25.00
+ASPIRIN 80 MG.TAB.,175,2.00
+"ATORVASTATIN 10 MG, TAB.",200,15.00
+AZITROMYCIN 500 MG.,30,25.00
 "Acetylcisteine (ACTEINSAPH)
-200mg Granules",50
+200mg Granules",50,25.00
 "Acetylcisteine (AMBICA)
-200mg Granules",0
+200mg Granules",0,25.00
 "Acetylcisteine (FLECHEM)
-600mg Granules A",14
+600mg Granules A",14,25.00
 "Advil Liquigel 
-(Ibuprofen) Capsule",50
-Alaska Crema 135ml,1
-Alaska Evaporada 140ml,2
-Alaska Evaporada 360ml,4
-Alaxan FR,104
-Alaxan Tablet,280
+(Ibuprofen) Capsule",50,6.50
+Alaxan Tablet,280,25.00
 "Allerkid (Cetirizine) 
-2.5mg/10ml Drops",2
-Allerkid Syrup 30ml,2
-Allerkid Syrup 60ml,0
+2.5mg/10ml Drops",2,3.00
+Allerkid Syrup 30ml,2,25.00
+Allerkid Syrup 60ml,0,25.00
 "Allopurinol (URISOL)
-100mg Tablet",580
-Althea Pills,4
+100mg Tablet",580,25.00
+Althea Pills,4,25.00
 "Ambroxol (BROXOLVAN)
-15mg Syrup",0
+15mg Syrup",0,25.00
 "Ambroxol (COUXIN)
-30mg Syrup",15
-Ambroxol (LYCOBROX)Drops 15ml,0
+30mg Syrup",15,25.00
+Ambroxol (LYCOBROX)Drops 15ml,0,25.00
 "Ambroxol (MUCOLAX)
-30mg Tablet",238
+30mg Tablet",238,25.00
 "Ambroxol (SAPHROXOL)
-75 mg Capsule",77
+75 mg Capsule",77,25.00
 "Amlodipine (AMLOTHIX)
-10mg Tablet",1539
+10mg Tablet",1539,8.00
 "Amlodipine (AMLOTHIX)
-5mg Tablet",1087
-Amlodipine 10mg RM,98
-Amlodipine 5mg RM,-14
+5mg Tablet",1087,8.00
+Amlodipine 10mg RM,98,8.00
+Amlodipine 5mg RM,-14,8.00
 "Amoxicillin (AMBIMOX)
-500mg Capsule",699
+500mg Capsule",699,12.00
 "Amoxicillin (AXMEL)
-125mg Suspension",11
+125mg Suspension",11,12.00
 "Amoxicillin (AXMEL)
-250mg Capsule",300
-Amoxicillin (AXMEL)100mg/10ml Drops,5
+250mg Capsule",300,12.00
+Amoxicillin (AXMEL)100mg/10ml Drops,5,6.00
 "Amoxicillin (BETAMOX)
-500mg Capsule",326
+500mg Capsule",326,12.00
 "Amoxicillin (MOXYLOR)
-250mg Suspension",0
+250mg Suspension",0,12.00
 "Amoxicillin (VAROLOX)
-125mg Suspension",10
-Amoxicillin 500mg RM,79
-Amoxil 500mg Capsule,70
-Angel Evaporada 360ml,2
-Appebon w/ Iron Syrup 60ml,6
-Ascof Lagundi for Kids 300mg/5ml 120ML,0
+125mg Suspension",10,12.00
+Amoxicillin 500mg RM,79,12.00
+Amoxil 500mg Capsule,70,25.00
+Appebon w/ Iron Syrup 60ml,6,25.00
+Ascof Lagundi for Kids 300mg/5ml 120ML,0,45.50
 "Ascorbic (ASCOPHIL)
-500mg Tablet",105
+500mg Tablet",105,25.00
 "Ascorbic Acid (IMUCOR-C)
-120ml Syrup",11
+120ml Syrup",11,5.60
 "Ascorbic Acid (NOVACEE)
-60ml Syrup",7
+60ml Syrup",7,8.80
 "Ascorbic+Zinc (IMUCOR)
-120ml Syrup",12
+120ml Syrup",12,25.00
 "Atenolol (ZENOBLOC)
-100mg Tablet",300
+100mg Tablet",300,25.00
 "Atorvastatin (BRELVASTIN)
-20mg Tablet",197
+20mg Tablet",197,15.00
 "Atorvastatin (BRELVASTIN)
-40mg Tablet",165
-BACTIDOL 60 ML.,1
-BENCH BODY SPRAY ATLANTIS 100ML.,0
-BENCH BODY SPRAY ATLANTIS 75ML.,0
-BENCH BODY SPRAY PURE PASSION 100 ML.,0
-BENCH COLONIA BUBLE GUM 100ML.,0
-BENCH COLONIA BUBLE GUM 50 ML.,1
-BENCH COLONIA ICE MINT 50 ML.,2
-BENCH COLONIA JELLY BEAN 100ML.,1
-BENCH COLONIA JELLY BEAN 50ML,2
-BENCH SO IN LOVE 100 ML.,1
-BENCH SO IN LOVE 50 ML.,0
-BETAHISTINE 16 MG.TAB.,185
-BETAHISTINE 24 MG. TAB.,191
-BETAMETHASONE BETNODERM CREAM 5 G.,1
-BL Cream 7g,15
-Bactidol 120ml Syrup,2
-Bactidol 250ml,6
-Bearbrand Adult Plus 300g,0
-Bearbrand Adult Plus 33g,1
-Bearbrand Adult Plus 600g,1
-Benadryl Syrup 60ml Plain,2
-Berocca tab.x 10,5
+40mg Tablet",165,15.00
+BACTIDOL 60 ML.,1,25.00
+BETAHISTINE 16 MG.TAB.,185,25.00
+BETAHISTINE 24 MG. TAB.,191,25.00
+BETAMETHASONE BETNODERM CREAM 5 G.,1,25.00
+Bactidol 120ml Syrup,2,25.00
+Bactidol 250ml,6,25.00
+Benadryl Syrup 60ml Plain,2,25.00
+Berocca tab.x 10,5,25.00
 "Betahistine (HISTAKON)
-8mg Tablet",183
+8mg Tablet",183,25.00
 "Betametasone Cream
-(VALERI) 10g",9
+(VALERI) 10g",9,25.00
 "Bethahistine (HISTAKON)
-8mg Tablet",200
-Betnovate Cream 5g,2
-Betnovate Ointment 5g,0
-Bioderm Ointment 15g Tube,12
-Bioderm Ointment 5g Tin,11
-Bioderm Ointment 5g Tube,12
-Bioflu Tablet,100
+8mg Tablet",200,25.00
+Betnovate Cream 5g,2,25.00
+Betnovate Ointment 5g,0,25.00
+Bioderm Ointment 15g Tube,12,25.00
+Bioderm Ointment 5g Tin,11,25.00
+Bioderm Ointment 5g Tube,12,25.00
+Bioflu Tablet,100,7.50
 "Biogesic 
-500mg tab",500
-Biogesic Drops 100mg 15 ML.,4
-Biogesic Syrup 120mg 60ml,8
-Biogesic Syrup 250mg 60ml,12
+500mg tab",500,5.50
+Biogesic Drops 100mg 15 ML.,4,5.50
+Biogesic Syrup 120mg 60ml,8,6.05
+Biogesic Syrup 250mg 60ml,12,6.05
 "Bisacodyl (COPHILAX)
-5mg Tablet",190
+5mg Tablet",190,25.00
 "Budesonide (RESPI-SAPH)
-250mcg Nebule",70
-Buscopan Plus Tab (hyocine+para),98
-Buscopan Tab (hyoscine),90
-Buscopan Venus Tablet,94
-Butter Cream,1
-C2 APPLE 335 ML.,23
-C2 Apple Solo 250ml,38
-C2 GREEN TEA APPLE 500ML.,0
-C2 GREEN TEA LEMON 500 ML.,9
-CALCIUMADE TABLET,17
-CALPOL 2-6 YEARS OLD 60ML.,3
-CASINO FEMME 500ML.,0
-CASINO MILD  70% 500ML.,0
-CASTOR OIL 15 ML.,12
-CASTOR OIL 30 ML.,6
+250mcg Nebule",70,25.00
+Buscopan Plus Tab (hyocine+para),98,15.00
+Buscopan Tab (hyoscine),90,15.00
+Buscopan Venus Tablet,94,15.00
+CALCIUMADE TABLET,17,25.00
+CALPOL 2-6 YEARS OLD 60ML.,3,25.00
+CASTOR OIL 15 ML.,12,25.00
+CASTOR OIL 30 ML.,6,25.00
 "CATAPRES CLONIDINE
-150mcg Tablet",30
+150mcg Tablet",30,25.00
 "CATAPRES CLONIDINE
-75mcg Tablet",17
-CEFACLOR 250 MG.9ELICHOR0 60ML.,9
-CEFALEXIN 250 MG.(EXEL) 60 ML.,5
-CEFIXIME 200 MG.CAPSULE,100
-CETIRIZINE (ALLERCHEM) 60ML.,4
-CETIRIZINE ALLECUR SYRUP 60 ML.,4
-CETIRIZINE ZYRINE 60 ML.,12
-CHERRYL SYRUP 60 ML.,5
-CHESTNUT SHAMPOO LIGHT BROWN 30ML.,2
-CHUCKIE 180 ML.,0
-CHUCKIE 250 ML.,0
-CLOTRIMAZOLE CREAM 10 GRAMS (CLOTRISAPH),6
-CLOXACILLIN 125 MG.(NOCLOXOL),3
-CLUSIVOL PLUS,56
-CO -AMOX 312.5 MG.60ML.,3
-CO -AMOX 375 MG.TAB.(CLAVMOXWEL),50
-CO ALEVA  10 MG.TABLET,12
-COBRA 350 ML,25
-CORNETO CHOCOLATE 110ML.,47
-CORNETTO  COOKIES NCREAM  110ML.,76
-CORNETTO DISC BLACK CHOCO 115 ML.,29
-CORNETTO DISC MATCHA 115 ML.,2
-CORNETTO VANILLA  110 ML.,72
-CREAM ALL PURPOSE FLOUR 200 GRAMS,2
-CREAM PURE CORNSTARCH 200 GRAMS,1
-CREAMSILK  KERATIN REBOND STRAIGHT SACHET,5
-CREAMSILK GREEN SACHET,20
-CREAMSILK KERATIN DAMAGE REPAIR,2
-CRISS CROSS SOUR CREAM,3
-CUTICLE REMOVER 120ML.,12
-CUTICLE REMOVER 30 ML.,10
-CUTICLE REMOVER 60ML.,11
+75mcg Tablet",17,25.00
+CEFACLOR 250 MG.9ELICHOR0 60ML.,9,25.00
+CEFALEXIN 250 MG.(EXEL) 60 ML.,5,25.00
+CEFIXIME 200 MG.CAPSULE,100,25.00
+CETIRIZINE (ALLERCHEM) 60ML.,4,6.60
+CETIRIZINE ALLECUR SYRUP 60 ML.,4,6.00
+CETIRIZINE ZYRINE 60 ML.,12,6.00
+CHERRYL SYRUP 60 ML.,5,25.00
+CLOTRIMAZOLE CREAM 10 GRAMS (CLOTRISAPH),6,25.00
+CLOXACILLIN 125 MG.(NOCLOXOL),3,25.00
+CLUSIVOL PLUS,56,25.00
+CO -AMOX 312.5 MG.60ML.,3,25.00
+CO -AMOX 375 MG.TAB.(CLAVMOXWEL),50,25.00
+CO ALEVA  10 MG.TABLET,12,25.00
 "Calcium Carbonate
-(AMBICAL) 500mg Tablet",262
-Calmoseptine Ointment,60
-Calpol 250mg (Paracetamol),4
-Calpol Drops 15ml (Paracetamol),10
+(AMBICAL) 500mg Tablet",262,25.00
+Calmoseptine Ointment,60,25.00
+Calpol 250mg (Paracetamol),4,5.00
+Calpol Drops 15ml (Paracetamol),10,3.00
 "Captopril (HYPERSTOP)
-25mg Tablet",280
+25mg Tablet",280,25.00
 "Carbocisteine 
-(NOMOCOF) 100mg Syrup",9
+(NOMOCOF) 100mg Syrup",9,8.00
 "Carbocisteine (CEASCOL)
-250mg/60ml Syrup",8
+250mg/60ml Syrup",8,8.80
 "Carbocisteine (CEASCOL)
-5mg/5ml Drops",8
+5mg/5ml Drops",8,8.00
 "Carbocisteine (CEASCOL) 
-125mg 60ml Syrup",9
+125mg 60ml Syrup",9,8.80
 "Carbocisteine (MUCOLIEF)
-500mg Capsule",387
+500mg Capsule",387,8.00
 "Carbocisteine (NOMOCOF)
-100mg Syrup",9
+100mg Syrup",9,8.00
 "Carvedilol (CARVESAPH)
-6.25mg Tablet",597
+6.25mg Tablet",597,25.00
 "Carvedilol (KARVIDOL)
-25mg Tablet",100
-"Casino Femme Dual 
-Moisturizer 250ml",0
-Cecon 500mg Chewable Tab (Ascorbic),59
+25mg Tablet",100,25.00
+Cecon 500mg Chewable Tab (Ascorbic),59,25.00
 "Cefaclor (CLORMED)
-125mg/60ml Susp.",9
+125mg/60ml Susp.",9,25.00
 "Cefaclor (CLORMED)
-250mg/60ml Suspension",1
+250mg/60ml Suspension",1,25.00
 "Cefaclor (CLORMED)
-50mg/ml Drops",4
+50mg/ml Drops",4,25.00
 "Cefalexin (DIACEF)
-250mg/60ml Suspension",2
+250mg/60ml Suspension",2,25.00
 "Cefalexin (DIACEF) 
-100mg Drops",12
+100mg Drops",12,25.00
 "Cefalexin (EXCEL)
-500mg Tablet",1272
+500mg Tablet",1272,25.00
 "Cefalexin (EXCEL) 
-125mg/50ml Susp.",10
+125mg/50ml Susp.",10,25.00
 "Cefixime (CEFIXSAPH)
-100mg Suspension",5
+100mg Suspension",5,25.00
 "Cefuroxime (AEROX)
-500mg Tablet",43
+500mg Tablet",43,25.00
 "Cefuroxime (EROXIME)
-500mg Tablet",3
+500mg Tablet",3,25.00
 "Cefuroxime (PHILCEF)
-250mg/5ml Suspension",5
+250mg/5ml Suspension",5,25.00
 "Cefuroxime (SQCEF)
-125mg/5ml Susp.",9
+125mg/5ml Susp.",9,25.00
 "Celecoxib (EMICOX)
-200mg Capsule",240
+200mg Capsule",240,25.00
 "Celecoxib (EMICOX)
-400mg Capsule",49
-Centrum Advance tab.,22
-Cetaphil Cleanser 60ml,2
+400mg Capsule",49,25.00
+Centrum Advance tab.,22,25.00
+Cetaphil Cleanser 60ml,2,25.00
 "Cetirizine (CETICIT)
-10mg Tablet",2166
+10mg Tablet",2166,6.00
 "Cetirizine (CETIREX)
-6mg/5ml Syrup",-1
+6mg/5ml Syrup",-1,6.00
 "Cetirizine (CETRIKID)
-2.5mg/ml Drops",9
+2.5mg/ml Drops",9,6.00
 "Cetirizine (REAX)
-2.5mg Drops",8
+2.5mg Drops",8,6.00
 "Chloramphenicol
-(TYPHECLOR) 125mg Susp.",3
-Chuckie 110ml,-11
+(TYPHECLOR) 125mg Susp.",3,25.00
 "Cinnarizine (MOTICON)
-25mg Tablet",275
+25mg Tablet",275,25.00
 "Ciprofloxacin (CIPRODIN)
-500mg Tablet",244
+500mg Tablet",244,25.00
 "Citicoline (CITIGEN)
-500mg Tablet",60
+500mg Tablet",60,25.00
 "Clarithro (ACCETHROM)
-125mg/60ml Suspension",3
+125mg/60ml Suspension",3,25.00
 "Clarithro (CLARIWEL)
-250mg/60ml Suspension",2
+250mg/60ml Suspension",2,25.00
 "Claritin Tab 
-(Loratadine)",87
+(Loratadine)",87,25.00
 "Clindamycin (CLIN-GEN)
-300mg Capsule",65
+300mg Capsule",65,25.00
 "Clonidine (CLONISAPH)
-150mcg Tablet",80
+150mcg Tablet",80,25.00
 "Clopidogrel (CARDIPLAT)
-75mg Tablet",600
+75mg Tablet",600,25.00
 "Clotrimazole Cream 
-(KOLFRED) 15g",1
+(KOLFRED) 15g",1,25.00
 "Cloxacillin (MYRECLOX)
-250mg Suspension",12
+250mg Suspension",12,25.00
 "Cloxacillin (PHILCLOX)
-500mg Capsule",164
-Clusivol Capsule,0
+500mg Capsule",164,25.00
+Clusivol Capsule,0,25.00
 "Co-Amox (ASICLAV)
-625mg Tablet",-85
+625mg Tablet",-85,25.00
 "Co-Amox (CLOVIMED)
-70ml (457mg) Susp",3
+70ml (457mg) Susp",3,25.00
 "Co-Amox (CLOVIMED) 
-250mg/60ml(312.5mg) Susp.",7
+250mg/60ml(312.5mg) Susp.",7,25.00
 "Co-Amox (MEOXICLAV) 
-(312.5mg) Susp.",10
+(312.5mg) Susp.",10,25.00
 "Co-Amox (RANICLAV)
-625mg Tablet",46
+625mg Tablet",46,25.00
 "Co-Amoxiclav (CLOVIMED) 
-156.25mg Susp.",4
+156.25mg Susp.",4,25.00
 "Colchicine (GOUTSAPH)
-500mcg Tablet",290
+500mcg Tablet",290,25.00
 "Colchicine (LESIRHEU)
-500mcg Tablet",287
-Colgate Plax Total12 250ml,0
-Colgate Plax Total12 500ml,2
-"Color Expert 
-30ml Brown Black",5
-"Color Expert 
-30ml Chestnut",-2
-"Color Expert 
-80ml Ash Blonde",2
-"Color Expert 
-80ml Brown Black",3
-"Color Expert 
-80ml Coffee",-1
-"Color Expert 
-80ml Light Blonde",1
-"Color Expert 
-80ml Medium Chestnut",2
-"Color Expert 
-80ml Red Brown",2
-Conzace Capsule,197
-Cotrimoxazole (KATHREX)240mg Susp,6
-Cotrimoxazole (KATHREX)400mg Susp.,6
-Cotrimoxazole (ZOLBACH)800mg Tablet,300
-"Cream-O Chocolate Chip 
-Cookies 36g",1
-DAPAGLIFLOZIN  5 MG.(DAJIO),30
-DAPAGLIFLOZIN 10 MG.(DAJIO),25
-DAPHNE PILLS,6
-DATU PUTI  VINEGAR 385 ML,3
-DATU PUTI PATIS 350 ML.,2
-DATU PUTI SOY SAUCE 385 ML.,0
-DEL MONTE PINEAPPLE FIBER 220 ML.,6
-DEOPLUS DEO POWDER 40 GRAMS,2
-DEOPLUS DEODORANT SKIN LIGHT 40 GRAMS,1
-DICLOPENAC 100 MG.TAB.(CURAFEN),154
-DOWNY SUNFRESH 24ML.,0
-DUTCHMILL BLUEBERRY 180 ML.,1
-DUTCHMILL STRAWBERRY 180 ML.,4
-Decilone Forte Tablet,89
-Decolgen Forte,27
-Decolgen No-Drowse Tab 25mg,20
-"Del Monte 220ml 
-Four Seasons",7
-"Del Monte Pineapple 
-Juice Heart Smart 220ml",6
-"Del Monte Pineapple 
-Juice w/A-C-E 220ml",24
-"Del Monte Sweetened 
-Pineapple Juice 220ml",0
+500mcg Tablet",287,25.00
+Conzace Capsule,197,25.00
+Cotrimoxazole (KATHREX)240mg Susp,6,25.00
+Cotrimoxazole (KATHREX)400mg Susp.,6,25.00
+Cotrimoxazole (ZOLBACH)800mg Tablet,300,25.00
+DAPAGLIFLOZIN  5 MG.(DAJIO),30,25.00
+DAPAGLIFLOZIN 10 MG.(DAJIO),25,25.00
+DAPHNE PILLS,6,25.00
+DICLOPENAC 100 MG.TAB.(CURAFEN),154,25.00
+Decilone Forte Tablet,89,25.00
+Decolgen Forte,27,25.00
+Decolgen No-Drowse Tab 25mg,20,25.00
 "Deoplus Tawas 
-Powder (Blue) 50g",-2
+Powder (Blue) 50g",-2,93.50
 "Deoplus Tawas 
-Powder (Pink) 50g",-2
-Dexamethasone (IMPODEX)500mcg Tablet,275
-Diane Pills,3
-Diatab Capsule,13
-Diclofenac (BOREN)50mg Tablet,236
+Powder (Pink) 50g",-2,93.50
+Dexamethasone (IMPODEX)500mcg Tablet,275,25.00
+Diane Pills,3,25.00
+Diatab Capsule,13,25.00
+Diclofenac (BOREN)50mg Tablet,236,25.00
 "Diclofenac (RHEUDI)
-50mg Tablet",300
-Dicycloverine (CLOVERINE)10mg/5ml Syrup 60ml,6
+50mg Tablet",300,25.00
+Dicycloverine (CLOVERINE)10mg/5ml Syrup 60ml,6,25.00
 "Dicycloverine (DYCYRINE)
-10mg Tablet",84
+10mg Tablet",84,25.00
 "Digoxin (DIGOSAPH)
-250mcg Tablet",100
+250mcg Tablet",100,25.00
 "Diltiazem HCL (NOVOPTIN) 
-30mg Tablet",200
+30mg Tablet",200,25.00
 "Diltiazem HCL (NOVOPTIN) 
-60mg Tablet",200
-Diltiazem HCL (ZEMDIL) 30mg,100
-Diosm+Hespe (DIO5GEN)450mcg/50mg Tablet,1
+60mg Tablet",200,25.00
+Diltiazem HCL (ZEMDIL) 30mg,100,25.00
+Diosm+Hespe (DIO5GEN)450mcg/50mg Tablet,1,25.00
 "Diphenhydramine (HISTAZYN)
-50mg Capsule",282
-Diphenhydramine (HISTAZYN)12.5mg Syrup 60ml,3
+50mg Capsule",282,25.00
+Diphenhydramine (HISTAZYN)12.5mg Syrup 60ml,3,25.00
 "Diphenhydramine (MUCOMED)
-25mg Capsule",90
-Disudrin 120ml,7
-Disudrin 60ml,5
-Disudrin Drops,8
+25mg Capsule",90,25.00
+Disudrin 120ml,7,25.00
+Disudrin 60ml,5,25.00
+Disudrin Drops,8,25.00
 "Dolan FP 100mg 
-Susp 60ml",1
+Susp 60ml",1,25.00
 "Dolan FP Forte 200mg 
-Susp 60ml",1
-Dolfenal 500mg (Mefenamic Acid),11
-Dolo-Neurobion Tab (B-COMPLEX+PARA),87
+Susp 60ml",1,25.00
+Dolfenal 500mg (Mefenamic Acid),11,7.00
+Dolo-Neurobion Tab (B-COMPLEX+PARA),87,25.00
 "Domperidone (MOLITIA)
-10mg Tablet",184
-Dove Cream Bar Pink 135g,1
-"Dove Shampoo
-Ceramide 12ml",19
-Doxofylline (SAPHFYLLINE) 400mg,30
-Doxycycline (DOTHIX)100mg Capsule,289
-Drapolene Cream 55g,2
-Drenex Tablet 3mg,45
+10mg Tablet",184,25.00
+Doxofylline (SAPHFYLLINE) 400mg,30,25.00
+Doxycycline (DOTHIX)100mg Capsule,289,25.00
+Drapolene Cream 55g,2,25.00
+Drenex Tablet 3mg,45,25.00
 "Dulcolax Suppository 
-Adult 10mg",10
+Adult 10mg",10,25.00
 "Dulcolax Suppository 
-Pedia 5mg",10
-Dulcolax Tablet,27
-EFFICASCENT OIL EXTREME  25 ML.,9
-EFFICASCENT OIL EXTREME  50 ML.,2
-EFFICASCENT OIL EXTREME 100 ML.,-1
-"ENALAPRIL 5MG,TABLET",300
-ENERVON C TABLET,0
-ENERVON ZINC TAB.,117
-ESKINOL CLASSIC WHITE 75 ML.,2
-ESSENTIALE FORTE CAP.,34
-Efficascent Oil 100ml,4
-Efficascent Oil 25ml,0
+Pedia 5mg",10,25.00
+Dulcolax Tablet,27,25.00
+EFFICASCENT OIL EXTREME  25 ML.,9,25.00
+EFFICASCENT OIL EXTREME  50 ML.,2,25.00
+EFFICASCENT OIL EXTREME 100 ML.,-1,25.00
+"ENALAPRIL 5MG,TABLET",300,25.00
+ENERVON C TABLET,0,25.00
+ENERVON ZINC TAB.,117,25.00
+ESSENTIALE FORTE CAP.,34,25.00
+Efficascent Oil 100ml,4,25.00
+Efficascent Oil 25ml,0,25.00
 "Efficascent Oil 25ml
-(Extra Strength)",11
-Efficascent Oil 50ml,1
-Emperador Light 350ml,2
-Emperador Light 500ml,3
-Emperador Light 750ml,3
+(Extra Strength)",11,25.00
+Efficascent Oil 50ml,1,25.00
 "Enalapril Maleate
-(STALPRIL-20) 20mg Tablet",90
-Enalapril Maleate (RENITE-XL) 10mg Tablet,100
-Enervon C Tablet x 30's,1
+(STALPRIL-20) 20mg Tablet",90,25.00
+Enalapril Maleate (RENITE-XL) 10mg Tablet,100,25.00
+Enervon C Tablet x 30's,1,25.00
 "Erythromycin (EROXENE)
-5mg Opth. Oinment",3
+5mg Opth. Oinment",3,25.00
 "Erythromycin (ERYSAPH)
-500mg Tablet",272
+500mg Tablet",272,25.00
 "Erythromycin (MONPHEVIN)
-200mg Suspension",6
+200mg Suspension",6,25.00
 "Erythromycin (OPTRYL)
-5mg Opth. Oinment",9
-Eskinol Calamansi 225ml,1
-Eskinol Calamansi 75ml,0
-Eskinol Mild for Teens 135ml,0
+5mg Opth. Oinment",9,25.00
 "Etoricoxib (ETIROX)
-120mg Tablet",10
+120mg Tablet",10,25.00
 "Etoricoxib (SAPHETOR)
-90mg Tablet",83
+90mg Tablet",83,25.00
 "Evening Primrose
-(E-ROSE) 1000mg Cap",30
-Eye Mo Red Eye 7.5ml,3
-FENOFIBRATE 160 MG.TAB,83
-FERLIN DROPS 15 ML.,2
-FERROUS+FOLIC TAB. ( FEROLITAB),400
-FLUMUCIL 100MG,16
-FLUMUCIL 200MG,18
-FLUMUCIL 600MG,14
-FUDGEE BAR MACAPUNO,15
-"FUROSEMIDE 20 MG,TAB.",85
+(E-ROSE) 1000mg Cap",30,25.00
+Eye Mo Red Eye 7.5ml,3,25.00
+FENOFIBRATE 160 MG.TAB,83,25.00
+FERLIN DROPS 15 ML.,2,25.00
+FERROUS+FOLIC TAB. ( FEROLITAB),400,25.00
+FLUMUCIL 100MG,16,25.00
+FLUMUCIL 200MG,18,25.00
+FLUMUCIL 600MG,14,25.00
+"FUROSEMIDE 20 MG,TAB.",85,25.00
 "Febuxostat (FEBUDAY)
-40mg Tablet",21
+40mg Tablet",21,25.00
 "Febuxostat (SAPXHOSTAT)
-80mg Tablet",30
+80mg Tablet",30,25.00
 "Febuxostat (XURIC-40)
-40mg Tablet",24
-Fern-C Capsule,20
+40mg Tablet",24,25.00
+Fern-C Capsule,20,25.00
 "Ferrous Sulfate
-(FERLUM) 60ml Syrup",1
+(FERLUM) 60ml Syrup",1,25.00
 "Ferrous Sulfate (BRISOFER) 75
-mg Capsule",129
+mg Capsule",129,25.00
 "Finasteride (FINASIA)
-5mg Tablet",30
+5mg Tablet",30,25.00
 "Flanax 
-Forte Tablet",22
+Forte Tablet",22,25.00
 "Folic Acid (INFACARE)
-5mg Capsule",297
+5mg Capsule",297,25.00
 "Furosimide (UROMID)
-40mg Tablet",191
-GAVISCON TAB.,59
-GEL BLUE 50 ML.,1
-GEL GREEN 50ML.,1
-GEL PINK 50ML.,0
-GEL YELLOW 50 ML.,1
-GENTIAN VIOLET 15 ML.,6
-GENTIAN VIOLET 30 ML.,6
-GLIMEPIRIDE 3 MG.TAB,200
-GREEN CROSS ETHYL 150 ML.,4
-GREEN CROSS ISOPROPYL 150 ML.,2
-GREEN CROSS ISOPROPYL 250ML.,4
-GSM Blue Lychee 700ml,2
-GSM Blue Mojito 700ml,5
-"Gatorade 
-350ml (Blue)",0
-"Gatorade 
-350ml (Red)",1
-"Gatorade 
-350ml (Violet)",0
-"Gatorade 
-500ml (Blue)",2
-"Gatorade 
-500ml (Red)",4
-"Gatorade 
-500ml (Violet)",1
-Ginebra Round 350ml,2
+40mg Tablet",191,25.00
+GAVISCON TAB.,59,25.00
+GENTIAN VIOLET 15 ML.,6,25.00
+GENTIAN VIOLET 30 ML.,6,25.00
+GLIMEPIRIDE 3 MG.TAB,200,25.00
 "Gliclazide (GLIFRED)
-60mg Tablet",90
+60mg Tablet",90,25.00
 "Gliclazide (SAPHCLAZIDE)
-80mg Tablet",400
+80mg Tablet",400,25.00
 "Glimepiride (DIANOV)
-2mg Tablet",100
-"GreenCross 70% 
-w/ Moisturizer 500ml",0
-"GreenCross 70% 
-w/ Moisturizer 60ml",3
-"GreenCross Isopropyl
-w/ Moisturizer 250ml",1
-"GreenCross isopropyl
-w/ Moisturizer 150ml",4
-Guiafenesin (DLI) 100mg Capsule,100
-Guiafenesin (LUMARTUSS)100mg Syrup 60ml,5
-HEMOSTAN 500 MG.CAP.,30
-HERBENCH DEO BODY SO IN LOVE 100 ML.,480041700
-HERBENCH DEO BODY SPRAY BARE 100 ML.,2
-HERBENCH DEO BODY SPRAY SO IN LOVE 50 ML.,248004170
-HYDROCORTISONE CREAM 15 GRAMS HYDROCHEM,6
-Hana Shampoo Green Fresh 200ml,1
-Hana Shampoo Pink Passion 200ml,3
-Hana Shampoo Purple Bliss 200ml,2
-Head & Shoulders 12ml,-2
-Hemarate FA Tablet,27
+2mg Tablet",100,25.00
+Guiafenesin (DLI) 100mg Capsule,100,25.00
+Guiafenesin (LUMARTUSS)100mg Syrup 60ml,5,25.00
+HEMOSTAN 500 MG.CAP.,30,25.00
+HYDROCORTISONE CREAM 15 GRAMS HYDROCHEM,6,25.00
+Hemarate FA Tablet,27,25.00
 "Hydrite Granules
-Apple Flavor Sachet",11
-Hyoscine (HCINE)10mg Tab,100
-ICOLOR SHAMPOO CHESTNUT BROWN 30ML.,1
-IRON+ZINC+FOLIC(HEMR -UP) CAP.,10
-ISOSORBIDE DINITRATE 10 MG.(SORBANCE),100
-Ibuprofen (FEVRAL)200mg Tab,198
-Ibuprofen (IBUFEN) 400mg Tab,76
+Apple Flavor Sachet",11,25.00
+Hyoscine (HCINE)10mg Tab,100,25.00
+IRON+ZINC+FOLIC(HEMR -UP) CAP.,10,25.00
+ISOSORBIDE DINITRATE 10 MG.(SORBANCE),100,25.00
+Ibuprofen (FEVRAL)200mg Tab,198,6.50
+Ibuprofen (IBUFEN) 400mg Tab,76,6.50
 "Immunopro 500mg 
-Tablet",6
-Imodium Capsule,363
-Irbesartan (IRTAZEP) 150mg Tablet,50
-"J,B. COLOGNE MORNING DEW 25 ML.",0
-"J,B. COLOGNE SLIDES 25 ML.",0
-J. B COLOGNE MORNING DEW 50 ML.,0
-J.B COLOGNE SLIDE 50 ML.,0
-J.B COLOGNE SUMMER SPRING 50 ML.,1
-J.B COLOLGNE SUMMER SWING 25 ML.,0
-JOY ANTIBAC 35 ML.,2
-JOY KALAMANSI 40 ML.,9
-JUICY COLOGNE ORANGE 75 ML.,0
-JUICY COLOGNE RED SWEET DELIGHTS 50 ML.,2
-JUICY ICYLICIOUS 50ML.,0
-JUICY UP UP AND AWAY 50 ML.,0
-"Jersey 250ml
-All Purpose Cream",3
-"Jersey Buko Pandan Condensed
-Creamer 390g",1
-"Jersey Mango Condensed
-Creamer 390g",2
-"Jersey Ube Condensed
-Creamer 390g",0
-"Juicy Col. 50ml
-Angel Bliss(Pink)",0
-"Juicy Col. 50ml
-Orange Twist (Orange)",2
-"Juicy Cologne Dreamsicle
-(Violet) 50ml",2
-KETOANALOGUES+ESSENTIALS AMINO ACIDS TAB.,78
-KIDDILETS TAB.,19
-KREMIL S ADVANCE TAB.,88
-KREMTOP CREAMER 80 GRAMS,6
-Keratin Plus Black 20g,8
-Keratin Plus Gold 20g,0
-Keratin Plus Hairfall Shampoo 22ml,2
-Keratin Plus Red 20g,5
-Ketoconazole Cream (FUNGINIL-K) 15mg,1
-Knorr Liquid Seasoning 12ml,8
-Kremil-S Tablet,29
-LACTULOSE 120ML. STA-LACT,3
-LACTULOSE SYRUP 60 ML.(ACCELLAC),2
-LUTEIN CAPSULE,30
-Lagundi (ASFLEM) 600mg tab,8
-Lagundi (CLIRCAF) 300mg 120ml Syrup,4
-Lagundi (CLIRCAF) 300mg 60ml Syrup,3
-Lansoprazole (LANZOMEDIX) 30mg Capsule,30
-Levocitirizine (LEVOCEC) 5mg Tab,27
+Tablet",6,25.00
+Imodium Capsule,363,25.00
+Irbesartan (IRBEQ) 300mg Tablet,100,25.00
+Irbesartan (IRTAZEP) 150mg Tablet,50,25.00
+KETOANALOGUES+ESSENTIALS AMINO ACIDS TAB.,78,25.00
+KIDDILETS TAB.,19,25.00
+KREMIL S ADVANCE TAB.,88,25.00
+Ketoconazole Cream (FUNGINIL-K) 15mg,1,25.00
+Kremil-S Tablet,29,12.00
+LACTULOSE 120ML. STA-LACT,3,25.00
+LACTULOSE SYRUP 60 ML.(ACCELLAC),2,25.00
+LUTEIN CAPSULE,30,25.00
+Lagundi (ASFLEM) 600mg tab,8,65.00
+Lagundi (CLIRCAF) 300mg 120ml Syrup,4,45.50
+Lagundi (CLIRCAF) 300mg 60ml Syrup,3,71.50
+Lansoprazole (LANZOMEDIX) 30mg Capsule,30,25.00
+Levocitirizine (LEVOCEC) 5mg Tab,27,25.00
 "Levofloxacin (FLOXANOVA)
-750mg Tablet",100
+750mg Tablet",100,25.00
 "Levofloxacin (LEVONOVA-500)
-500mg Tablet",11
-Levothyroxine (EUROLEV) 50mcg,90
-LiverAide Capsule,20
+500mg Tablet",11,25.00
+Levothyroxine (EUROLEV) 50mcg,90,25.00
+LiverAide Capsule,20,25.00
 "Lola Remedios 
-Syrup 15ml",28
-Lomotil tab.,13
-Loratadine (ACCE-LORA)5mg/5ml Syrup,4
+Syrup 15ml",28,25.00
+Lomotil tab.,13,25.00
+Loratadine (ACCE-LORA)5mg/5ml Syrup,4,25.00
 "Loratadine (LORAREX)
-10mg Tablet",78
+10mg Tablet",78,25.00
 "Losar+Amlo (AMB)
-50mg/5mg Tablet",297
-Losartan (LOSAAR)100mg Tablet,515
-Losartan (LOSAAR)50mg Tablet,944
-Losartan 100mg RM,51
-Losartan 50mg RM,100
-Losartan+Amlodepine (AMBICA) 50/5mg Tablet,-2
-MAMG TOMAS 100 GRAMS,3
-MANG JUAN SUKANG PAOMBOMG 26 G.,4
-MARVELON PILLS,5
-MASTER ACTIVE BRIGHTENING 70 ML.,1
-MASTER ANTI PIMPLE 70 ML.,1
-MAXI PEEL EXFOLIANT #1  30 ML.,2
-MAXI PEEL EXFOLIANT #3 30 ML.,0
-MAXI-PEEL MOIST CREAM 25 G.,1
-MAYONISE 80 ML POUCH,2
-METFORMIN ( GLYCEMET) 500 MG.TAB.,100
-METHYLDOPA 250 MG.TAB,290
-MICRO PILL TABLET,11
-MIDOL 200MG Tablet,42
-MOGU MOGU  ORANGE 320 ML.,3
-MOGU MOGU GRAPES 320 ML.,0
-MOGU MOGU MANGO 320 ML.,2
-MOGU MOGU MELON 320 ML.,0
-MOGU MOGU STRAWBERRY 320 ML.,0
-MUCOSOLVAN RETARD 75 MG. CAP,10
-MUCOSOLVAN TAB,42
+50mg/5mg Tablet",297,25.00
+Losartan (LOSAAR)100mg Tablet,515,12.00
+Losartan (LOSAAR)50mg Tablet,944,12.00
+Losartan 100mg RM,51,12.00
+Losartan 50mg RM,100,12.00
+Losartan+Amlodepine (AMBICA) 50/5mg Tablet,-2,12.00
+MARVELON PILLS,5,25.00
+METFORMIN ( GLYCEMET) 500 MG.TAB.,100,5.00
+METHYLDOPA 250 MG.TAB,290,25.00
+MICRO PILL TABLET,11,25.00
+MIDOL 200MG Tablet,42,25.00
+MUCOSOLVAN RETARD 75 MG. CAP,10,25.00
+MUCOSOLVAN TAB,42,25.00
 "MULTIVITAMINS(APPETASON)
-120ml Syrup",1
+120ml Syrup",1,25.00
 "MX3 500mg 
-Capsule",109
-MYRA CLASSIC WHITENING LOTION 100 ML.,1
-MYRA E CLASSIC WHITENING LOTION 200ML.,1
-MYRA E MOISTURIZING LOTION 200 ML.,1
-MYRA ULTIMATE CAP.,73
-MYRA WHITENING PLUS LOTION 200 ML.,1
-Master Zero Oil Deep Cleanser 225ml,3
-"Maxi-Peel Facial Cleanser
-Pore-Refining 75ml",0
-"Maxi-Peel Moisturizing
-Cream 15g",3
-"Maxi-Peel Sun 
-Protection Cream 15g",0
-"Maxi-Peel Sun 
-Protection Cream 8g",5
+Capsule",109,25.00
 "Mebendazole (KHRIZVER)
-500mg Tablet",100
-Medicol Advance Cap 200mg,0
-Medicol Advance Cap 400mg,23
-Mefenamic (ACIFLAM)500mg CapLet,533
-Mefenamic (MECID)500mg Capsule,712
-Mefenamic (MYREFEN) 250mg Capsule,287
-Mefenamic (MYREFEN)50mg/50ml Suspension,8
-Mefenamic 500mg RM,31
-Mega Prime Cream Style Corn 425g,2
-Memo Plus Gold,24
-Metformin (FORMET)500mg Tablet,1948
-Metformin (METROL) 850mg Tablet,200
-Metformin 500mg RM,37
+500mg Tablet",100,25.00
+Medicol Advance Cap 200mg,0,25.00
+Medicol Advance Cap 400mg,23,25.00
+Mefenamic (ACIFLAM)500mg CapLet,533,25.00
+Mefenamic (MECID)500mg Capsule,712,25.00
+Mefenamic (MYREFEN) 250mg Capsule,287,25.00
+Mefenamic (MYREFEN)50mg/50ml Suspension,8,25.00
+Mefenamic 500mg RM,31,25.00
+Memo Plus Gold,24,25.00
+Metformin (FORMET)500mg Tablet,1948,5.00
+Metformin (METROL) 850mg Tablet,200,5.00
+Metformin 500mg RM,37,5.00
 "Metoclopromide (CENTURION)
-10mg Tablet",94
-Metoclopromide (MYCLOSIL) 5mg/5ml Syrup 60ml,3
+10mg Tablet",94,25.00
+Metoclopromide (MYCLOSIL) 5mg/5ml Syrup 60ml,3,25.00
 "Metoprolol (LOPREXO)
-100mg Tablet",600
-Metoprolol (PROMETIN)50mg Tablet,595
-Metronidazole (AMBIDAZOLE)125mg Suspension,5
-Metronidazole (FLAGEX)500mg Tablet,286
+100mg Tablet",600,25.00
+Metoprolol (PROMETIN)50mg Tablet,595,25.00
+Metronidazole (AMBIDAZOLE)125mg Suspension,5,25.00
+Metronidazole (FLAGEX)500mg Tablet,286,25.00
 "Monte+Levocit (MONTEPHIL)
-10mg/5mg Tablet",109
+10mg/5mg Tablet",109,25.00
 "Montelukast (AUROREX)
- Montelukast 4mg Tablet",100
-Montelukast (LEUKOREX)10mg Tablet,95
+ Montelukast 4mg Tablet",100,25.00
+Montelukast (LEUKOREX)10mg Tablet,95,25.00
 "Moringa Oleifera (MORINGA CAPS)
-500mg Capsule",96
-Mountain Dew Regular 290ml,13
+500mg Capsule",96,25.00
 "Multivitamins
-(MYREVIT) Capsule",26
+(MYREVIT) Capsule",26,25.00
 "Multivitamins
-(Multiplex) Capsule",0
+(Multiplex) Capsule",0,25.00
 "Multivitamins 
-(MYREVIT) Drops",12
+(MYREVIT) Drops",12,25.00
 "Multivitamins (APPETASON)
-60ml Syrup",2
+60ml Syrup",2,25.00
 "Multivitamins (MYREVIT)
-120ml Syrup",11
+120ml Syrup",11,25.00
 "Multivitamins + Iron
-(FORALIVIT) Capsule",1022
+(FORALIVIT) Capsule",1022,25.00
 "Multivitamins Plus
-(EURIVIT-M) Tablet",1065
+(EURIVIT-M) Tablet",1065,25.00
 "Multivitamins Plus
-(MULTIVIT) Capsule",1060
+(MULTIVIT) Capsule",1060,25.00
 "Multivitamins+Iron
-(MYREVIT-FE) Capsule",580
+(MYREVIT-FE) Capsule",580,25.00
 "Multivitamins+Mineral
-(EURIVIT) 120ml Syrup",12
+(EURIVIT) 120ml Syrup",12,25.00
 "Multivitamins+Mineral
-(EURIVIT) 250ml Syrup",6
+(EURIVIT) 250ml Syrup",6,25.00
 "Multivitamins+Mineral
-(EURIVIT) 60ml Syrup",12
+(EURIVIT) 60ml Syrup",12,25.00
 "Mupirocin Ointment
-(MUPIBAN) 5g Tube",-1
+(MUPIBAN) 5g Tube",-1,25.00
 "Myra-e 400IU
-Capsule",-15
-NASATAPP DROPS15 ml,0
-NASATAPP SYRUP 60 ml,0
-NASATAPP TABLET,32
-NATALAC CAP.,8
-NEUROBION TAB.,8
-NEUROGEN E TAB,55
-NIPEDIPINE 10 MG.CAPSULE(CALCIGARD),200
-NIPEDIPINE 5 MG.CAP.(CALCIGARD),200
+Capsule",-15,25.00
+NASATAPP DROPS15 ml,0,25.00
+NASATAPP SYRUP 60 ml,0,25.00
+NASATAPP TABLET,32,25.00
+NATALAC CAP.,8,25.00
+NEUROBION TAB.,8,25.00
+NEUROGEN E TAB,55,25.00
+NIPEDIPINE 10 MG.CAPSULE(CALCIGARD),200,25.00
+NIPEDIPINE 5 MG.CAP.(CALCIGARD),200,25.00
 "Naproxen (SONAP)
-500mg Tablet",575
+500mg Tablet",575,25.00
 "Natravox (Co-Amox)
-625mg Tablet",8
-Neozep Drops 10ml,9
-Neozep Forte,-248
-Neozep Syrup 60ml,6
-Neozep with Zinc Forte,288
-Nestle All Purpose Cream 250ml,2
-Nizoral Cream 3.5g,0
-Nizoral Cream 5g Tube,3
-Norgesic Forte Tab 50mg/650mg,97
+625mg Tablet",8,25.00
+Neozep Drops 10ml,9,3.25
+Neozep Forte,-248,6.50
+Neozep Syrup 60ml,6,7.15
+Neozep with Zinc Forte,288,6.50
+Nizoral Cream 3.5g,0,25.00
+Nizoral Cream 5g Tube,3,25.00
+Norgesic Forte Tab 50mg/650mg,97,25.00
 "Norgesic Tablet 
-35mg/450mg",100
-Norvasc 10mg Tab (Amlodipine),100
-Norvasc 5mg Tab (Amlodipine),92
-Nutroplex 120 ml.syrup,12
-Nutroplex 250ml,6
-Nutroplex 60ml,11
-OBYNAL M CAP.,20
-OIL OF EUCALIPTUS 7.5ML.,11
-OLMESARTAN + AMLO +HYDRO 40/10/25 MG.,30
+35mg/450mg",100,25.00
+Norvasc 10mg Tab (Amlodipine),100,8.00
+Norvasc 5mg Tab (Amlodipine),92,8.00
+Nutroplex 120 ml.syrup,12,25.00
+Nutroplex 250ml,6,25.00
+Nutroplex 60ml,11,25.00
+OBYNAL M CAP.,20,25.00
+OIL OF EUCALIPTUS 7.5ML.,11,25.00
+OLMESARTAN + AMLO +HYDRO 40/10/25 MG.,30,25.00
 "Ofloxacin (FLOXA)
-200mg Tablet",154
+200mg Tablet",154,25.00
 "Ofloxacin (FLOXA)
-400mg Tablet",100
+400mg Tablet",100,25.00
 "Omega Fish Oil (MEGANOVA)
-1000mg Capsule",71
+1000mg Capsule",71,25.00
 "Omeprazole (OMEPHIL)
-20mg Capsule",567
-Omeprazole (RANZOLE) 40mg Capsule,450
-PALM OIL 330 ML.,9
-PALMOLIVE SILKY SRAIGHT  VIOLET 15 ML.,12
-PARACETAMOL 250 MG 60ML. PYRESAPH,11
-"PH Care (Green)
-Cooling Comfort 150ml",7
-"PH Care (Green)
-Cooling Comfort 50ml",0
-"PH Care (Guava)
-Natural Protection 150ml",6
-"PH Care (Guava)
-Natural Protection 50ml",0
-"PH Care (Pink)
-Floral Clean 150ml",1
-"PH Care (Pink)
-Floral Clean 50ml",0
-"PH Care (Violet)
-Delicate White 150ml",2
-"PH Care (Violet)
-Delicate White 50ml",0
-PIATOS SOUR CREAM 40 G.,2
-PIATOS SOUR N CREAM 85 GRAMS,3
-PIOGLITAZONE 15 MG.,30
-PLEMEX  FORTE 500 MG.,4
-POLIDENT  CREAM DENTURE ADHESIVE 20 G.,1
-POLIDENT  TABLET,3
-PONSTAN SF CAPSULE,1
-POTASSIUM CHLORIDE 600 MG.,91
-POVIDONE IODONE 7.5 ML.,12
-PREDNISONE 10 MG.PREND 60 ML.,6
-PREGABALIN 75 MG.,-1
-PREGABALIN 75 MG. (NEURORITE) CAP.,153
-PROPAN TLC 60 ML.SYRUP,3
-PROPAN W/IRON CAPSULE,42
-Pancake Plus w/ Maple Syrup 200g,1
-Pancake Plus w/ Maple Syrup 480g,1
+20mg Capsule",567,18.00
+Omeprazole (RANZOLE) 40mg Capsule,450,18.00
+PARACETAMOL 250 MG 60ML. PYRESAPH,11,5.50
+PLEMEX  FORTE 500 MG.,4,25.00
+POLIDENT  CREAM DENTURE ADHESIVE 20 G.,1,25.00
+POLIDENT  TABLET,3,25.00
+PONSTAN SF CAPSULE,1,25.00
+POTASSIUM CHLORIDE 600 MG.,91,25.00
+POVIDONE IODONE 7.5 ML.,12,25.00
+PREDNISONE 10 MG.PREND 60 ML.,6,25.00
+PREGABALIN 75 MG.,-1,25.00
+PREGABALIN 75 MG. (NEURORITE) CAP.,153,25.00
+PROPAN TLC 60 ML.SYRUP,3,25.00
+PROPAN W/IRON CAPSULE,42,25.00
 "Pantoprazole (H-PANTO)
-40mg Tablet",37
+40mg Tablet",37,25.00
 "Para+Ibup (ILAXX)
-325mg Capsule",600
+325mg Capsule",600,25.00
 "Para+Orphen (AMBICA)
-650/35mg Tablet",100
+650/35mg Tablet",100,25.00
 "Para+Trama (DUO-GESIC)
-Tablet",59
+Tablet",59,25.00
 "Paracetamol (FLUGARD)
-500mg Tablet",1961
+500mg Tablet",1961,5.00
 "Paracetamol (HYFER)
-125mg/60ml Syrup",11
+125mg/60ml Syrup",11,5.50
 "Paracetamol (NOVAMOL)
-100mg/15ml Drops",17
+100mg/15ml Drops",17,3.00
 "Paracetamol (PARASAPH)
-250mg/60ml Syrup",0
-Pau Liniment 30ml,0
-"Pavias Mushroom 
-Chicaron (Sour Cream)",1
+250mg/60ml Syrup",0,5.50
+Pau Liniment 30ml,0,25.00
 "Pedialyte 45 
-Fruit Flavor 500ml",3
+Fruit Flavor 500ml",3,25.00
 "Pedialyte Mild 
-30 Straw 500ml",3
-Phenyl (DEKONREX)12.5mg Syrup 60ml,12
+30 Straw 500ml",3,25.00
+Phenyl (DEKONREX)12.5mg Syrup 60ml,12,25.00
 "Phenyl+Brom
-(BROMITAPP) 60ml Syrup",11
-Phenyl+Brom (BROMITAPP) 15ml Drops,12
-Phenylpropanolamine (DEKONREX) Drops,12
-Piroxicam (DLI) 20mg Capsule,98
-Pizotifen (PEDIATITE) 60ml Suspension,6
+(BROMITAPP) 60ml Syrup",11,25.00
+Phenyl+Brom (BROMITAPP) 15ml Drops,12,25.00
+Phenylpropanolamine (DEKONREX) Drops,12,25.00
+Piroxicam (DLI) 20mg Capsule,98,25.00
+Pizotifen (PEDIATITE) 60ml Suspension,6,25.00
 "Plemex 
-Forte 120ml",1
+Forte 120ml",1,25.00
 "Plemex 
-Forte 60ml",2
+Forte 60ml",2,25.00
 "Plemex 
-Kids 120ml",0
+Kids 120ml",0,25.00
 "Plemex 
-Kids 60ml",6
-Pocari Sweat 350ml,38
-Pocari Sweat 500ml,7
-Pocari sweat 900 ml.,11
-"Ponds Bright Miracle
-Serum Day Cream 7g",-1
+Kids 60ml",6,25.00
 "Potassium Chlor (ELECTAB)
-750mg Tablet",30
+750mg Tablet",30,25.00
 "Potencee Forte
-1000mg",74
+1000mg",74,25.00
 "Potencee Forte + Collagen
-Capsule",17
+Capsule",17,25.00
 "Potencee Sugar Coated
-500mg",72
+500mg",72,25.00
 "Prednisone (BETPRED)
-10mg Syrup 60ml",11
-Prednisone (DERPSON)5mg Tablet,448
-Prednisone (PRENISAPH-10) 10mg Tablet,186
-Prednisone (PRENO) 20mg Tablet,-9
-"Presto Cream 30g
-Double Choco",8
-"Presto Creams 30g 
-Peanut Butter",20
-Propanolol (ORANOL) 10mg Tablet,588
-Propanolol (ORANOL) 40mg Tablet,598
-Pyrazinamide (ZYNAPHAR)250mg Susp. 120ml,6
-Pyrazinamide (ZYNAPHAR)250mg Susp. 60ml,6
-QUADMAX TAB.,65
-RDL #1 Astringent 30ml,12
-RDL #1 Astringent 60ml,15
-RDL #2 Astringent 30ml,12
-RDL ASTRINGENT # 2 60 ML,12
-RDL ASTRINGENT # 3 30 ML.,12
-"RDL ASTRINGENT # 3 60 ML,",12
-RDL FACIAL CLEANSER 250 ML.,0
-RDL FACIAL CLEANSER 75 ML.,0
-RDL SUNBLOCK CREAM 12 G.,0
-"RDL Whitening Cream 
-w/ Moisturizer 25ml",0
-REXONA ICE COOL 45 ML.,0
-REXONA MEN QUANTUM 25ML.,2
-ROGIN E CAP.,12
-ROSUVASTATIN 10 MG. TAB.,66
+10mg Syrup 60ml",11,25.00
+Prednisone (DERPSON)5mg Tablet,448,25.00
+Prednisone (PRENISAPH-10) 10mg Tablet,186,25.00
+Prednisone (PRENO) 20mg Tablet,-9,25.00
+Propanolol (ORANOL) 10mg Tablet,588,25.00
+Propanolol (ORANOL) 40mg Tablet,598,25.00
+Pyrazinamide (ZYNAPHAR)250mg Susp. 120ml,6,25.00
+Pyrazinamide (ZYNAPHAR)250mg Susp. 60ml,6,25.00
+QUADMAX TAB.,65,25.00
+ROGIN E CAP.,12,25.00
+ROSUVASTATIN 10 MG. TAB.,66,25.00
 "Ranitidine (RANITEIN)
-300mg Tablet",288
-Ranitidine (ZENTEK)150mg Tablet,300
-"Refresh Mineral Water
-500ml",45
-Revicon Forte (Foil) Tab,34
-Rexidol Forte Tablet,19
-"Rexona 
-Powder Dry 25ml",0
-"Rexona Men 
-Invisible Dry 25ml",0
-"Rexona Shower 
-Clean 25ml",2
-Robitussin 60ml,0
-Robitussin DM 120 ml,3
-Robitussin DM 60 ml,0
+300mg Tablet",288,12.00
+Ranitidine (ZENTEK)150mg Tablet,300,12.00
+Revicon Forte (Foil) Tab,34,25.00
+Rexidol Forte Tablet,19,25.00
+Robitussin DM 120 ml,3,25.00
+Robitussin DM 60 ml,0,25.00
 "Robitussin L-Gel
-200mg Capsule",23
+200mg Capsule",23,25.00
 "Robust 2's
-550mg Tablet",6
+550mg Tablet",6,25.00
 "Robust Extreme 2's
-400mg Tablet",14
+400mg Tablet",14,25.00
 "Rosuvastatin (ROZATIN-20)
-20mg Tablet",300
+20mg Tablet",300,25.00
 "Rosuvastatin (ROZATIN-40)
-40mg Tablet",93
-SALICYLIC 60 ML.,6
-SALICYLIC ACID 15 ML.,11
-SALICYLIC ACID 30ML.,9
-SALINASE DROPS 30 ML.,2
-SARIDON TRIPLE ACTIONTAB.,15
-SELECTA 3N1 CHOCO MANGO UBE 750ML.,3
-SELECTA 3N1 CHOCO VN STRAW 750 ML.,2
-SELECTA 3N1 TUBS UBE MANGO AVOC 750ML.,0
-SELECTA 3N1TUBS CHOCO KESO UBE 750ML.,3
-SELECTA BDAY BASO CHOCO 400 ML.,3
-SELECTA BDAY BASO KESO 400ML.,0
-SELECTA BDAY BASO UBE 400ML.,0
-SELECTA BOOM CHOCO 60ML.,2
-SELECTA CHOCO ALMOND FUDGE 750ML.,-1
-SELECTA COCO MELON 50ML.,56
-SELECTA CUPS CHOCO 100 ML.,65
-SELECTA CUPS UBE 100ML.,69
-SELECTA DOUBLE CHOCO SUNDAE 100 ML.,30
-SELECTA DSUP DDUTCH 750 ML.,8
-SELECTA DSUP DDUTCH/CREAM 750 ML.,0
-SELECTA DSUP RROAD/C&CREAM 750ML.,1
-SELECTA OOH BOOM COOKIESNCREAM 60ML.,1
-SELECTA OOH CHOCKY STICK 45ML.,5
-SELECTA OOH WATERMELON SLICE 60ML.,1
-SELECTA RROAD/CCREAM 1.3L,0
-SELECTA SUP CHOCO ALMOND FUDGE 450 ML.,0
-SELECTA SUP COFFEE CRUMBLE 1.3 ML.,2
-SELECTA SUP COOKIESN CREAM 1.3ML.,3
-SELECTA SUP CUPS CNC 100ML.,-1
-SELECTA SUP STRAW N CREAM 1.3 L,1
-SELECTA SUPREME COFFEE CRUMBLE 750ML.,0
-SELECTA SUPREME COOKIESNCREAM 750ML.,-1
-SELECTA SUPREME QUEZO REAL 750ML.,0
-SENOKOT TAB,18
-SHOWER CAP,6
-SILKA BLUE F.CLEANSER 75 ML.,0
-SILKA GREEN FACIAL CLEANSER 75 ML.,2
-SILKA LONG LASTING LOTION 50 ML.,0
-SILKA LOTION LONG LASTING 100 ML.,0
-SILVER SULFADIAZIDE  CREAM 30 GRAMS,12
-SIMECO TABLET,30
-SIMVAST 10 MG.TAB.,300
-SINECOD FORTE TAB.,36
-SKIN WHITE WHITENING LOTION 50 ML.,1
-SODIUM CHLORIDE 0.9% 50ML.,6
-SOLMUX ADVANCE 60 ML.,2
-SURF LIQUID CHERRY BLOSSOM 64ML.,3
-SURF LIQUID ROSE GARDEN 64ML.,5
-SYMDEX  D PHENYL PARA TAB,1250
-SYMDEX D FORTE TAB.,102
-SYMDEX D PHENYL PARA SYRUP 60ML,69
-SYMDEX Phenyl Para Drops,6
+40mg Tablet",93,25.00
+SALICYLIC 60 ML.,6,25.00
+SALICYLIC ACID 15 ML.,11,25.00
+SALICYLIC ACID 30ML.,9,25.00
+SALINASE DROPS 30 ML.,2,25.00
+SARIDON TRIPLE ACTIONTAB.,15,25.00
+SENOKOT TAB,18,25.00
+SILVER SULFADIAZIDE  CREAM 30 GRAMS,12,25.00
+SIMECO TABLET,30,25.00
+SIMVAST 10 MG.TAB.,300,25.00
+SINECOD FORTE TAB.,36,25.00
+SODIUM CHLORIDE 0.9% 50ML.,6,25.00
+SOLMUX ADVANCE 60 ML.,2,8.50
+SYMDEX  D PHENYL PARA TAB,1250,25.00
+SYMDEX D FORTE TAB.,102,25.00
+SYMDEX D PHENYL PARA SYRUP 60ML,69,25.00
+SYMDEX Phenyl Para Drops,6,25.00
 "Salbu+Guia (GUIACOF PLUS)
-2mg/100mg Capsule",541
+2mg/100mg Capsule",541,25.00
 "Salbutamol (HIVENT)
-1mg/2.5mg Nebule",160
+1mg/2.5mg Nebule",160,9.00
 "Salbutamol (NOBUTOL)
-2mg Syrup",8
+2mg Syrup",8,9.00
 "Salbutamol (VENTOMAX)
-2mg Tablet",92
+2mg Tablet",92,9.00
 "Salbutamol (VENTOMAX)
-4mg Tablet",140
+4mg Tablet",140,9.00
 "Salbutamol Inhaler
-(SALBUMIN)",9
+(SALBUMIN)",9,9.00
 "Salbutamol+Guiafenisin
-(GUIACOF) Syrup",4
+(GUIACOF) Syrup",4,9.00
 "Salbutamol+Ipratropium
-(HIVENT) Nebules",286
+(HIVENT) Nebules",286,9.00
 "Sambong (URISAM)
-500mg Tablet",18
+500mg Tablet",18,25.00
 "Sangobion Iron
-Plus Capsule",13
-Saridon Tablet,-3
-"Silka 150ml 
-Facial Cleanser Clear",-2
-Silymarin Capsule Liver Gold-F (DAEWOONG),10
+Plus Capsule",13,25.00
+Saridon Tablet,-3,25.00
+Silymarin Capsule Liver Gold-F (DAEWOONG),10,25.00
 "Simvastatin (SIMVASYN)
-10mg Tablet",100
+10mg Tablet",100,12.00
 "Simvastatin (SIMVASYN)
-20mg Tablet",85
+20mg Tablet",85,12.00
 "Simvastatin (SIMVASYN)
-40mg Tablet",94
+40mg Tablet",94,12.00
 "Sinutab Cold 
-Plus Tablet",0
+Plus Tablet",0,25.00
 "Sitaglip+Metfor (SITAKEM)
-50/500mg Tablet",30
-Skelan Tablet,31
-Sleepasil Capsule,8
+50/500mg Tablet",30,25.00
+Skelan Tablet,31,25.00
+Sleepasil Capsule,8,25.00
 "Sodium Asc (MARLUM-C)
-500mg Capsule",447
+500mg Capsule",447,25.00
 "Solmux 
-200mg 60ml",-8
-Solmux Advance,64
-Solmux Capsule,4
-Solmux Drops,2
+200mg 60ml",-8,9.35
+Solmux Advance,64,8.50
+Solmux Capsule,4,8.50
+Solmux Drops,2,8.50
 "Solmux Forte
-200mg 60ml",5
+200mg 60ml",5,9.35
 "Solmux Pedia 
-100mg 60ml",5
+100mg 60ml",5,9.35
 "Solmux Pedia 
-200mg 120ml",2
+200mg 120ml",2,5.95
 "Spironolactone (SPIROTRIX)
-25mg Tablet",6
+25mg Tablet",6,25.00
 "Stress w/ Iron
-Tablet",22
-"Sunsilk Shampoo 
-Pink 15ml",15
-Surf Fabcon Blossom Fresh 28ml,6
-Surf Fabcon Blossom Fresh 69ml,2
-Surf Fabcon Luxe Perfume 28ml,2
-TAICHI COOL STICK EUCALYPTUS 5ML.,1
-TAMSULOSIN 400 MG.CAP.,26
-TEMPRA 120 MG STRBRRY 60ML.,-3
-TEMPRA 120 MG SYRUP ORANGE 120 ML.,5
-TEMPRA DROPS 30ML.,0
-TEMPRA FORTE 250 MG.ORANGE 120 ML.,0
-TEMPRA FORTE 250 MG.ORANGE 60ML.,2
-TEMPRA FORTE 500MG.TABLET,15
-TEMPRA FORTE STRAWBERRY 60 ML.,2
-TLC  DROPS  30 ML.,10
-TLC VITA SYRUP 120 ML.,4
-TLC VITA SYRUP 60 ML.,3
-TOOTHACHE DROPS 7.5ML.,11
-"TRANEXAMIC ACID 500 MG,",177
-TRIMETAZIDINE 35 MG.TERAZIDINE,200
+Tablet",22,25.00
+TAICHI COOL STICK EUCALYPTUS 5ML.,1,25.00
+TAMSULOSIN 400 MG.CAP.,26,25.00
+TEMPRA 120 MG STRBRRY 60ML.,-3,25.00
+TEMPRA 120 MG SYRUP ORANGE 120 ML.,5,25.00
+TEMPRA DROPS 30ML.,0,25.00
+TEMPRA FORTE 250 MG.ORANGE 120 ML.,0,25.00
+TEMPRA FORTE 250 MG.ORANGE 60ML.,2,25.00
+TEMPRA FORTE 500MG.TABLET,15,25.00
+TEMPRA FORTE STRAWBERRY 60 ML.,2,25.00
+TLC  DROPS  30 ML.,10,25.00
+TLC VITA SYRUP 120 ML.,4,25.00
+TLC VITA SYRUP 60 ML.,3,25.00
+TOOTHACHE DROPS 7.5ML.,11,25.00
+"TRANEXAMIC ACID 500 MG,",177,25.00
+TRIMETAZIDINE 35 MG.TERAZIDINE,200,25.00
 "Telmisartan (ORATEL-40)
-40mg Tablet",-89
+40mg Tablet",-89,25.00
 "Telmisartan (TELSITAN-80)
-80mg Tablet",100
+80mg Tablet",100,25.00
 "Tempra Drops
-15ml Orange",8
+15ml Orange",8,25.00
 "Tempra Syrup 120 MG.
-60ml Orange",7
+60ml Orange",7,25.00
 "Tramadol (ROUNOX)
-50mg Capsule",198
+50mg Capsule",198,25.00
 "Trimetazidine (TRIMEBET)
-35mg Tablet",0
-Trust Pills 28's,10
+35mg Tablet",0,25.00
+Trust Pills 28's,10,25.00
 "Tuseran Forte 
-Capsule",19
-UNITED HOME FERROUS SULFATE 100 TAB.,1
-VICKS FORMULA 44 54ML. SYRUP,4
-VIRGIN COCONUT OIL 100 ML.,1
-VIRGIN OIL COCONUT 250 ML.,0
-VISINE EYE DROPS RED 15 ML.,1
-VITAMIN B COMPLEX (REVITAFLEX),180
+Capsule",19,25.00
+UNITED HOME FERROUS SULFATE 100 TAB.,1,25.00
+VICKS FORMULA 44 54ML. SYRUP,4,25.00
+VIRGIN COCONUT OIL 100 ML.,1,25.00
+VIRGIN OIL COCONUT 250 ML.,0,25.00
+VISINE EYE DROPS RED 15 ML.,1,25.00
+VITAMIN B COMPLEX (REVITAFLEX),180,25.00
 "Valsartan (SAPHZAR)
-160mg tablet",30
+160mg tablet",30,25.00
 "Valsartan (SAPHZAR)
-80mg tablet",30
+80mg tablet",30,25.00
 "Ventolin Nebules 1mg
-(SALBUTAMOL)",0
-Vicks Inhaler,9
+(SALBUTAMOL)",0,9.00
+Vicks Inhaler,9,25.00
 "Vit. B-Complex 
-(AMCOVIT-B F) Capsule",1957
+(AMCOVIT-B F) Capsule",1957,25.00
 "Vit. B-Complex 
-(AMCOVIT-B) Tablet",157
-VivaLyte Apple 250ml,0
-VivaLyte Plus Orange 250ml,0
-WHITE FLOWER # 1 20 ML.,3
-WHITE FLOWER #3 5 ML.,8
-WHITE FLOWER #4 2.5 ML.,7
-WILKINS 500 ML.,0
-XANTHONE PLUS CAPSULE,148
-XANTHONE PLUS GOLD,119
-ZESTO  BIG ORANGE 250 ML.,17
-ZINC DROPS  15 ML.(ZINLUM),4
-ZINC SYRUP 60 ML.(ZINLUM),6
-ZONROX COLOR SAFE 95 ML.,1
-ZONROX ORIG 500 ML.,3
-ZONROX ORIG.1000 ML.,0
-Zesto BIG Apple 250ml,12
-Zesto BIG Mango 250ml,35
-Zesto Choc-O  100ml,1
-Zonrox Colorsafe 225ml,1
-Zonrox Floral Scent 250ml,0
-Zonrox Lemon Scent 250ml,1
-Zonrox Original 250ml,4
-omega pain 15 ml,9
-omega pain 30 ml,9
-omega pain 60 ml,2
+(AMCOVIT-B) Tablet",157,25.00
+VivaLyte Apple 250ml,0,25.00
+VivaLyte Plus Orange 250ml,0,25.00
+WHITE FLOWER # 1 20 ML.,3,25.00
+WHITE FLOWER #3 5 ML.,8,25.00
+WHITE FLOWER #4 2.5 ML.,7,25.00
+XANTHONE PLUS CAPSULE,148,25.00
+XANTHONE PLUS GOLD,119,25.00
+ZINC DROPS  15 ML.(ZINLUM),4,25.00
+ZINC SYRUP 60 ML.(ZINLUM),6,25.00
+omega pain 15 ml,9,25.00
+omega pain 30 ml,9,25.00
+omega pain 60 ml,2,25.00

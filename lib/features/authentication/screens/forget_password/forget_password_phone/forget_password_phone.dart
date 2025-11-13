@@ -36,7 +36,16 @@ class ForgetPasswordPhoneScreen extends StatelessWidget {
                 Form(
                   child: Column(
                     children: [
-                      TextFormField(decoration: const InputDecoration(label: Text(TTexts.tPhoneNo), hintText: TTexts.tPhoneNo, prefixIcon: Icon(Icons.numbers))),
+                      TextFormField(
+                        keyboardType: TextInputType.phone,
+                        maxLength: 11,
+                        decoration: const InputDecoration(
+                          label: Text(TTexts.tPhoneNo), 
+                          hintText: TTexts.tPhoneNo, 
+                          prefixIcon: Icon(Icons.numbers),
+                          counterText: '',
+                        ),
+                      ),
                       const SizedBox(height: 20.0),
                       SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () {}, child: const Text(TTexts.tNext))),
                     ],

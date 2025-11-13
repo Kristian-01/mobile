@@ -9,6 +9,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:readmore/readmore.dart';
 
 import '../../../../common/widgets/texts/section_heading.dart';
+import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/device/device_utility.dart';
 import '../../../checkout/screens/checkout.dart';
@@ -32,16 +33,17 @@ class ProductDetailScreen extends StatelessWidget {
 
             /// 2 - Product Details
             Container(
-              padding: const EdgeInsets.only(right: TSizes.defaultSpace, left: TSizes.defaultSpace, bottom: TSizes.defaultSpace),
+              padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace, vertical: TSizes.md),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   /// - Rating & Share
                   const TRatingAndShare(),
+                  const SizedBox(height: TSizes.spaceBtwItems),
 
                   /// - Price, Title, Stock, & Brand
                   TProductMetaData(product: product),
-                  const SizedBox(height: TSizes.spaceBtwSections / 2),
+                  const SizedBox(height: TSizes.defaultSpace),
 
                   /// -- Attributes
                   // If Product has no variations do not show attributes as well.
@@ -51,9 +53,18 @@ class ProductDetailScreen extends StatelessWidget {
                   /// -- Checkout Button
                   SizedBox(
                     width: TDeviceUtils.getScreenWidth(context),
-                    child: ElevatedButton(child: const Text('Checkout'), onPressed: () => Get.to(() => const CheckoutScreen())),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: TSizes.md),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(TSizes.borderRadiusMd),
+                        ),
+                      ),
+                      child: Text('Checkout', style: Theme.of(context).textTheme.titleMedium?.copyWith(color: TColors.white, fontWeight: FontWeight.w600)),
+                      onPressed: () => Get.to(() => const CheckoutScreen()),
+                    ),
                   ),
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                  const SizedBox(height: TSizes.defaultSpace),
 
                   /// - Description
                   const TSectionHeading(title: 'Description', showActionButton: false),
@@ -62,15 +73,16 @@ class ProductDetailScreen extends StatelessWidget {
                   if (product.description != null && product.description!.isNotEmpty)
                     ReadMoreText(
                       product.description!,
-                      trimLines: 2,
-                      colorClickableText: Colors.pink,
+                      trimLines: 3,
+                      colorClickableText: TColors.primary,
                       trimMode: TrimMode.Line,
-                    trimCollapsedText: ' Show more',
-                    trimExpandedText: ' Less',
-                    moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                    lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                  ),
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                      trimCollapsedText: ' Show more',
+                      trimExpandedText: ' Less',
+                      moreStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: TColors.primary),
+                      lessStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: TColors.primary),
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  const SizedBox(height: TSizes.defaultSpace),
 
                   /// - Reviews
                   const Divider(),

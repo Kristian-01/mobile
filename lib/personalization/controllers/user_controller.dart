@@ -33,10 +33,16 @@ class UserController extends GetxController {
   // Profile Screen Controllers
   final email = TextEditingController();
   final phoneNo = TextEditingController();
+  final phoneNumber = TextEditingController();
   final fullName = TextEditingController();
+  final username = TextEditingController();
   final imageUploading = false.obs;
   final profileImageUrl = ''.obs;
   GlobalKey<FormState> updateUserProfileFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> updateNameFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> updateUsernameFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> updateEmailFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> updatePhoneFormKey = GlobalKey<FormState>();
 
   /// init user data when Home Screen appears
   @override
@@ -160,27 +166,6 @@ class UserController extends GetxController {
     }
   }
 
-  /// Upload Profile Picture
-  uploadUserProfilePicture() async {
-    try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70, maxHeight: 512, maxWidth: 512);
-      if (image != null) {
-        imageUploading.value = true;
-        final uploadedImage = await userRepository.uploadImage('Users/Images/Profile/', image);
-        profileImageUrl.value = uploadedImage;
-        Map<String, dynamic> newImage = {'profilePicture': uploadedImage};
-        await userRepository.updateSingleField(newImage);
-        user.value.profilePicture = uploadedImage;
-        user.refresh();
-
-        imageUploading.value = false;
-        TLoaders.successSnackBar(title: 'Congratulations', message: 'Your Profile Image has been updated!');
-      }
-    } catch (e) {
-      imageUploading.value = false;
-      TLoaders.errorSnackBar(title: 'OhSnap', message: 'Something went wrong: $e');
-    }
-  }
 
   /// Update user record after login (e.g., to update token)
   Future<void> updateUserRecordWithToken(String newToken) async {
@@ -328,5 +313,268 @@ class UserController extends GetxController {
     fullName.text = user.value.fullName;
     email.text = user.value.email;
     phoneNo.text = user.value.phoneNumber;
+    username.text = user.value.username;
+    phoneNumber.text = user.value.phoneNumber;
+  }
+
+  /// Update Full Name
+  Future<void> updateFullName() async {
+    try {
+      // Start Loading
+      TFullScreenLoader.openLoadingDialog('Updating name...', TImages.docerAnimation);
+
+      // Check Internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Form Validation
+      if (!updateNameFormKey.currentState!.validate()) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Update user's name in Firebase
+      Map<String, dynamic> json = {'fullName': fullName.text.trim()};
+      await userRepository.updateSingleField(json);
+
+      // Update the Rx User value
+      user.value.fullName = fullName.text.trim();
+      user.refresh();
+
+      // Remove Loader
+      TFullScreenLoader.stopLoading();
+
+      // Show Success Message
+      TLoaders.successSnackBar(title: 'Success', message: 'Your name has been updated.');
+
+      // Move to previous screen
+      Get.back();
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Error', message: e.toString());
+    }
+  }
+
+  /// Update Username
+  Future<void> updateUsername() async {
+    try {
+      // Start Loading
+      TFullScreenLoader.openLoadingDialog('Updating username...', TImages.docerAnimation);
+
+      // Check Internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Form Validation
+      if (!updateUsernameFormKey.currentState!.validate()) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Update user's username in Firebase
+      Map<String, dynamic> json = {'username': username.text.trim()};
+      await userRepository.updateSingleField(json);
+
+      // Update the Rx User value
+      user.value.username = username.text.trim();
+      user.refresh();
+
+      // Remove Loader
+      TFullScreenLoader.stopLoading();
+
+      // Show Success Message
+      TLoaders.successSnackBar(title: 'Success', message: 'Your username has been updated.');
+
+      // Move to previous screen
+      Get.back();
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Error', message: e.toString());
+    }
+  }
+
+  /// Update Email
+  Future<void> updateEmail() async {
+    try {
+      // Start Loading
+      TFullScreenLoader.openLoadingDialog('Updating email...', TImages.docerAnimation);
+
+      // Check Internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Form Validation
+      if (!updateEmailFormKey.currentState!.validate()) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Update user's email in Firebase
+      Map<String, dynamic> json = {'email': email.text.trim()};
+      await userRepository.updateSingleField(json);
+
+      // Update the Rx User value
+      user.value.email = email.text.trim();
+      user.refresh();
+
+      // Remove Loader
+      TFullScreenLoader.stopLoading();
+
+      // Show Success Message
+      TLoaders.successSnackBar(title: 'Success', message: 'Your email has been updated.');
+
+      // Move to previous screen
+      Get.back();
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Error', message: e.toString());
+    }
+  }
+
+  /// Update Phone Number
+  Future<void> updatePhoneNumber() async {
+    try {
+      // Start Loading
+      TFullScreenLoader.openLoadingDialog('Updating phone number...', TImages.docerAnimation);
+
+      // Check Internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Form Validation
+      if (!updatePhoneFormKey.currentState!.validate()) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Update user's phone number in Firebase
+      Map<String, dynamic> json = {'phoneNumber': phoneNumber.text.trim()};
+      await userRepository.updateSingleField(json);
+
+      // Update the Rx User value
+      user.value.phoneNumber = phoneNumber.text.trim();
+      user.refresh();
+
+      // Remove Loader
+      TFullScreenLoader.stopLoading();
+
+      // Show Success Message
+      TLoaders.successSnackBar(title: 'Success', message: 'Your phone number has been updated.');
+
+      // Move to previous screen
+      Get.back();
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Error', message: e.toString());
+    }
+  }
+
+  /// Update Gender
+  Future<void> updateGender(String gender) async {
+    try {
+      // Start Loading
+      TFullScreenLoader.openLoadingDialog('Updating gender...', TImages.docerAnimation);
+
+      // Check Internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Update user's gender in Firebase
+      Map<String, dynamic> json = {'gender': gender};
+      await userRepository.updateSingleField(json);
+
+      // Update the Rx User value
+      user.value.gender = gender;
+      user.refresh();
+
+      // Remove Loader
+      TFullScreenLoader.stopLoading();
+
+      // Show Success Message
+      TLoaders.successSnackBar(title: 'Success', message: 'Your gender has been updated.');
+
+      // Move to previous screen
+      Get.back();
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Error', message: e.toString());
+    }
+  }
+
+  /// Update Date of Birth
+  Future<void> updateDateOfBirth(String dob) async {
+    try {
+      // Start Loading
+      TFullScreenLoader.openLoadingDialog('Updating date of birth...', TImages.docerAnimation);
+
+      // Check Internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Update user's date of birth in Firebase
+      Map<String, dynamic> json = {'dateOfBirth': dob};
+      await userRepository.updateSingleField(json);
+
+      // Update the Rx User value
+      user.value.dateOfBirth = dob;
+      user.refresh();
+
+      // Remove Loader
+      TFullScreenLoader.stopLoading();
+
+      // Show Success Message
+      TLoaders.successSnackBar(title: 'Success', message: 'Your date of birth has been updated.');
+
+      // Move to previous screen
+      Get.back();
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Error', message: e.toString());
+    }
+  }
+
+  /// Upload Profile Picture with ImageSource parameter
+  Future<void> uploadUserProfilePicture(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(
+        source: source,
+        imageQuality: 70,
+        maxHeight: 512,
+        maxWidth: 512,
+      );
+      if (image != null) {
+        imageUploading.value = true;
+        final uploadedImage = await userRepository.uploadImage('Users/Images/Profile/', image);
+        profileImageUrl.value = uploadedImage;
+        Map<String, dynamic> newImage = {'profilePicture': uploadedImage};
+        await userRepository.updateSingleField(newImage);
+        user.value.profilePicture = uploadedImage;
+        user.refresh();
+
+        imageUploading.value = false;
+        TLoaders.successSnackBar(title: 'Success', message: 'Your profile picture has been updated!');
+      }
+    } catch (e) {
+      imageUploading.value = false;
+      TLoaders.errorSnackBar(title: 'Error', message: 'Something went wrong: $e');
+    }
   }
 }

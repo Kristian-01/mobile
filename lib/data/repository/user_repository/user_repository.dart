@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -57,7 +58,17 @@ class UserRepository extends GetxController {
   Future<String> uploadImage(String path, XFile image) async {
     try {
       final ref = _firebaseStorage.ref(path).child(image.name);
-      await ref.putFile(File(image.path));
+      
+      // Handle web and mobile platforms differently
+      if (kIsWeb) {
+        // For web, use bytes instead of File
+        final bytes = await image.readAsBytes();
+        await ref.putData(bytes);
+      } else {
+        // For mobile, use File
+        await ref.putFile(File(image.path));
+      }
+      
       final url = await ref.getDownloadURL();
       return url;
     } on FirebaseException catch (e) {

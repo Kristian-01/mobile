@@ -4,69 +4,97 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../../../../personalization/controllers/address_controller.dart';
+import '../../../../personalization/screens/address/add_new_address.dart';
+import '../../../../personalization/screens/address/edit_address.dart';
+import '../../../../personalization/models/address_model.dart';
 
 class AddressesScreen extends StatelessWidget {
   const AddressesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final controller = Get.put(AddressController());
+    
     return Scaffold(
-      backgroundColor: TColors.black,
+      backgroundColor: isDark ? TColors.black : TColors.light,
       appBar: AppBar(
-        backgroundColor: TColors.black,
+        backgroundColor: isDark ? TColors.black : TColors.light,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          icon: Icon(Icons.arrow_back, color: isDark ? Colors.white : TColors.dark),
           onPressed: () => Get.back(),
         ),
         title: Text(
           'My Addresses',
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.white),
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => Get.to(() => const AddNewAddressScreen()),
         backgroundColor: TColors.primary,
         child: const Icon(Iconsax.add, color: Colors.white),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(TSizes.defaultSpace),
-        child: Column(
-          children: [
-            _buildAddressCard(
-              context,
-              name: 'Home',
-              address: '123 Main Street, City, Country',
-              phone: '+1 234 567 8900',
-              isDefault: true,
+      body: Obx(() {
+        if (controller.isLoading.value) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        
+        if (controller.addresses.isEmpty) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Iconsax.location, size: 80, color: TColors.darkGrey),
+                const SizedBox(height: TSizes.spaceBtwItems),
+                Text(
+                  'No Addresses Yet',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                const SizedBox(height: TSizes.spaceBtwItems / 2),
+                Text(
+                  'Add your first address using the + button',
+                  style: Theme.of(context).textTheme.bodyMedium?.apply(color: TColors.darkGrey),
+                ),
+              ],
             ),
-            const SizedBox(height: TSizes.spaceBtwItems),
-            _buildAddressCard(
-              context,
-              name: 'Office',
-              address: '456 Business Ave, City, Country',
-              phone: '+1 234 567 8901',
-              isDefault: false,
-            ),
-          ],
-        ),
-      ),
+          );
+        }
+        
+        return SingleChildScrollView(
+          padding: const EdgeInsets.all(TSizes.defaultSpace),
+          child: Column(
+            children: controller.addresses.map((address) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
+                child: _buildAddressCard(
+                  context,
+                  controller: controller,
+                  address: address,
+                ),
+              );
+            }).toList(),
+          ),
+        );
+      }),
     );
   }
 
   Widget _buildAddressCard(
     BuildContext context, {
-    required String name,
-    required String address,
-    required String phone,
-    required bool isDefault,
+    required AddressController controller,
+    required AddressModel address,
   }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isDefault = address.selectedAddress;
+    
     return Container(
       padding: const EdgeInsets.all(TSizes.md),
       decoration: BoxDecoration(
-        color: TColors.darkerGrey,
+        color: isDark ? TColors.darkerGrey : TColors.white,
         borderRadius: BorderRadius.circular(TSizes.cardRadiusMd),
         border: Border.all(
-          color: isDefault ? TColors.primary : TColors.darkGrey,
+          color: isDefault ? TColors.primary : (isDark ? TColors.darkGrey : TColors.grey),
           width: isDefault ? 2 : 1,
         ),
       ),
@@ -76,12 +104,15 @@ class AddressesScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                name,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+              Expanded(
+                child: Text(
+                  address.name,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               if (isDefault)
                 Container(
@@ -103,12 +134,16 @@ class AddressesScreen extends StatelessWidget {
           const SizedBox(height: TSizes.spaceBtwItems),
           Row(
             children: [
-              const Icon(Iconsax.location, color: TColors.grey, size: 16),
+              Icon(Iconsax.location, color: isDark ? TColors.grey : TColors.darkGrey, size: 16),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
-                  address,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: TColors.grey),
+                  address.toString(),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: isDark ? TColors.grey : TColors.darkGrey,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
@@ -116,11 +151,13 @@ class AddressesScreen extends StatelessWidget {
           const SizedBox(height: TSizes.spaceBtwItems / 2),
           Row(
             children: [
-              const Icon(Iconsax.call, color: TColors.grey, size: 16),
+              Icon(Iconsax.call, color: isDark ? TColors.grey : TColors.darkGrey, size: 16),
               const SizedBox(width: 8),
               Text(
-                phone,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: TColors.grey),
+                address.formattedPhoneNo,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: isDark ? TColors.grey : TColors.darkGrey,
+                ),
               ),
             ],
           ),
@@ -129,7 +166,7 @@ class AddressesScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () => _showEditAddressDialog(context, controller, address),
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(color: TColors.primary),
                   ),
@@ -139,7 +176,7 @@ class AddressesScreen extends StatelessWidget {
               const SizedBox(width: TSizes.spaceBtwItems),
               Expanded(
                 child: OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () => _showDeleteConfirmation(context, controller, address),
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(color: Colors.red),
                   ),
@@ -147,6 +184,42 @@ class AddressesScreen extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showEditAddressDialog(BuildContext context, AddressController controller, AddressModel address) {
+    // Pre-fill the form with existing data
+    controller.name.text = address.name;
+    controller.phoneNumber.text = address.phoneNumber;
+    controller.street.text = address.street;
+    controller.city.text = address.city;
+    controller.state.text = address.state;
+    controller.postalCode.text = address.postalCode;
+    controller.country.text = address.country;
+    
+    Get.to(() => EditAddressScreen(address: address));
+  }
+
+  void _showDeleteConfirmation(BuildContext context, AddressController controller, AddressModel address) {
+    Get.dialog(
+      AlertDialog(
+        title: const Text('Delete Address'),
+        content: Text('Are you sure you want to delete "${address.name}"?'),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Get.back(); // Close dialog
+              controller.deleteAddress(address);
+            },
+            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            child: const Text('Delete'),
           ),
         ],
       ),

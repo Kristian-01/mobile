@@ -1,0 +1,272 @@
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                     📱 VISUAL GUIDE - PAANO GUMAGANA                      ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🖼️ KUNG ANO MAKIKITA NG USER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1: User visits your website
+────────────────────────────────────────────────────────────────────────
+
+    ┌─────────────────────────────────────────────┐
+    │  Your Website                               │
+    │                                             │
+    │  [Home] [About] [Products] [Contact]        │
+    │                                             │
+    │  Welcome to Nine27 Pharmacy!                │
+    │                                             │
+    │  ┌────────────────────────┐                │
+    │  │  📱 Download App       │  ← BUTTON       │
+    │  └────────────────────────┘                │
+    │                                             │
+    │  Your products and content...               │
+    │                                             │
+    └─────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 2: User clicks "Download App" button
+────────────────────────────────────────────────────────────────────────
+
+    CLICK! →  ┌────────────────────────┐
+              │  📱 Download App       │
+              └────────────────────────┘
+
+    ↓ ↓ ↓ POPUP APPEARS ↓ ↓ ↓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 3: Beautiful popup shows 2 options
+────────────────────────────────────────────────────────────────────────
+
+    ╔═════════════════════════════════════════╗
+    ║     Choose Your Platform                ║
+    ╠═════════════════════════════════════════╣
+    ║                                         ║
+    ║  ┌───────────────────────────────────┐ ║
+    ║  │  📱                               │ ║
+    ║  │  Android App                      │ ║
+    ║  │  Download APK for Android         │ ║
+    ║  │  Size: ~94 MB                     │ ║
+    ║  └───────────────────────────────────┘ ║
+    ║            ↑ CLICK THIS               ║
+    ║                                         ║
+    ║  ┌───────────────────────────────────┐ ║
+    ║  │  🌐                               │ ║
+    ║  │  Web App                          │ ║
+    ║  │  Open in browser instantly        │ ║
+    ║  │  No installation needed           │ ║
+    ║  └───────────────────────────────────┘ ║
+    ║            ↑ OR CLICK THIS            ║
+    ║                                         ║
+    ║        [ Cancel Button ]                ║
+    ║                                         ║
+    ╚═════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OPTION A: User clicks "Android App"
+────────────────────────────────────────────────────────────────────────
+
+    CLICK Android App
+         ↓
+    APK starts downloading
+         ↓
+    File: Nine27Pharmacy.apk (93.5 MB)
+         ↓
+    Saved to Downloads folder
+         ↓
+    User opens file → Installs → App ready!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OPTION B: User clicks "Web App"
+────────────────────────────────────────────────────────────────────────
+
+    CLICK Web App
+         ↓
+    New browser tab opens
+         ↓
+    Web app loads instantly
+         ↓
+    User can use app in browser
+         ↓
+    Can install as PWA (optional)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📂 TECHNICAL: FOLDER STRUCTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Your Website Server:
+────────────────────────────────────────────────────────────────────────
+
+    public_html/
+    │
+    ├── index.html                 ← Your homepage (add button code here)
+    │
+    ├── apps/                      ← Create this folder
+    │   │
+    │   ├── android/               ← Create this folder
+    │   │   └── Nine27Pharmacy.apk ← Upload APK here (93.5 MB)
+    │   │
+    │   └── webapp/                ← Create this folder
+    │       ├── index.html         ← Upload from build\web\
+    │       ├── main.dart.js       ← Upload from build\web\
+    │       ├── flutter_service_worker.js
+    │       ├── manifest.json
+    │       ├── assets/            ← Upload entire folder
+    │       ├── icons/             ← Upload entire folder
+    │       └── canvaskit/         ← Upload entire folder
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔗 URL STRUCTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Your URLs will be:
+────────────────────────────────────────────────────────────────────────
+
+Main website:
+    https://yourwebsite.com/
+
+Android APK:
+    https://yourwebsite.com/apps/android/Nine27Pharmacy.apk
+
+Web App:
+    https://yourwebsite.com/apps/webapp/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💻 CODE FLOW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Button HTML
+   ↓
+   <button id="dlBtn">Download App</button>
+
+2. User clicks button
+   ↓
+   JavaScript: Show modal popup
+
+3. User clicks Android option
+   ↓
+   JavaScript: Create download link
+   ↓
+   Trigger download of APK file
+
+   OR
+
+3. User clicks Web option
+   ↓
+   JavaScript: window.open()
+   ↓
+   Opens web app in new tab
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📱 MOBILE VIEW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+On mobile, it looks like this:
+────────────────────────────────────────────────────────────────────────
+
+    ┌────────────────────┐
+    │ Your Website       │
+    │                    │
+    │ Nine27 Pharmacy    │
+    │                    │
+    │ ┌────────────────┐ │
+    │ │📱 Download App │ │
+    │ └────────────────┘ │
+    │                    │
+    │ Your content...    │
+    │                    │
+    └────────────────────┘
+
+    When clicked:
+
+    ┌────────────────────┐
+    │ Choose Platform    │
+    ├────────────────────┤
+    │                    │
+    │ ┌────────────────┐ │
+    │ │   📱           │ │
+    │ │ Android App    │ │
+    │ │ Download APK   │ │
+    │ └────────────────┘ │
+    │                    │
+    │ ┌────────────────┐ │
+    │ │   🌐           │ │
+    │ │ Web App        │ │
+    │ │ Open browser   │ │
+    │ └────────────────┘ │
+    │                    │
+    │   [ Cancel ]       │
+    │                    │
+    └────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⏱️ TIMELINE: PAANO GAWIN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Minute 0-10: Upload files to website
+  │
+  ├─ Create folders (apps/android/ and apps/webapp/)
+  ├─ Upload APK to android/
+  └─ Upload all web files to webapp/
+
+Minute 10-15: Add code to homepage
+  │
+  ├─ Open homepage in editor
+  ├─ Find </body> tag
+  ├─ Paste button + modal code before </body>
+  └─ Save file
+
+Minute 15-20: Update URLs
+  │
+  ├─ Find APK URL in code
+  ├─ Change to your actual URL
+  ├─ Find Web App URL in code
+  ├─ Change to your actual URL
+  └─ Save file
+
+Minute 20-25: Test everything
+  │
+  ├─ Visit your website
+  ├─ Click Download button
+  ├─ Test Android option
+  ├─ Test Web option
+  └─ ✅ DONE!
+
+Total Time: ~25 minutes
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ SUCCESS CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before Launch:
+□ APK uploaded to website
+□ Web app files uploaded
+□ Code added to homepage
+□ URLs updated in code
+□ Tested on desktop
+□ Tested on mobile
+□ APK downloads successfully
+□ Web app opens successfully
+
+Ready to Go Live:
+□ All checks passed
+□ Users can download
+□ Both options working
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎉 THAT'S HOW IT WORKS!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Simple, Beautiful, Professional! 🚀

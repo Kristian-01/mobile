@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import '../../../features/orders/models/order_model.dart';
 import '../../abstract/base_repository.dart';
@@ -83,5 +84,52 @@ class OrderRepository extends TBaseRepositoryController<OrderModel> {
         .where('status', isEqualTo: status)
         .get();
     return snapshot.docs.map((doc) => OrderModel.fromSnapshot(doc)).toList();
+  }
+
+  /// Real-time stream listener for user's orders
+  /// Returns a stream that emits whenever orders are added/updated/deleted
+  Stream<List<OrderModel>> streamUserOrders() {
+    final auth = FirebaseAuth.instance;
+    print('🔥 OrderRepository: Subscribing to auth state changes for orders stream...');
+
+    // Reactively rebuild the Firestore query when auth user changes
+    return auth.userChanges().asyncExpand((user) {
+      final uid = user?.uid ?? '';
+      if (uid.isEmpty) {
+        print('❌ OrderRepository: No authenticated user - returning empty orders stream');
+        return Stream.value(<OrderModel>[]);
+      }
+
+      print('✅ OrderRepository: Listening to Orders for user: $uid');
+      return db
+          .collection(_collectionPath)
+          .where('userId', isEqualTo: uid)
+          .snapshots()
+          .map((snapshot) {
+        print('📡 OrderRepository: Firestore snapshot received with ${snapshot.docs.length} orders for $uid');
+        final orders = snapshot.docs.map((doc) => OrderModel.fromSnapshot(doc)).toList();
+        orders.sort((a, b) => b.orderDate.compareTo(a.orderDate));
+        return orders;
+      });
+    });
+  }
+
+  /// Real-time stream for a specific order by ID
+  Stream<OrderModel?> streamOrderById(String orderId) {
+    try {
+      return db
+          .collection(_collectionPath)
+          .doc(orderId)
+          .snapshots()
+          .map((snapshot) {
+        if (snapshot.exists) {
+          return OrderModel.fromSnapshot(snapshot);
+        }
+        return null;
+      });
+    } catch (e) {
+      print('Error streaming order $orderId: $e');
+      return Stream.value(null);
+    }
   }
 }

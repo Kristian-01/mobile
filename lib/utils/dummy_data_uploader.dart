@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import '../firebase_options.dart';
+import 'logger_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,7 +67,7 @@ class DataUploader extends StatelessWidget {
 
     for (var category in categories) {
       await db.collection('Categories').doc(category['id'] as String).set(category);
-      print('✅ Uploaded: ${category['name']}');
+      TLoggerHelper.info('✅ Uploaded: ${category['name']}');
     }
   }
 
@@ -164,7 +165,7 @@ class DataUploader extends StatelessWidget {
 
     for (var product in products) {
       await db.collection('Products').doc(product['id'] as String).set(product);
-      print('✅ Uploaded: ${product['title']}');
+      TLoggerHelper.info('✅ Uploaded: ${product['title']}');
     }
   }
 
@@ -178,13 +179,17 @@ class DataUploader extends StatelessWidget {
             onPressed: () async {
               try {
                 await uploadCategories();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('✅ Categories uploaded!')),
-                );
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('✅ Categories uploaded!')),
+                  );
+                }
               } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('❌ Error: $e')),
-                );
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('❌ Error: $e')),
+                  );
+                }
               }
             },
             child: const Text('Upload Categories'),
@@ -194,13 +199,17 @@ class DataUploader extends StatelessWidget {
             onPressed: () async {
               try {
                 await uploadProducts();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('✅ Products uploaded!')),
-                );
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('✅ Products uploaded!')),
+                  );
+                }
               } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('❌ Error: $e')),
-                );
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('❌ Error: $e')),
+                  );
+                }
               }
             },
             child: const Text('Upload Products'),
@@ -211,13 +220,17 @@ class DataUploader extends StatelessWidget {
               try {
                 await uploadCategories();
                 await uploadProducts();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('✅ All data uploaded!')),
-                );
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('✅ All data uploaded!')),
+                  );
+                }
               } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('❌ Error: $e')),
-                );
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('❌ Error: $e')),
+                  );
+                }
               }
             },
             child: const Text('Upload ALL'),

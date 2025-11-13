@@ -39,11 +39,14 @@ class SignUpFormWidget extends StatelessWidget {
             const SizedBox(height: TSizes.xl - 20),
             TextFormField(
               controller: controller.phoneNumber,
-              validator: (value) {
-                if (value!.isEmpty) return 'Phone number cannot be empty';
-                return null;
-              },
-              decoration: InputDecoration(label: Text(TTexts.tPhoneNo), prefixIcon: Icon(LineAwesomeIcons.phone_solid)),
+              validator: (value) => TValidator.validatePhoneNumber(value),
+              keyboardType: TextInputType.phone,
+              maxLength: 11,
+              decoration: InputDecoration(
+                label: Text(TTexts.tPhoneNo), 
+                prefixIcon: Icon(LineAwesomeIcons.phone_solid),
+                counterText: '',
+              ),
             ),
             const SizedBox(height: TSizes.xl - 20),
             Obx(

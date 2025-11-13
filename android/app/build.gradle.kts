@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.mobile.com"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 36
     ndkVersion = "28.0.12674087"
 
     compileOptions {
@@ -25,10 +25,10 @@ android {
 
     defaultConfig {
         applicationId = "com.mobile.com"
-        minSdk = flutter.minSdkVersion.toInt()
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        minSdk = 24
+        targetSdk = 36
+        versionCode = flutter.versionCode ?: 1
+        versionName = flutter.versionName ?: "1.0"
     }
 
     buildTypes {

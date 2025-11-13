@@ -77,7 +77,6 @@ class TDrawer extends StatelessWidget {
       _buildDrawerItem(icon: Iconsax.bag_2, title: "Orders", onTap: () => Get.to(() => const OrdersScreen())),
       _buildDrawerItem(icon: Iconsax.shopping_cart, title: "Cart", onTap: () => Get.toNamed(TRoutes.cartScreen)),
       _buildDrawerItem(icon: Iconsax.shopping_bag, title: "Checkout", onTap: () => Get.toNamed(TRoutes.checkoutScreen)),
-      _buildDrawerItem(icon: Iconsax.heart, title: "Wishlist", onTap: () => Get.toNamed(TRoutes.favouritesScreen)),
     ];
   }
 

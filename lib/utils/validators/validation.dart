@@ -138,11 +138,11 @@ class TValidator {
       return null;
     }
 
-    // Regular expression for phone number validation (assuming a 10-digit US phone number format)
-    final phoneRegExp = RegExp(r'^\d{10}$');
+    // Regular expression for phone number validation (Philippine phone number format: 11 digits)
+    final phoneRegExp = RegExp(r'^\d{11}$');
 
     if (!phoneRegExp.hasMatch(value)) {
-      return 'Invalid phone number format (10 digits required).';
+      return 'Invalid phone number format (11 digits required).';
     }
 
     return null;

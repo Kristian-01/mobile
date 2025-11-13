@@ -23,11 +23,15 @@ class TPromoSlider extends StatelessWidget {
             viewportFraction: 1,
             onPageChanged: (index, _) => controller.updatePageIndicator(index),
           ),
-          items: banners.map((url) => TRoundedImage(
-            imageUrl: url,
-            isNetworkImage: true,
-            fit: BoxFit.cover,
-          )).toList(),
+          items: banners.map((url) {
+            // Check if URL is a network image (starts with http) or asset
+            final isNetwork = url.startsWith('http://') || url.startsWith('https://');
+            return TRoundedImage(
+              imageUrl: url,
+              isNetworkImage: isNetwork,
+              fit: BoxFit.cover,
+            );
+          }).toList(),
         ),
         const SizedBox(height: TSizes.spaceBtwItems),
         Center(
@@ -35,7 +39,7 @@ class TPromoSlider extends StatelessWidget {
             () => Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < banners.length; i++)
                   TCircularContainer(
                     width: 20,
                     height: 4,

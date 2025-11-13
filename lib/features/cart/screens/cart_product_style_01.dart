@@ -28,6 +28,7 @@ class TCartItem extends StatelessWidget {
           imageUrl: item.image ?? '',
           padding: const EdgeInsets.all(TSizes.sm),
           backgroundColor: dark ? TColors.darkerGrey : TColors.white,
+          isNetworkImage: true,
         ),
         const SizedBox(width: TSizes.spaceBtwItems),
 

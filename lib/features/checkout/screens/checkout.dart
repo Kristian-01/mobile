@@ -23,9 +23,9 @@ class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartController = CartController.instance;
     final checkoutController = Get.put(CheckoutController());
-    Get.put(AddressController());
-    final subTotal = cartController.totalCartPrice.value;
+    final addressController = Get.put(AddressController());
     final dark = THelperFunctions.isDarkMode(context);
+    
     return Scaffold(
       appBar: const TEComAppBar(title: Text('Order Review'), showBackArrow: true),
       body: SingleChildScrollView(
@@ -43,34 +43,37 @@ class CheckoutScreen extends StatelessWidget {
               const SizedBox(height: TSizes.spaceBtwSections),
 
               /// -- Billing Section
-              TRoundedContainer(
-                borderColor: TColors.dashboardAppbarBackground,
-                showBorder: true,
-                padding: const EdgeInsets.all(TSizes.md),
-                backgroundColor: dark ? TColors.black : TColors.white,
-                child: Column(
-                  children: [
-                    /// Pricing
-                    TBillingAmountSection(subTotal: subTotal),
-                    const SizedBox(height: TSizes.spaceBtwItems),
+              Obx(() {
+                final subTotal = cartController.totalCartPrice.value;
+                return TRoundedContainer(
+                  borderColor: TColors.dashboardAppbarBackground,
+                  showBorder: true,
+                  padding: const EdgeInsets.all(TSizes.md),
+                  backgroundColor: dark ? TColors.black : TColors.white,
+                  child: Column(
+                    children: [
+                      /// Pricing
+                      TBillingAmountSection(subTotal: subTotal),
+                      const SizedBox(height: TSizes.spaceBtwItems),
 
-                    /// Divider
-                    const Divider(),
-                    const SizedBox(height: TSizes.spaceBtwItems),
+                      /// Divider
+                      const Divider(),
+                      const SizedBox(height: TSizes.spaceBtwItems),
 
-                    /// Payment Methods
-                    const TBillingPaymentSection(),
-                    const SizedBox(height: TSizes.spaceBtwSections),
+                      /// Payment Methods
+                      const TBillingPaymentSection(),
+                      const SizedBox(height: TSizes.spaceBtwSections),
 
-                    /// Address
-                    TBillingAddressSection(
-                      name: TDummyData.user.fullName,
-                      phoneNumber: TDummyData.user.formattedPhoneNo,
-                      address: TDummyData.user.addresses.toString(),
-                    ),
-                  ],
-                ),
-              ),
+                      /// Address
+                      TBillingAddressSection(
+                        name: TDummyData.user.fullName,
+                        phoneNumber: TDummyData.user.formattedPhoneNo,
+                        address: TDummyData.user.addresses.toString(),
+                      ),
+                    ],
+                  ),
+                );
+              }),
               const SizedBox(height: TSizes.spaceBtwSections),
             ],
           ),
@@ -80,13 +83,32 @@ class CheckoutScreen extends StatelessWidget {
       /// -- Checkout Button
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(TSizes.defaultSpace),
-        child: SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () => checkoutController.processCheckout(TPricingCalculator.calculateTotalPrice(subTotal, 'US')), 
-            child: Text('Checkout ₱${TPricingCalculator.calculateTotalPrice(subTotal, 'US')}')
-          ),
-        ),
+        child: Obx(() {
+          final subTotal = cartController.totalCartPrice.value;
+          final hasProducts = cartController.cartItems.isNotEmpty;
+          final hasAddress = addressController.selectedAddress.value.id.isNotEmpty;
+          final canCheckout = hasProducts && hasAddress;
+          
+          return SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: canCheckout 
+                ? () => checkoutController.processCheckout(TPricingCalculator.calculateTotalPrice(subTotal, 'US'))
+                : null,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: canCheckout ? null : TColors.darkGrey,
+                disabledBackgroundColor: TColors.darkGrey,
+              ),
+              child: Text(
+                canCheckout 
+                  ? 'Checkout ₱${TPricingCalculator.calculateTotalPrice(subTotal, 'US')}'
+                  : !hasProducts 
+                    ? 'Cart is Empty'
+                    : 'No Address Selected'
+              ),
+            ),
+          );
+        }),
       ),
     );
   }

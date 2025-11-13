@@ -71,4 +71,19 @@ class TLoaders {
       icon: const Icon(Iconsax.warning_2, color: TColors.white),
     );
   }
+
+  static infoSnackBar({required title, message = ''}) {
+    Get.snackbar(
+      title,
+      message,
+      isDismissible: true,
+      shouldIconPulse: true,
+      colorText: TColors.white,
+      backgroundColor: Colors.blue.shade600,
+      snackPosition: SnackPosition.BOTTOM,
+      duration: const Duration(seconds: 3),
+      margin: const EdgeInsets.all(20),
+      icon: const Icon(Iconsax.info_circle, color: TColors.white),
+    );
+  }
 }

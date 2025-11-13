@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../../utils/constants/colors.dart';
+import '../../../../../utils/helpers/helper_functions.dart';
 import '../curved_edges/curved_edges_widget.dart';
 import 'circular_container.dart';
 
@@ -15,7 +16,16 @@ class TPrimaryHeaderContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return TCurvedEdgesWidget(
       child: Container(
-        color: TColors.dashboardAppbarBackground,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              TColors.dashboardAppbarBackgroundLight, 
+              TColors.dashboardAppbarBackgroundLight2
+            ], // Blue gradient for both light and dark mode
+          ),
+        ),
         padding: const EdgeInsets.only(bottom: 0),
 
         /// -- If [size.isFinite': is not true.in Stack] error occurred -> Read README.md file at [DESIGN ERRORS] # 1

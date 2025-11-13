@@ -7,6 +7,7 @@ class OrderModel {
   final String status; // pending, processing, shipped, delivered, cancelled
   final List<OrderItemModel> items;
   final AddressInfo deliveryAddress;
+  final bool stockReduced;
 
   OrderModel({
     required this.id,
@@ -17,6 +18,7 @@ class OrderModel {
     required this.status,
     required this.items,
     required this.deliveryAddress,
+    this.stockReduced = false,
   });
 
   static OrderModel empty() => OrderModel(
@@ -31,9 +33,10 @@ class OrderModel {
       );
 
   /// Convert OrderModel to JSON
+  /// Note: 'id' is excluded because Firestore generates document IDs automatically
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      // Don't include 'id' - Firestore will generate it
       'userId': userId,
       'totalAmount': totalAmount,
       'orderDate': orderDate,
@@ -41,6 +44,7 @@ class OrderModel {
       'status': status,
       'items': items.map((e) => e.toJson()).toList(),
       'deliveryAddress': deliveryAddress.toJson(),
+      'stockReduced': stockReduced,
     };
   }
 
@@ -58,6 +62,7 @@ class OrderModel {
           .toList(),
       deliveryAddress: AddressInfo.fromJson(
           json['deliveryAddress'] as Map<String, dynamic>? ?? {}),
+      stockReduced: json['stockReduced'] ?? false,
     );
   }
 
@@ -76,6 +81,7 @@ class OrderModel {
           .toList(),
       deliveryAddress: AddressInfo.fromJson(
           data['deliveryAddress'] as Map<String, dynamic>? ?? {}),
+      stockReduced: data['stockReduced'] ?? false,
     );
   }
 }

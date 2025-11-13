@@ -25,8 +25,10 @@ class TPhoneNumberField extends StatelessWidget {
         validator: (value) => TValidator.validatePhoneNumber(value),
         controller: controller.phone,
         keyboardType: TextInputType.phone,
+        maxLength: 11,
         decoration: InputDecoration(
           fillColor: isDark ? TColors.dark : TColors.white,
+          counterText: '',
           prefixIcon: CountryCodePicker(
             alignLeft: false,
             hideMainText: true,

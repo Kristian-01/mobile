@@ -36,10 +36,10 @@ class TProductMetaData extends StatelessWidget {
                 children: [
                   TRoundedContainer(
                     backgroundColor: TColors.primary,
-                    radius: TSizes.sm,
+                    radius: TSizes.borderRadiusMd,
                     padding: const EdgeInsets.symmetric(horizontal: TSizes.sm, vertical: TSizes.xs),
                     child: Text('$salePercentage%',
-                        style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
+                        style: Theme.of(context).textTheme.labelLarge!.copyWith(color: TColors.black, fontWeight: FontWeight.w700)),
                   ),
                   const SizedBox(width: TSizes.spaceBtwItems)
                 ],
@@ -51,7 +51,7 @@ class TProductMetaData extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(product.price.toString(), style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),),
+                  Text(product.price.toString(), style: Theme.of(context).textTheme.titleMedium!.apply(decoration: TextDecoration.lineThrough, color: TColors.darkGrey),),
                   const SizedBox(width: TSizes.spaceBtwItems)
                 ],
               ),
@@ -60,16 +60,19 @@ class TProductMetaData extends StatelessWidget {
             TProductPriceText(price: controller.getProductPrice(product), isLarge: true),
           ],
         ),
-        const SizedBox(height: TSizes.spaceBtwItems / 1.5),
+        const SizedBox(height: TSizes.spaceBtwItems),
         TProductTitleText(title: product.title),
-        const SizedBox(height: TSizes.spaceBtwItems / 1.5),
+        const SizedBox(height: TSizes.spaceBtwItems),
         Row(
           children: [
-            const TProductTitleText(title: 'Stock : ', smallSize: true),
-            Text(controller.getProductStockStatus(product), style: Theme.of(context).textTheme.titleMedium),
+            Text('Stock: ', style: Theme.of(context).textTheme.titleSmall?.copyWith(color: TColors.darkGrey)),
+            Text(
+              controller.getProductStockStatus(product), 
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+            ),
           ],
         ),
-        const SizedBox(height: TSizes.spaceBtwItems / 2),
+        const SizedBox(height: TSizes.spaceBtwItems),
 
         /// Brand (only show if brand exists)
         if (product.brand != null)

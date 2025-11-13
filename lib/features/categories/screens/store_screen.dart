@@ -9,6 +9,7 @@ import '../../cart/screens/cart_menu_icon.dart';
 import '../../dashboard/ecommerce/controllers/categories_controller.dart';
 import '../../products/controllers/product_controller.dart';
 import '../../products/screens/product_cards/product_card_vertical.dart';
+import 'category_products_screen.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
@@ -16,7 +17,6 @@ class StoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categoryController = Get.put(CategoryController());
-    final storeController = Get.put(StoreController());
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
@@ -24,14 +24,14 @@ class StoreScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            /// Header - Store Title + Cart Icon
+            /// Header - Categories Title + Cart Icon
             Padding(
               padding: const EdgeInsets.fromLTRB(TSizes.defaultSpace, TSizes.defaultSpace * 1.5, TSizes.defaultSpace, TSizes.defaultSpace),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Store',
+                    'Categories',
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                           color: isDark ? TColors.white : TColors.black,
                           fontWeight: FontWeight.bold,
@@ -46,161 +46,176 @@ class StoreScreen extends StatelessWidget {
                 ],
               ),
             ),
-
-            /// Search Bar
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: TSizes.md, vertical: TSizes.md),
-                decoration: BoxDecoration(
-                  border: Border.all(color: isDark ? TColors.darkGrey : TColors.grey),
-                  borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Iconsax.search_normal,
-                      color: isDark ? TColors.darkGrey : TColors.grey,
-                      size: 20,
-                    ),
-                    const SizedBox(width: TSizes.spaceBtwItems),
-                    Text(
-                      'Search in Store',
-                      style: Theme.of(context).textTheme.bodyMedium?.apply(
-                            color: isDark ? TColors.darkGrey : TColors.grey,
-                          ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: TSizes.spaceBtwSections * 1.5),
-
-            /// Featured Brands Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Featured Brands',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          color: TColors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                  Text(
-                    'View all',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: TColors.grey,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: TSizes.spaceBtwItems * 1.5),
-
-            /// Featured Brands Display
-            Container(
-              height: 140,
-              padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
-              child: Center(
-                child: Text(
-                  'No Data Found!',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: TColors.grey,
-                      ),
-                ),
-              ),
-            ),
-            const SizedBox(height: TSizes.spaceBtwSections * 1.5),
-
-            /// Category Tabs
-            Obx(() {
-              if (categoryController.isLoading.value) {
-                return const SizedBox.shrink();
-              }
-
-              final categories = categoryController.getFeaturedCategories(10);
-
-              if (categories.isEmpty) {
-                return const SizedBox.shrink();
-              }
-
-              return Container(
-                height: 60,
-                padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: categories.length,
-                  itemBuilder: (context, index) {
-                    final category = categories[index];
-                    return Obx(() {
-                      final isSelected = storeController.selectedCategoryId.value == category.id;
-                      return GestureDetector(
-                        onTap: () => storeController.selectCategory(category.id),
-                        child: Container(
-                          margin: const EdgeInsets.only(right: TSizes.spaceBtwSections),
-                          padding: const EdgeInsets.symmetric(horizontal: TSizes.xs),
-                          decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: isSelected ? TColors.primary : Colors.transparent,
-                                width: 3,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              category.name,
-                              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    color: isSelected ? TColors.white : TColors.grey,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                            ),
-                          ),
-                        ),
-                      );
-                    });
-                  },
-                ),
-              );
-            }),
-
             const SizedBox(height: TSizes.spaceBtwSections),
 
-            /// Products Grid
+            /// Categories Grid
             Expanded(
               child: Obx(() {
-                if (storeController.isLoadingProducts.value) {
+                if (categoryController.isLoading.value) {
                   return const Center(child: CircularProgressIndicator());
                 }
 
-                final products = storeController.categoryProducts;
+                final categories = categoryController.allCategories;
 
-                if (products.isEmpty) {
+                if (categories.isEmpty) {
                   return Center(
-                    child: Text(
-                      'No Data Found!',
-                      style: Theme.of(context).textTheme.bodyLarge?.apply(
-                            color: isDark ? TColors.darkGrey : TColors.grey,
-                          ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Iconsax.category,
+                          size: 100,
+                          color: TColors.grey,
+                        ),
+                        const SizedBox(height: TSizes.spaceBtwItems),
+                        Text(
+                          'No Categories Found!',
+                          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                color: TColors.grey,
+                              ),
+                        ),
+                      ],
                     ),
                   );
                 }
 
-                return SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
-                  child: TGridLayout(
-                    itemCount: products.length,
-                    itemBuilder: (_, index) => TProductCardVertical(product: products[index]),
+                return ListView.builder(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: TSizes.defaultSpace,
+                    vertical: TSizes.sm,
                   ),
+                  itemCount: categories.length,
+                  itemBuilder: (context, index) {
+                    final category = categories[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
+                      child: _buildCategoryCard(context, category, isDark),
+                    );
+                  },
                 );
               }),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildCategoryCard(BuildContext context, dynamic category, bool isDark) {
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => CategoryProductsScreen(category: category));
+      },
+      child: Container(
+        height: 100,
+        decoration: BoxDecoration(
+          color: isDark ? TColors.dark : TColors.light,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: isDark 
+                  ? Colors.black.withValues(alpha: 0.3)
+                  : Colors.black.withValues(alpha: 0.08),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(TSizes.md),
+          child: Row(
+            children: [
+              /// Category Icon/Image
+              Container(
+                width: 70,
+                height: 70,
+                decoration: BoxDecoration(
+                  color: isDark ? TColors.darkGrey : TColors.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Center(
+                  child: _getCategoryIcon(category, isDark),
+                ),
+              ),
+              const SizedBox(width: TSizes.md),
+              
+              /// Category Name and Arrow
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        category.name,
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              color: isDark ? TColors.white : TColors.darkerGrey,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Icon(
+                      Iconsax.arrow_right_3,
+                      color: isDark ? TColors.white.withValues(alpha: 0.6) : TColors.darkerGrey.withValues(alpha: 0.6),
+                      size: 20,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Helper method to get category icon (Material Icon or fallback)
+  Widget _getCategoryIcon(dynamic category, bool isDark) {
+    // Map of icon names to Material Icons
+    final iconMap = {
+      'child_care': Icons.child_care,
+      'female': Icons.female,
+      'medication': Icons.medication,
+      'medical_services': Icons.medical_services,
+      'soap': Icons.soap,
+      'category': Icons.category,
+      'local_hospital': Icons.local_hospital,
+      'health_and_safety': Icons.health_and_safety,
+      'vaccines': Icons.vaccines,
+      'sanitizer': Icons.sanitizer,
+    };
+
+    // Try to get icon from category.icon field
+    if (category.icon != null && iconMap.containsKey(category.icon)) {
+      return Icon(
+        iconMap[category.icon],
+        size: 35,
+        color: isDark ? TColors.light : TColors.dark,
+      );
+    }
+
+    // Heuristic icon selection based on category name
+    final categoryName = category.name.toLowerCase();
+    IconData heuristicIcon = Icons.category;
+    
+    if (categoryName.contains('baby')) {
+      heuristicIcon = Icons.child_care;
+    } else if (categoryName.contains('feminine') || categoryName.contains('female')) {
+      heuristicIcon = Icons.female;
+    } else if (categoryName.contains('medicine')) {
+      heuristicIcon = Icons.medication;
+    } else if (categoryName.contains('personal')) {
+      heuristicIcon = Icons.soap;
+    } else if (categoryName.contains('medical')) {
+      heuristicIcon = Icons.medical_services;
+    }
+
+    return Icon(
+      heuristicIcon,
+      size: 35,
+      color: isDark ? TColors.light : TColors.dark,
     );
   }
 }

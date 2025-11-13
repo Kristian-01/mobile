@@ -4,6 +4,7 @@ class CategoryModel {
   String id;
   String name;
   String image;
+  String? icon; // Material icon name
   String? parentId;
   bool? isFeatured;
 
@@ -11,6 +12,7 @@ class CategoryModel {
     required this.id,
     required this.name,
     required this.image,
+    this.icon,
     this.parentId,
     this.isFeatured,
   });
@@ -23,6 +25,7 @@ class CategoryModel {
       'id': id,
       'name': name,
       'image': image,
+      'icon': icon,
       'parentId': parentId,
       'isFeatured': isFeatured,
     };
@@ -34,6 +37,7 @@ class CategoryModel {
       id: json['id'] ?? '',
       name: json['name'] ?? '',
       image: json['image'] ?? '',
+      icon: json['icon'],
       parentId: json['parentId'],
       isFeatured: json['isFeatured'],
     );

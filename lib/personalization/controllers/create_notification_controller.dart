@@ -36,8 +36,8 @@ class CreateNotificationController extends GetxController {
       // Map Data
       final newRecord = NotificationModel(
         id: '',
-        title: "Welcome to Coding with T!",
-        body: "Your account has been successfully created. Start exploring our features and enjoy your app development journey with us.",
+        title: "Welcome to Nine27 Pharmacy!",
+        body: "Your account has been successfully created. Start shopping for medicines, personal care products, and more!",
         senderId: userController.user.value.id,
         recipientIds: [user.id],
         type: 'Account',

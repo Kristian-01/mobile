@@ -55,12 +55,6 @@ category_info = {
         'emoji': '💊',
         'color': '#FF6B6B'
     },
-    'FOOD_AND_BEVERAGES': {
-        'name': 'Food & Beverages',
-        'icon': 'restaurant',
-        'emoji': '🍔',
-        'color': '#4ECDC4'
-    },
     'PERSONAL_CARE': {
         'name': 'Personal Care',
         'icon': 'face',
@@ -79,12 +73,6 @@ category_info = {
         'emoji': '🏥',
         'color': '#95E1D3'
     },
-    'HOUSEHOLD_ITEMS': {
-        'name': 'Household Items',
-        'icon': 'home',
-        'emoji': '🏠',
-        'color': '#A8E6CF'
-    },
     'FEMININE_CARE': {
         'name': 'Feminine Care',
         'icon': 'spa',
@@ -100,15 +88,14 @@ category_info = {
 }
 
 # Upload products from each CSV file
+# Only pharmacy-related categories + Others for non-pharmacy items
 category_files = [
     'products_MEDICINES.csv',
-    'products_FOOD_AND_BEVERAGES.csv',
     'products_PERSONAL_CARE.csv',
     'products_BABY_PRODUCTS.csv',
     'products_MEDICAL_SUPPLIES.csv',
-    'products_HOUSEHOLD_ITEMS.csv',
     'products_FEMININE_CARE.csv',
-    'products_OTHERS.csv'
+    'products_OTHERS.csv'  # Includes Food, Beverages, Household Items, etc.
 ]
 
 total_uploaded = 0

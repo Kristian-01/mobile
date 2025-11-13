@@ -1,0 +1,138 @@
+╔═══════════════════════════════════════════════════════════════════════════╗
+║          📱 QUICK START GUIDE - 3 SIMPLE STEPS LANG!                     ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 GOAL: Add download button sa website mo na may popup
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📂 STEP 1: UPLOAD FILES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Upload these files to your website:
+
+Location on your PC → Upload to website
+────────────────────────────────────────────────────────────────────────
+
+build\app\outputs\flutter-apk\app-release.apk
+    ↓
+yourwebsite.com/apps/android/Nine27Pharmacy.apk
+
+
+build\web\* (ALL FILES)
+    ↓
+yourwebsite.com/apps/webapp/
+
+
+Using FTP/cPanel:
+1. Create folder: apps/
+2. Inside apps/, create: android/ and webapp/
+3. Upload APK to android/
+4. Upload ALL web files to webapp/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💻 STEP 2: ADD CODE TO YOUR WEBSITE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Open your homepage (index.html or index.php)
+
+Find: </body>
+
+Add THIS CODE before </body>:
+
+────────────────────────────────────────────────────────────────────────
+<!-- Download Button -->
+<button id="dlBtn" style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;padding:15px 40px;font-size:18px;border-radius:50px;cursor:pointer;box-shadow:0 5px 20px rgba(102,126,234,0.4);">📱 Download App</button>
+
+<!-- Popup Modal -->
+<div id="dlModal" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);"><div style="background:white;margin:10% auto;max-width:500px;width:90%;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3);"><div style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:30px;border-radius:20px 20px 0 0;text-align:center;"><h2 style="margin:0;">Choose Platform</h2></div><div style="padding:30px;"><div onclick="getAPK()" style="background:#f8f9fa;border:2px solid #e9ecef;border-radius:15px;padding:25px;margin-bottom:20px;cursor:pointer;"><div style="font-size:40px;">📱</div><div style="font-size:20px;font-weight:bold;">Android App</div><div style="color:#666;">Download APK (~94 MB)</div></div><div onclick="getWeb()" style="background:#f8f9fa;border:2px solid #e9ecef;border-radius:15px;padding:25px;margin-bottom:20px;cursor:pointer;"><div style="font-size:40px;">🌐</div><div style="font-size:20px;font-weight:bold;">Web App</div><div style="color:#666;">Open in browser</div></div><button onclick="close()" style="background:#e9ecef;border:none;padding:12px;border-radius:50px;width:100%;cursor:pointer;">Cancel</button></div></div></div>
+
+<script>
+document.getElementById('dlBtn').onclick=()=>document.getElementById('dlModal').style.display='block';
+function close(){document.getElementById('dlModal').style.display='none';}
+function getAPK(){
+    var a=document.createElement('a');
+    a.href='/apps/android/Nine27Pharmacy.apk';
+    a.download='Nine27Pharmacy.apk';
+    a.click();
+    alert('📥 Download started!');
+    close();
+}
+function getWeb(){
+    window.open('/apps/webapp/','_blank');
+    close();
+}
+</script>
+────────────────────────────────────────────────────────────────────────
+
+Save your file!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✏️ STEP 3: UPDATE URLs (IMPORTANTE!)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+In the code you just added, find and replace:
+
+FIND: a.href='/apps/android/Nine27Pharmacy.apk';
+REPLACE WITH YOUR ACTUAL URL:
+    ↓
+    a.href='https://yourwebsite.com/apps/android/Nine27Pharmacy.apk';
+
+
+FIND: window.open('/apps/webapp/','_blank');
+REPLACE WITH YOUR ACTUAL URL:
+    ↓
+    window.open('https://yourwebsite.com/apps/webapp/','_blank');
+
+Save again!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ STEP 4: TEST!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Open your website: https://yourwebsite.com
+2. Click "Download App" button
+3. Popup should appear
+4. Try clicking "Android App" → APK downloads
+5. Try clicking "Web App" → Opens in new tab
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎉 TAPOS NA! WORKING NA!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Your website now has:
+✅ Download button
+✅ Beautiful popup
+✅ Android APK download
+✅ Web app launch
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📂 FILES LOCATION SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+On Your PC:
+    C:\Projects\capstone\mobile3\build\app\outputs\flutter-apk\app-release.apk
+    C:\Projects\capstone\mobile3\build\web\*
+
+On Your Website:
+    yourwebsite.com/apps/android/Nine27Pharmacy.apk
+    yourwebsite.com/apps/webapp/index.html
+    yourwebsite.com/apps/webapp/[all other files]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🆘 NEED HELP?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Check: STEP_BY_STEP_INTEGRATION.md for detailed instructions
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THAT'S IT! 3 STEPS LANG! 🚀

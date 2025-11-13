@@ -4,12 +4,17 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../../controllers/account_privacy_controller.dart';
+import 'privacy_policy_screen.dart';
+import 'terms_conditions_screen.dart';
+import 'change_password_screen.dart';
 
 class AccountPrivacyScreen extends StatelessWidget {
   const AccountPrivacyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(AccountPrivacyController());
     return Scaffold(
       backgroundColor: TColors.black,
       appBar: AppBar(
@@ -42,21 +47,21 @@ class AccountPrivacyScreen extends StatelessWidget {
               icon: Iconsax.shield_tick,
               title: 'Privacy Policy',
               subtitle: 'View our privacy policy',
-              onTap: () {},
+              onTap: () => Get.to(() => const PrivacyPolicyScreen()),
             ),
             _buildPrivacyOption(
               context,
               icon: Iconsax.document_text,
               title: 'Terms & Conditions',
               subtitle: 'Read our terms of service',
-              onTap: () {},
+              onTap: () => Get.to(() => const TermsConditionsScreen()),
             ),
             _buildPrivacyOption(
               context,
               icon: Iconsax.lock,
               title: 'Change Password',
               subtitle: 'Update your account password',
-              onTap: () {},
+              onTap: () => Get.to(() => const ChangePasswordScreen()),
             ),
             
             const SizedBox(height: TSizes.spaceBtwSections),
@@ -70,19 +75,25 @@ class AccountPrivacyScreen extends StatelessWidget {
             ),
             const SizedBox(height: TSizes.spaceBtwItems),
             
-            _buildConnectedAccount(
+            Obx(() => _buildConnectedAccount(
               context,
+              controller: controller,
               icon: Icons.g_mobiledata_rounded,
               name: 'Google',
-              email: 'avenido.kristian0@gmail.com',
-              isConnected: true,
-            ),
+              email: controller.isGoogleConnected.value 
+                ? controller.connectedEmail.value 
+                : 'Not connected',
+              isConnected: controller.isGoogleConnected.value,
+              onToggle: (value) => controller.toggleGoogleConnection(value),
+            )),
             _buildConnectedAccount(
               context,
+              controller: controller,
               icon: Icons.facebook_rounded,
               name: 'Facebook',
-              email: 'Not connected',
+              email: 'Coming soon',
               isConnected: false,
+              onToggle: null, // Disabled for now
             ),
             
             const SizedBox(height: TSizes.spaceBtwSections),
@@ -101,14 +112,14 @@ class AccountPrivacyScreen extends StatelessWidget {
               icon: Iconsax.archive,
               title: 'Download My Data',
               subtitle: 'Request a copy of your data',
-              onTap: () {},
+              onTap: () => controller.downloadMyData(),
             ),
             _buildPrivacyOption(
               context,
               icon: Iconsax.trash,
               title: 'Delete Account',
               subtitle: 'Permanently delete your account',
-              onTap: () {},
+              onTap: () => controller.deleteAccount(),
               titleColor: Colors.red,
             ),
           ],
@@ -170,10 +181,12 @@ class AccountPrivacyScreen extends StatelessWidget {
 
   Widget _buildConnectedAccount(
     BuildContext context, {
+    required AccountPrivacyController controller,
     required IconData icon,
     required String name,
     required String email,
     required bool isConnected,
+    required Function(bool)? onToggle,
   }) {
     return Container(
       margin: const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
@@ -216,7 +229,7 @@ class AccountPrivacyScreen extends StatelessWidget {
           ),
           Switch(
             value: isConnected,
-            onChanged: (value) {},
+            onChanged: onToggle,
             activeColor: TColors.primary,
           ),
         ],
